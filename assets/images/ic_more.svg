@@ -1,0 +1,25 @@
+<svg id="ic_more2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_12822" data-name="Rectangle 12822" width="96" height="96" transform="translate(190 123)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_160" data-name="Mask Group 160" transform="translate(-190 -123)" clip-path="url(#clip-path)">
+    <g id="but_more" transform="translate(-576 -1040)">
+      <g id="Group_29844" data-name="Group 29844" transform="translate(1628 2422) rotate(180)">
+        <g id="Ellipse_77" data-name="Ellipse 77" transform="translate(808 1186)" fill="#fff" stroke="#bfbfbf" stroke-width="3">
+          <circle cx="6" cy="6" r="6" stroke="none"/>
+          <circle cx="6" cy="6" r="4.5" fill="none"/>
+        </g>
+        <g id="Ellipse_78" data-name="Ellipse 78" transform="translate(808 1205)" fill="#fff" stroke="#bfbfbf" stroke-width="3">
+          <circle cx="6" cy="6" r="6" stroke="none"/>
+          <circle cx="6" cy="6" r="4.5" fill="none"/>
+        </g>
+        <g id="Ellipse_79" data-name="Ellipse 79" transform="translate(808 1224)" fill="#fff" stroke="#bfbfbf" stroke-width="3">
+          <circle cx="6" cy="6" r="6" stroke="none"/>
+          <circle cx="6" cy="6" r="4.5" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

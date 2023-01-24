@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_12818" data-name="Rectangle 12818" width="96" height="96" transform="translate(5768.347 5320)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="ic_lang" transform="translate(-5768.347 -5320)" clip-path="url(#clip-path)">
+    <path id="_0c7fac8ab5019a90849b94ad470499d6" data-name="0c7fac8ab5019a90849b94ad470499d6" d="M17.02,1039.36a3.248,3.248,0,0,0-3.067,2.107l-9.736,25.961c-.474,1.1-.683,2.4.442,3.307,3.22,1.266,6.676-9,6.515-8.947H22.8c.124.1,3.393,10.42,6.513,8.936a3.246,3.246,0,0,0,.448-3.3l-9.736-25.958a3.246,3.246,0,0,0-3-2.107Zm-.026,6.69,4.1,11.424h-8.2Z" transform="translate(5799.511 4312.64)" fill="#047e63" fill-rule="evenodd"/>
+    <g id="Rectangle_12817" data-name="Rectangle 12817" transform="translate(5787.347 5339)" fill="none" stroke="#047e63" stroke-width="1">
+      <rect width="59" height="59" rx="7" stroke="none"/>
+      <rect x="0.5" y="0.5" width="58" height="58" rx="6.5" fill="none"/>
+    </g>
+  </g>
+</svg>
