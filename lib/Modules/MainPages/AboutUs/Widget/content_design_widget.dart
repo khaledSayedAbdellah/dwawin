@@ -15,7 +15,7 @@ class ContentDesignWidget extends StatelessWidget {
         Text(title,style: TextStyle(
             fontWeight:FontWeight.bold ,
             fontSize: 38.sp,
-            color: ThemeClass.secondColor
+            color: ThemeClass.secondaryColor
         ),),
         Divider(color: ThemeClass.primaryColor,thickness: 1.h,),
         Text(dec,style: TextStyle(

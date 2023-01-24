@@ -31,5 +31,19 @@
   "about_app": "About the application",
   "language": "Language",
   "about_des_3": "The collections of Sheikh Ibrahim Inias",
-  "about_des_4":"Many poems are attributed to Sheikh Ibrahim, most of which were collected in one book published during his life, titled: “The Six Collections of Sheikh Al-Islam Hajj Ibrahim Ibn Sheikh Al-Hajj Abdullah Al-Kolkhi.” Two collections were attached to these six collections, which are titles for systems that revolve around one axis, which is the prophetic praise from A Sufi perspective, and in addition to the prophetic praise that received great attention, he has other collections in praising the people of the method."
+  "about_des_4":"Many poems are attributed to Sheikh Ibrahim, most of which were collected in one book published during his life, titled: “The Six Collections of Sheikh Al-Islam Hajj Ibrahim Ibn Sheikh Al-Hajj Abdullah Al-Kolkhi.” Two collections were attached to these six collections, which are titles for systems that revolve around one axis, which is the prophetic praise from A Sufi perspective, and in addition to the prophetic praise that received great attention, he has other collections in praising the people of the method.",
+  "about_diwan": "About the Diwan :",
+  "Rhymes": "Rhymes",
+  "alqafia": "Rhyme: ",
+  "number_verses": "Number of verses: ",
+  "vocalist": "Vocalist : ",
+  "add_note": "Add note",
+  "play_with_out_internet": "Play without internet",
+  "share_poems": "Share poems",
+  "font_size":"Font size",
+  "font_color":"Font color",
+  "backGround_color":"BackGround color",
+  "content_note":"Content note",
+  "delete": "delete",
+  "add": "add"
 }

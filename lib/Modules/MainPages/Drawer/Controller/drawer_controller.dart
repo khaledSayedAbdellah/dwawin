@@ -40,11 +40,11 @@ static List<String> supportedLanguage = ["ar", "en"];
     DrawerModel(title: "about_app".tr,image: "ic_about.svg",id: 5,routeName: AboutApp.routeName),
   ];
   checkStatusLang(){
-    if(SharedPref.getCurrentLang()=="ar"){
-      selectLanguage=0;
+    if(SharedPref.getCurrentLang()=="en"){
+      selectLanguage=1;
       setState(() { });
     }else{
-      selectLanguage=1;
+      selectLanguage=0;
       setState(() { });
     }
   }

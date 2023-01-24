@@ -4,8 +4,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../Modules/AboutApp/Screen/about_app.dart';
+import '../Modules/DiwanShow/Screen/diwan_show.dart';
 import '../Modules/Favorites/Screen/favorites.dart';
 import '../Modules/Note/Screen/note.dart';
+import '../Modules/PomesShow/Screen/poems_show.dart';
 import '../Utilities/theme_helper.dart';
 import '../Modules/MainPages/main_screens.dart';
 class AppModule extends Module{
@@ -18,7 +20,9 @@ class AppModule extends Module{
     defaultRoute(routeName: MainScreen.routeName, screen: const MainScreen()),
     defaultRoute(routeName: Note.routeName, screen: const Note()),
     defaultRoute(routeName: Favorites.routeName, screen: const Favorites()),
-    defaultRoute(routeName: AboutApp.routeName, screen: const AboutApp())
+    defaultRoute(routeName: AboutApp.routeName, screen: const AboutApp()),
+    defaultRoute(routeName: DiwanShow.routeName, screen: const DiwanShow()),
+    defaultRoute(routeName: PoemsShow.routeName, screen: const PoemsShow()),
   ];
 
   static ChildRoute defaultRoute({required String routeName,required Widget screen}){
@@ -63,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   end: Alignment.bottomCenter,
                   colors: [
                     ThemeClass.primaryColor,
-                    ThemeClass.secondColor,
+                    ThemeClass.secondaryColor,
                   ],
                 )
             ),

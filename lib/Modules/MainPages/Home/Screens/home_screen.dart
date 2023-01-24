@@ -29,10 +29,7 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async {
-        if (Platform.isAndroid) SystemNavigator.pop();
-        exit(0);
-      },
+      onWillPop: () async => false,
       child: Scaffold(
         drawer:const DrawerScreen(),
         backgroundColor: ThemeClass.backGround,

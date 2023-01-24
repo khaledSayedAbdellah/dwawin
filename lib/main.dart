@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'Control/app_languages.dart';
+import 'Control/shared_data_provider.dart';
 import 'Utilities/Routing.dart';
 import 'Utilities/shared_preferances_helper.dart';
 import 'locale/locales.dart';
@@ -14,11 +15,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await Firebase.initializeApp();
   await SharedPref().init();
-  if(DateTime.now().isBefore(DateTime(2023,1,25))){
+  if(DateTime.now().isBefore(DateTime(2023,1,30))){
     runApp(
         MultiProvider(
           providers: [
             ChangeNotifierProvider<AppLanguage>(create: (_) => AppLanguage()),
+            ChangeNotifierProvider<SharedDataProvider>(create: (_) => SharedDataProvider()),
           ],
           child: ModularApp(
             module: AppModule(),
@@ -44,8 +46,8 @@ class EntryPoint extends StatelessWidget {
         title: 'dawawin',
         locale: appLan.appLocal,
         supportedLocales: const [
-          Locale('en', 'US'),
           Locale('ar', ''),
+          Locale('en', 'US'),
         ],
         localizationsDelegates: const [
           AppLocalizations.delegate,
@@ -60,21 +62,3 @@ class EntryPoint extends StatelessWidget {
     );
   }
 }
-
-
-// diwan
-Map diwan = {
-  "id": 1,
-  "name":"",
-  "description":"",
-  "nOfPoems": 0
-};
-
-Map poem ={
-  "id": 1,
-  "diwanId": 1,
-  "name":"",
-  "rhyme": "",
-  "nOfVerses": 0,
-  "content":""
-};

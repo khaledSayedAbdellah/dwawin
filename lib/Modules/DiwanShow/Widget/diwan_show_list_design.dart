@@ -1,19 +1,18 @@
-import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../Models/eldawawin_model.dart';
 import '../../../../Utilities/theme_helper.dart';
-import '../../../DiwanShow/Screen/diwan_show.dart';
-class EldawawinListDesign extends StatelessWidget {
+import '../../PomesShow/Screen/poems_show.dart';
+class DiwanShowDesignList extends StatelessWidget {
   final EldawawinModel eldawawin;
-  const EldawawinListDesign({Key? key, required this.eldawawin}) : super(key: key);
+  const DiwanShowDesignList({Key? key, required this.eldawawin}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>Navigator.of(context).pushNamed(DiwanShow.routeName),
+      onTap: ()=>Navigator.of(context).pushNamed(PoemsShow.routeName),
       child: Center(
         child: Container(
           margin:EdgeInsets.symmetric(vertical: 19.h),
@@ -29,10 +28,9 @@ class EldawawinListDesign extends StatelessWidget {
               Row(
                 children: [
                   SvgPicture.asset(
-                    "assets/images/dawawin_icon.svg",
+                    "assets/images/book.svg",
                     height: 80.h,
                     width: 70.w,
-                    color: ThemeClass.primaryColor,
                   ),
                   Text(eldawawin.title??'',style: TextStyle(
                       fontSize: 32.sp,
@@ -41,22 +39,30 @@ class EldawawinListDesign extends StatelessWidget {
                   ),),
                 ],
               ),
-              SizedBox(height: 33.h,),
-              Row(
-                children: [
-                  SizedBox(width:60.w ,),
-                  Text('num_of_poems'.tr,style: TextStyle(
-                      fontSize: 28.sp,
-                      fontWeight: FontWeight.w500,
-                      color: ThemeClass.secondaryColor
-                  ),),
-                  SizedBox(width: 11.w,),
-                  Text("${eldawawin.numberOfPoems.toString()}  ${"poems".tr}",style: TextStyle(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.w500,
-                      color: ThemeClass.secondaryColor
-                  ),),
-                ],
+              SizedBox(height: 30.h,),
+              Center(
+                child: SizedBox(
+                  width: 800.w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: Text(eldawawin.firstVerse??"",style: TextStyle(
+                            fontSize: 29.sp,
+                            fontWeight: FontWeight.w500,
+                            color: ThemeClass.secondDarkGray
+                        ),),
+                      ),  Flexible(
+                        child: Text(eldawawin.secondVerse??"",style: TextStyle(
+                            fontSize: 29.sp,
+                            fontWeight: FontWeight.w500,
+                            color: ThemeClass.secondDarkGray
+                        ),),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               SizedBox(height: 28.h,),
             ],

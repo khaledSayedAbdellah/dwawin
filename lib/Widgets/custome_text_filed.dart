@@ -12,7 +12,7 @@ class CustomTextFieldWidget extends StatelessWidget {
   final Color? backGroundColor;
   final TextStyle? style;
   final TextStyle? hintStyle;
-  final int? maxLine, maxLength, widthSufIcon;
+  final int? maxLine, maxLength,minLines, widthSufIcon;
   final String? Function(String?)? validator;
   final TextInputType? textInputType;
   final bool? enable, isDense;
@@ -26,6 +26,7 @@ class CustomTextFieldWidget extends StatelessWidget {
   const CustomTextFieldWidget(
       {Key? key,
         this.isDense,
+        this.minLines,
         this.style,
         this.onchange,
         this.insidePadding,
@@ -113,6 +114,7 @@ class CustomTextFieldWidget extends StatelessWidget {
         onChanged: onchange,
         textCapitalization: TextCapitalization.words,
         maxLines: maxLine ?? 1,
+        minLines: minLines??1,
         keyboardType: textInputType,
         style: style ??
             TextStyle(

@@ -6,9 +6,9 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../Utilities/theme_helper.dart';
 class NavBarWidget extends StatefulWidget {
-  int selectedIndex;
+  int? selectedIndex;
   final Function(int)? onChange;
-   NavBarWidget({Key? key, required this.onChange,required this.selectedIndex}) : super(key: key);
+   NavBarWidget({Key? key,this.onChange, this.selectedIndex=0}) : super(key: key);
 
   @override
   State<NavBarWidget> createState() => _NavBarWidgetState();
@@ -62,7 +62,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
             text: e.title.tr,
           );
         }).toList(),
-        selectedIndex: widget.selectedIndex,
+        selectedIndex: widget.selectedIndex??0,
         onTabChange:widget.onChange,
       ),
     );

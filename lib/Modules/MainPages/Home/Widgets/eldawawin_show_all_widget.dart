@@ -25,10 +25,10 @@ class EldawawinShowAll extends StatelessWidget {
             Text("Dawawin".tr,style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 40.sp,
-                color: ThemeClass.secondColor
+                color: ThemeClass.secondaryColor
             ),),
             SizedBox(width: 48.w,),
-            Flexible(child: Divider(color: ThemeClass.secondColor,height: 1.h)),
+            Flexible(child: Divider(color: ThemeClass.secondaryColor,height: 1.h)),
             SizedBox(width: 26.w,),
             InkWell(
               onTap: ()=>print("show_all"),

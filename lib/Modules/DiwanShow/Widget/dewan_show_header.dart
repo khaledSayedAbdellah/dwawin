@@ -1,5 +1,5 @@
-import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
+import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Utilities/theme_helper.dart';
 import '../../../../Widgets/custome_text_filed.dart';
@@ -38,23 +38,13 @@ class FavoritesHeaderWidget extends StatelessWidget {
                   Center(
                     child: SizedBox(
                       width: 1025.w,
-                      child: Text("ديوان سير القلب",style: TextStyle(
+                      child: Text("fav".tr,style: TextStyle(
                           fontSize: 38.sp,
                           fontWeight:FontWeight.bold ,color: Colors.white
                       ),),
                     ),
                   ),
-                  SizedBox(height: 41.h,),
-                  Center(
-                    child: SizedBox(
-                      width: 1025.w,
-                      child: Text("عدد القصائد : 50 قصيدة",style: TextStyle(
-                          fontSize: 38.sp,
-                          fontWeight:FontWeight.bold ,color: Colors.white
-                      ),),
-                    ),
-                  ),
-                  SizedBox(height: 48.h,),
+                  SizedBox(height: 90.h,),
                 ],
               ),
             ),
