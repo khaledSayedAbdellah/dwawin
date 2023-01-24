@@ -1,4 +1,6 @@
 
+import 'package:dwawin/Database/db_diwan_table.dart';
+import 'package:dwawin/Models/diwan_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -20,6 +22,7 @@ late TextEditingController searchController;
   void initState() {
     searchController=TextEditingController();
     searchController.addListener(() { });
+    init();
     super.initState();
   }
   @override
@@ -27,12 +30,19 @@ late TextEditingController searchController;
     searchController.dispose();
     super.dispose();
   }
-  List<EldawawinModel>eldawainList=[
-    EldawawinModel(title: "Eldawain elsat",numberOfPoems:850),
-    EldawawinModel(title: "Diwan Sir Al-Qalb",numberOfPoems:850),
-    EldawawinModel(title: "Diwan Nurul Haq",numberOfPoems:50),
-    EldawawinModel(title: "ديوان كنز العارفين",numberOfPoems:35),
-  ];
+
+  init()async{
+    eldawainList = await DiwanDbHelper().getAll();
+    setState(() { });
+  }
+
+  List<DiwanModel> eldawainList = [];
+  // List<EldawawinModel>eldawainList=[
+  //   EldawawinModel(title: "Eldawain elsat",numberOfPoems:850),
+  //   EldawawinModel(title: "Diwan Sir Al-Qalb",numberOfPoems:850),
+  //   EldawawinModel(title: "Diwan Nurul Haq",numberOfPoems:50),
+  //   EldawawinModel(title: "ديوان كنز العارفين",numberOfPoems:35),
+  // ];
   List<EldawawinModel>poemsList=[
     EldawawinModel(title: "قصيدة بسملة",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
     EldawawinModel(title: "قصيدة وكفاني",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),

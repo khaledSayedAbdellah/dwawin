@@ -10,6 +10,7 @@ import '../Modules/Note/Screen/note.dart';
 import '../Modules/PomesShow/Screen/poems_show.dart';
 import '../Utilities/theme_helper.dart';
 import '../Modules/MainPages/main_screens.dart';
+import 'initial_local_data.dart';
 class AppModule extends Module{
   @override
   List<Bind> get binds => [];
@@ -50,8 +51,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   navigator()async{
     await Future.delayed(const Duration(seconds: 2));
+    await InitialLocalData.init();
     Navigator.of(context).pushNamed(MainScreen.routeName);
   }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

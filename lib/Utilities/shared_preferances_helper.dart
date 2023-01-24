@@ -15,29 +15,19 @@ class SharedPref{
 
   static SharedPreferences? prefs;
 
-  static const String _userObj = "userObj";
   static const String _language = "language_code";
+  static const String _dataVersion = "data_version";
 
   init()async{
     prefs = await SharedPreferences.getInstance();
   }
 
-  static Future<bool?> saveUserObj({required UserModel user})async{
-    return await prefs?.setString(_userObj, jsonEncode(user.toMap()));
-  }
-  static UserModel? getUserObg(){
-    String? userStringData = prefs?.getString(_userObj);
-    if(userStringData==null) return null;
-    return UserModel.fromMap(jsonDecode(userStringData));
-  }
 
-
-  static bool isUserLogIn(){
-    return prefs?.getString(_userObj)!=null;
+  static int? getDataVersion(){
+    return prefs?.getInt(_dataVersion);
   }
-
-  static Future<void> logOut()async{
-    await prefs?.remove(_userObj);
+  static Future<void> setDataVersion({required int version})async{
+    await prefs?.setInt(_dataVersion,version);
   }
 
   static String? getCurrentLang(){
@@ -46,11 +36,4 @@ class SharedPref{
   static Future<void> setCurrentLang({required String lang})async{
     await prefs?.setString(_language,lang);
   }
-}
-
-class UserModel{
-  UserModel({this.token});
-String? token;
-  Map<String, dynamic> toMap() => {};
-  factory UserModel.fromMap(jsonDecode) => UserModel();
 }

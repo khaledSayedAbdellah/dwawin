@@ -6,15 +6,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
+import 'Database/database_helper.dart';
 import 'Utilities/Routing.dart';
 import 'Utilities/shared_preferances_helper.dart';
 import 'locale/locales.dart';
-// import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
   await SharedPref().init();
+  await DataBaseHelper().init();
+
   if(DateTime.now().isBefore(DateTime(2023,1,30))){
     runApp(
         MultiProvider(
@@ -41,7 +42,6 @@ class EntryPoint extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(1125, 2436),
       builder:(_,__)=> MaterialApp.router(
-        // theme: ThemeData(fontFamily: 'poppins'),
         debugShowCheckedModeBanner: false,
         title: 'dawawin',
         locale: appLan.appLocal,
