@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:dwawin/Models/verse_model.dart';
+
 PoemModel poemModelFromMap(String str) => PoemModel.fromMap(json.decode(str));
 
 String poemModelToMap(PoemModel data) => json.encode(data.toMap());
@@ -31,14 +33,14 @@ class PoemModel {
   String? name;
   String? rhyme;
   int get nOfVerses => content.length;
-  List<Content> content;
+  List<VerseModel> content;
 
   PoemModel copyWith({
     int? id,
     int? diwanId,
     String? name,
     String? rhyme,
-    List<Content>? content,
+    List<VerseModel>? content,
   }) =>
       PoemModel(
         id: id ?? this.id,
@@ -55,8 +57,8 @@ class PoemModel {
     rhyme: jsonData[rhymeText],
     content: jsonData[contentText] == null ? [] :
     jsonData[contentText].runtimeType != String?
-    List<Content>.from(jsonData[contentText].map((x) => Content.fromMap(x)))
-        :List<Content>.from(json.decode(jsonData[contentText]).map((x) => Content.fromMap(x))),
+    List<VerseModel>.from(jsonData[contentText].map((x) => VerseModel.fromMapAddPOemId(x,poemId: jsonData[idText],diwanId: jsonData[diwanIdText],)))
+        :List<VerseModel>.from(json.decode(jsonData[contentText]).map((x) => VerseModel.fromMapAddPOemId(x,poemId: jsonData[idText],diwanId: jsonData[diwanIdText],))),
   );
 
   Map<String, dynamic> toMap() => {
@@ -70,22 +72,3 @@ class PoemModel {
 
 
 
-class Content {
-  Content({
-    this.verse1,
-    this.verse2,
-  });
-
-  String? verse1;
-  String? verse2;
-
-  factory Content.fromMap(Map<String, dynamic> json) => Content(
-    verse1: json["verse1"],
-    verse2: json["verse2"],
-  );
-
-  Map<String, dynamic> toMap() => {
-    "verse1": verse1,
-    "verse2": verse2,
-  };
-}

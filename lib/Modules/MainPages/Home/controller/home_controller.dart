@@ -1,5 +1,6 @@
 
 import 'package:dwawin/Database/db_diwan_table.dart';
+import 'package:dwawin/Database/db_verse_table.dart';
 import 'package:dwawin/Models/diwan_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -33,6 +34,8 @@ late TextEditingController searchController;
 
   init()async{
     eldawainList = await DiwanDbHelper().getAll();
+    var x = await VerseDbHelper().searchByVerse(text: "حليف غرام");
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>XXX::XX:::XX:${x.first.verse1Rm}");
     setState(() { });
   }
 

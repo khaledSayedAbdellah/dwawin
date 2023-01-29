@@ -32,8 +32,19 @@ extension OnTapFadeImageExtension on FadeInImage {
   }
 }
 // ignore: camel_case_extensions
-extension translateEx on String {
+extension translate on String {
   String get tr => AppLocalizations.instance.translate(this)??"";
+}
+
+extension removeArabicFormation on String {
+  String rmArFormation(){
+    List<int> data = this.codeUnits.toList();
+    // const List<String> arabicFormationsTypes = ["ُ","َ","ِ","ّْ","ً","ٌ","ٍ"];
+    // List<int> asciFormationsCode = arabicFormationsTypes.map((e) => e.codeUnits.first).toList();
+    const List<int> asciFormationsCode = const [1615, 1614, 1616, 1618, 1611, 1612, 1613];
+    data.removeWhere((item) => asciFormationsCode.contains(item));
+    return String.fromCharCodes(data);
+  }
 }
 
 
