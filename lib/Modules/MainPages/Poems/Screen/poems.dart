@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../../Utilities/theme_helper.dart';
-import '../../Home/Widgets/home_poems_design_list_widget.dart';
+import '../../../../Widgets/poems_widget.dart';
 import '../Widget/poems_header_widget.dart';
 
 class PoemsScreen extends StatefulWidget {
@@ -45,7 +45,7 @@ class _PoemsScreenState extends StateMVC<PoemsScreen> {
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
-                          return PoemsDesignList(eldawawin:con.poemsList[index] ,);
+                          return PoemsWidget(poem:con.poemsList[index] ,);
                         },
                         childCount: con.poemsList.length,
                       ),

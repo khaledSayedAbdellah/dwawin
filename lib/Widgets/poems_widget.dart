@@ -1,12 +1,13 @@
-import 'package:dwawin/Models/poem_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../Utilities/theme_helper.dart';
-import '../../PomesShow/Screen/poems_show.dart';
-class DiwanPoemWidget extends StatelessWidget {
+
+import '../Models/poem_model.dart';
+import '../Modules/PomesShow/Screen/poems_show.dart';
+import '../Utilities/theme_helper.dart';
+class PoemsWidget extends StatelessWidget {
   final PoemModel poem;
-  const DiwanPoemWidget({Key? key, required this.poem}) : super(key: key);
+  const PoemsWidget({Key? key, required this.poem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class DiwanPoemWidget extends StatelessWidget {
                   ),),
                 ],
               ),
-              SizedBox(height: 30.h,),
+              SizedBox(height: 31.h,),
               Center(
                 child: SizedBox(
                   width: 800.w,
@@ -53,7 +54,7 @@ class DiwanPoemWidget extends StatelessWidget {
                             color: ThemeClass.secondDarkGray
                         ),),
                       ),  Flexible(
-                        child: Text(poem.content.first.verse1??"",style: TextStyle(
+                        child: Text(poem.content.first.verse2??"",style: TextStyle(
                             fontSize: 29.sp,
                             fontWeight: FontWeight.w500,
                             color: ThemeClass.secondDarkGray

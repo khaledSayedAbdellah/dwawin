@@ -1,11 +1,11 @@
 import 'dart:io';
-import 'package:dwawin/Modules/MainPages/Dawawin/Widget/eldawawin_design_list.dart';
 import 'package:dwawin/Modules/MainPages/Dawawin/Widget/eldawawin_header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../../Utilities/theme_helper.dart';
+import '../../../../Widgets/eldiwan_widget.dart';
 import '../controller/dawawin_controller.dart';
 
 class DawawinScreen extends StatefulWidget {
@@ -45,7 +45,7 @@ class _DawawinScreenState extends StateMVC<DawawinScreen> {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                    return EldawawinListDesign(eldawawin:con.eldawainList[index],);
+                    return EldiwanWidget(eldawawin:con.eldawainList[index],);
                   },
                   childCount: con.eldawainList.length,
                 ),

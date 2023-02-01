@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../Widgets/nav_bar_widget.dart';
 import 'AboutUs/Screen/about_us.dart';
 import 'Dawawin/Screen/dawawin_screen.dart';
@@ -39,7 +38,6 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: Container(
         color: Colors.transparent.withOpacity(.1),
         child: NavBarWidget(selectedIndex: _selectedIndex,onChange: (int index){
-          // context.read<SharedPref>().setCurrentNavIndex(index);
           setState(() { _selectedIndex=index;});
         }),
       ),

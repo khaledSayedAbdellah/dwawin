@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../Utilities/theme_helper.dart';
-import '../../../DiwanShow/Screen/diwan_show.dart';
-class EldawawinListDesign extends StatelessWidget {
+import '../Utilities/theme_helper.dart';
+import '../Modules/DiwanShow/Screen/diwan_show.dart';
+class EldiwanWidget extends StatelessWidget {
   final DiwanModel eldawawin;
-  const EldawawinListDesign({Key? key, required this.eldawawin}) : super(key: key);
+  const EldiwanWidget({Key? key, required this.eldawawin}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

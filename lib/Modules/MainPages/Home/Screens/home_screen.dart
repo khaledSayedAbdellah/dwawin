@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../../Utilities/theme_helper.dart';
@@ -8,9 +6,9 @@ import '../../Drawer/Screen/drawer.dart';
 import '../Widgets/audible_poems_widget.dart';
 import '../Widgets/eldawawin_show_all_widget.dart';
 import '../Widgets/header_widget.dart';
-import '../Widgets/home_poems_design_list_widget.dart';
+import '../../../../Widgets/poems_widget.dart';
 import '../Widgets/home_poems_show_all_widget.dart';
-import '../Widgets/home_eldawawin_design_widget.dart';
+import '../../../../Widgets/eldiwan_widget.dart';
 import '../controller/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,7 +45,7 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      return EldawawinListDesign(eldawawin:con.eldawainList.take(4).toList()[index] ,);
+                      return EldiwanWidget(eldawawin:con.eldawainList.take(4).toList()[index] ,);
                     },
                     childCount: con.eldawainList.take(4).length,
                   ),
@@ -56,7 +54,7 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                      return PoemsDesignList(eldawawin:con.poemsList[index] ,);
+                      return PoemsWidget(poem:con.poemsList[index] ,);
                     },
                     childCount: con.poemsList.take(4).length,
                   ),

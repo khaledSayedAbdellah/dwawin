@@ -5,10 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../Utilities/theme_helper.dart';
+import '../../../Widgets/poems_widget.dart';
 import '../../Favorites/Widget/favorites_header_widget.dart';
 import '../Controller/diwan_show_conteoller.dart';
 import '../Widget/about_diwan_widget.dart';
-import '../Widget/diwan_show_list_design.dart';
 import '../Widget/elquafy_widget.dart';
 
 class DiwanShow extends StatefulWidget {
@@ -71,7 +71,7 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                  return DiwanPoemWidget(poem:con.getPoemsByDiwanId[index] ,);
+                  return PoemsWidget(poem:con.getPoemsByDiwanId[index] ,);
                 },
                 childCount:con.getPoemsByDiwanId.length,
               ),

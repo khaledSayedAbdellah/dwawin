@@ -7,7 +7,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:provider/provider.dart';
 import '../../../Control/shared_data_provider.dart';
-import '../../../Utilities/theme_helper.dart';
 import '../Controller/pomes_show_controller.dart';
 import '../Widget/poems_show_header_widget.dart';
 
