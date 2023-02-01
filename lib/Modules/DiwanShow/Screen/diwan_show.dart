@@ -15,8 +15,8 @@ import '../Widget/elquafy_widget.dart';
 
 class DiwanShow extends StatefulWidget {
   static const routeName = "/DiwanShow";
-
-  const DiwanShow({Key? key}) : super(key: key);
+final int? diwanId;
+  const DiwanShow({Key? key, this.diwanId}) : super(key: key);
 
   @override
   State createState() => _DiwanShowState();
@@ -28,7 +28,11 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
   }
 
   late DiwanShowController con;
-
+@override
+  void initState() {
+    con.diwanId=widget.diwanId;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,6 +73,9 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
+                      print(">>>>>>>>>>>>${con.getPoemsByDiwanId.length}");
+                      print("<<<<<<<<<<<<<>>>>>>>>>>>>>${con.getRhymeByDiwanId.length}");
+
                   return DiwanShowDesignList(eldawawin:con.poemsList[index] ,);
                 },
                 childCount:con.poemsList.length,

@@ -14,7 +14,7 @@ class EldawawinListDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>Navigator.of(context).pushNamed(DiwanShow.routeName),
+      onTap: ()=>Navigator.of(context).pushNamed(DiwanShow.routeName,arguments: eldawawin.id),
       child: Center(
         child: Container(
           margin:EdgeInsets.symmetric(vertical: 19.h),

@@ -17,7 +17,7 @@ class HomeController extends ControllerMVC {
   HomeController._();
 late TextEditingController searchController;
   bool loading = false;
-
+  List<DiwanModel> eldawainList = [];
   @override
   void initState() {
     searchController=TextEditingController();
@@ -36,13 +36,7 @@ late TextEditingController searchController;
     setState(() { });
   }
 
-  List<DiwanModel> eldawainList = [];
-  // List<EldawawinModel>eldawainList=[
-  //   EldawawinModel(title: "Eldawain elsat",numberOfPoems:850),
-  //   EldawawinModel(title: "Diwan Sir Al-Qalb",numberOfPoems:850),
-  //   EldawawinModel(title: "Diwan Nurul Haq",numberOfPoems:50),
-  //   EldawawinModel(title: "ديوان كنز العارفين",numberOfPoems:35),
-  // ];
+
   List<EldawawinModel>poemsList=[
     EldawawinModel(title: "قصيدة بسملة",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
     EldawawinModel(title: "قصيدة وكفاني",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),

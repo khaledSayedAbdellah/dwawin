@@ -22,7 +22,10 @@ class AppModule extends Module{
     defaultRoute(routeName: Note.routeName, screen: const Note()),
     defaultRoute(routeName: Favorites.routeName, screen: const Favorites()),
     defaultRoute(routeName: AboutApp.routeName, screen: const AboutApp()),
-    defaultRoute(routeName: DiwanShow.routeName, screen: const DiwanShow()),
+    ChildRoute(DiwanShow.routeName,
+        child: (_, args) => DiwanShow(diwanId: args.data,),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
     defaultRoute(routeName: PoemsShow.routeName, screen: const PoemsShow()),
   ];
 
