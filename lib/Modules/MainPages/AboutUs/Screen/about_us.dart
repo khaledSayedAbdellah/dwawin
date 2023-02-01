@@ -27,6 +27,12 @@ class _AboutUsState extends StateMVC<AboutUs> {
   late AboutUsController con;
 
   @override
+  void initState() {
+    con.getData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
@@ -52,7 +58,7 @@ class _AboutUsState extends StateMVC<AboutUs> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Flexible(child: ContentDesignWidget(title:"his_birth".tr ,dec: "his_birth_dec".tr)),
+                          Flexible(child: ContentDesignWidget(title:"his_birth".tr ,dec: con.shikhDataModel?.dateOfBirth??"")),
                           SizedBox(width: 50.w,),
                           Image.asset("assets/images/img-shikh.png",width: 310.w,height: 407.h,),
                         ],
@@ -65,7 +71,7 @@ class _AboutUsState extends StateMVC<AboutUs> {
                   child: Center(
                     child: SizedBox(
                       width: 1025.w,
-                      child:ContentDesignWidget(title:"his_elders".tr ,dec: "his_elders_dec".tr),
+                      child:ContentDesignWidget(title:"his_elders".tr ,dec: con.shikhDataModel?.elders??""),
                     ),
                   ),
                 ),
@@ -74,7 +80,7 @@ class _AboutUsState extends StateMVC<AboutUs> {
                   child: Center(
                     child: SizedBox(
                       width: 1025.w,
-                      child:ContentDesignWidget(title:"scholars_leave_him".tr ,dec: "scholars_leave_him_dec".tr),
+                      child:ContentDesignWidget(title:"scholars_leave_him".tr ,dec: con.shikhDataModel?.ijazaat??""),
                     ),
                   ),
                 ),

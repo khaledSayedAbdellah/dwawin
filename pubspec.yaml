@@ -81,6 +81,7 @@ flutter:
     - i18n/en.json
     - i18n/ar.json
     - assets/data.json
+    - assets/shikh_data.json
     - assets/images/
   # To add assets to your application, add an assets section, like this:
   # assets:
