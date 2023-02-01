@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../Models/eldawawin_model.dart';
+import '../../../../Models/poem_model.dart';
 import '../../../../Utilities/theme_helper.dart';
 class PoemsDesignList extends StatelessWidget {
-  final EldawawinModel eldawawin;
+  final PoemModel eldawawin;
   const PoemsDesignList({Key? key, required this.eldawawin}) : super(key: key);
 
   @override
@@ -29,7 +29,7 @@ class PoemsDesignList extends StatelessWidget {
                   height: 80.h,
                   width: 70.w,
                 ),
-                Text(eldawawin.title??'',style: TextStyle(
+                Text(eldawawin.name??'',style: TextStyle(
                     fontSize: 32.sp,
                     fontWeight: FontWeight.bold,
                     color: ThemeClass.primaryColor
@@ -45,13 +45,13 @@ class PoemsDesignList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Flexible(
-                      child: Text(eldawawin.firstVerse??"",style: TextStyle(
+                      child: Text(eldawawin.content.first.verse1??"",style: TextStyle(
                           fontSize: 29.sp,
                           fontWeight: FontWeight.w500,
                           color: ThemeClass.secondDarkGray
                       ),),
                     ),  Flexible(
-                      child: Text(eldawawin.secondVerse??"",style: TextStyle(
+                      child: Text(eldawawin.content.first.verse2??"",style: TextStyle(
                           fontSize: 29.sp,
                           fontWeight: FontWeight.w500,
                           color: ThemeClass.secondDarkGray

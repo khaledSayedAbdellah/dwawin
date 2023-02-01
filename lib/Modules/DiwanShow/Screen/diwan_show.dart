@@ -1,12 +1,10 @@
+import 'package:dwawin/Models/diwan_model.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import '../../../Control/shared_data_provider.dart';
 import '../../../Utilities/theme_helper.dart';
-import '../../../Widgets/nav_bar_widget.dart';
 import '../../Favorites/Widget/favorites_header_widget.dart';
 import '../Controller/diwan_show_conteoller.dart';
 import '../Widget/about_diwan_widget.dart';
@@ -15,8 +13,8 @@ import '../Widget/elquafy_widget.dart';
 
 class DiwanShow extends StatefulWidget {
   static const routeName = "/DiwanShow";
-final int? diwanId;
-  const DiwanShow({Key? key, this.diwanId}) : super(key: key);
+final DiwanModel? diwan;
+  const DiwanShow({Key? key, this.diwan}) : super(key: key);
 
   @override
   State createState() => _DiwanShowState();
@@ -30,7 +28,7 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
   late DiwanShowController con;
 @override
   void initState() {
-    con.diwanId=widget.diwanId;
+    con.diwanId=widget.diwan?.id??0;
     super.initState();
   }
   @override
@@ -44,8 +42,8 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
           ),
           CustomScrollView(slivers: [
             FavoritesHeaderWidget(searchController: con.searchController),
-            const AboutDiwan(aboutDiwan: "ديوان سير القلب بمدح المصطفى الحب إلى حضرة الرب إنه ديوان يسموا بالمتأمل فيه إلى مجالات يكل اللسان عن التعبير عنها، كما أنه يصف كل ما كان يعانيه العصر من مشاكل ودعوات وصراع، فهو أذن ديوان يستحق الأعتناء به لكل محب ولكل أديب ولكل سائر إلى حضرة الرب"),
-             ElquafyWidget(elquafi: con.elquafi),
+             AboutDiwan(aboutDiwan: widget.diwan?.description??''),
+             ElquafyWidget(elquafi: con.getRhymeByDiwanId),
             SliverToBoxAdapter(
               child:Center(
                 child: Container(
@@ -73,14 +71,12 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      print(">>>>>>>>>>>>${con.getPoemsByDiwanId.length}");
-                      print("<<<<<<<<<<<<<>>>>>>>>>>>>>${con.getRhymeByDiwanId.length}");
-
-                  return DiwanShowDesignList(eldawawin:con.poemsList[index] ,);
+                  return DiwanPoemWidget(poem:con.getPoemsByDiwanId[index] ,);
                 },
-                childCount:con.poemsList.length,
+                childCount:con.getPoemsByDiwanId.length,
               ),
-            ),
+            )
+
           ])
         ]),
 //       bottomNavigationBar: NavBarWidget(

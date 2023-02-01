@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../Models/eldawawin_model.dart';
 import '../../../../Utilities/theme_helper.dart';
 import '../../../DiwanShow/Screen/diwan_show.dart';
 class EldawawinListDesign extends StatelessWidget {
@@ -14,7 +13,7 @@ class EldawawinListDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>Navigator.of(context).pushNamed(DiwanShow.routeName,arguments: eldawawin.id),
+      onTap: ()=>Navigator.of(context).pushNamed(DiwanShow.routeName,arguments: eldawawin),
       child: Center(
         child: Container(
           margin:EdgeInsets.symmetric(vertical: 19.h),
@@ -67,3 +66,4 @@ class EldawawinListDesign extends StatelessWidget {
     );
   }
 }
+

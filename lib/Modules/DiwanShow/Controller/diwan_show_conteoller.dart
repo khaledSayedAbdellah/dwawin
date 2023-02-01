@@ -1,8 +1,9 @@
+import 'package:dwawin/Database/db_verse_table.dart';
+import 'package:dwawin/Models/verse_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../../Database/db_diwan_table.dart';
-import '../../../Models/eldawawin_model.dart';
 import '../../../Models/poem_model.dart';
 class DiwanShowController extends ControllerMVC {
   // singleton
@@ -21,7 +22,7 @@ class DiwanShowController extends ControllerMVC {
   @override
   void initState() {
     searchController=TextEditingController();
-    searchController.addListener(() { });
+    searchController.addListener(searchOnDiwan);
     init();
     super.initState();
   }
@@ -35,28 +36,10 @@ class DiwanShowController extends ControllerMVC {
     getRhymeByDiwanId=await  DiwanDbHelper().getRhymeByDiwanId(id: diwanId??0);
     setState(() { });
   }
-  List<EldawawinModel>poemsList=[
-    EldawawinModel(title: "قصيدة بسملة",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-    EldawawinModel(title: "قصيدة وكفاني",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-    EldawawinModel(title: "قصيدة العينية",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-    EldawawinModel(title: "قصيدة مديح نبوي",firstVerse: "ملى القلب حب الهاشمي فلم أنم ",secondVerse: "بباريس حولي الراقدون ولم أُلم"),
-    EldawawinModel(title: "قصيدة أبرق بدا",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-  ];
-  List<EldawawinModel>elquafi=[
-    EldawawinModel(title: "ب"),
-    EldawawinModel(title: "ل"),
-    EldawawinModel(title: "ا"),
-    EldawawinModel(title: "ا"),
-    EldawawinModel(title: "ت"),
-    EldawawinModel(title: "ن"),
-    EldawawinModel(title: "م"),
-    EldawawinModel(title: "ب"),
-    EldawawinModel(title: "ل"),
-    EldawawinModel(title: "ا"),
-    EldawawinModel(title: "ا"),
-    EldawawinModel(title: "ت"),
-    EldawawinModel(title: "ن"),
-    EldawawinModel(title: "م"),
-  ];
+
+  searchOnDiwan()async{
+    List<VerseModel> x = await VerseDbHelper().searchByVerse(text: searchController.text);
+
+  }
 
 }

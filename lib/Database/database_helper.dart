@@ -23,6 +23,7 @@ class DataBaseHelper {
         onCreate: (Database db, int version) async {
           await db.execute(ConstDb.createDiwanTable);
           await db.execute(ConstDb.createPoemTable);
+          await db.execute(ConstDb.createVerseTable);
         }
     );
   }

@@ -1,9 +1,12 @@
 
+import 'package:dwawin/Models/diwan_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
-import '../../../../Models/eldawawin_model.dart';
+import '../../../../Database/db_poem_table.dart';
+import '../../../../Models/poem_model.dart';
+
 class PoemsController extends ControllerMVC {
   // singleton
   factory PoemsController(){
@@ -20,6 +23,7 @@ class PoemsController extends ControllerMVC {
   void initState() {
     searchController=TextEditingController();
     searchController.addListener(() { });
+    getData();
     super.initState();
   }
   @override
@@ -27,15 +31,12 @@ class PoemsController extends ControllerMVC {
     searchController.dispose();
     super.dispose();
   }
-  List<EldawawinModel>poemsList=[
-    EldawawinModel(title: "قصيدة بسملة",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-    EldawawinModel(title: "قصيدة وكفاني",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-    EldawawinModel(title: "قصيدة العينية",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-    EldawawinModel(title: "قصيدة مديح نبوي",firstVerse: "ملى القلب حب الهاشمي فلم أنم ",secondVerse: "بباريس حولي الراقدون ولم أُلم"),
-    EldawawinModel(title: "قصيدة أبرق بدا",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),    EldawawinModel(title: "قصيدة بسملة",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-    EldawawinModel(title: "قصيدة وكفاني",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-    EldawawinModel(title: "قصيدة العينية",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-    EldawawinModel(title: "قصيدة مديح نبوي",firstVerse: "ملى القلب حب الهاشمي فلم أنم ",secondVerse: "بباريس حولي الراقدون ولم أُلم"),
-    EldawawinModel(title: "قصيدة أبرق بدا",firstVerse: "بسم الإله أشكر المريدا",secondVerse: " وأرتجي بفضله المزيدا"),
-  ];
+  List<PoemModel>poemsList=[];
+
+  getData()async{
+    poemsList = await PoemDbHelper().getAll();
+    setState(() { });
+
+  }
+
 }

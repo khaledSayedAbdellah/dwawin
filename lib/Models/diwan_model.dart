@@ -9,7 +9,6 @@ DiwanModel diwanModelFromMap(String str) => DiwanModel.fromMap(json.decode(str))
 String diwanModelToMap(DiwanModel data) => json.encode(data.toMap());
 
 class DiwanModel {
-
   static const String idText = "id";
   static const String nameText = "name";
   static const String descriptionText = "description";

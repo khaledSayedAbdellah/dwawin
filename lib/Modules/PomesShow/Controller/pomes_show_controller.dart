@@ -3,7 +3,6 @@ import 'package:dwawin/Modules/PomesShow/Widget/more_content_widget.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import '../../../Models/eldawawin_model.dart';
 
 class PoemsShowController extends ControllerMVC {
   // singleton
@@ -21,7 +20,6 @@ class PoemsShowController extends ControllerMVC {
   @override
   void initState() {
     searchController=TextEditingController();
-
     searchController.addListener(() { });
     super.initState();
   }
@@ -39,13 +37,6 @@ playMusic()async{
   pauseMusic()async{
   await player.pause();
 }
-  List<EldawawinModel>poemsList=[
-    EldawawinModel(firstVerse: "بسم الإله أشكر المريدا",id: 0),
-    EldawawinModel(firstVerse: "بسم الإله أشكر المريدا",id: 1),
-    EldawawinModel(firstVerse: "بسم الإله أشكر المريدا",id: 2),
-    EldawawinModel(firstVerse: "ملى القلب حب الهاشمي فلم أنم ",id: 3),
-    EldawawinModel(firstVerse: "بسم الإله أشكر المريدا",id: 4),
-  ];
   moreOnTap({required BuildContext context})async{
    Helper.showBottomSheetWithDynamicHeight(context: context, widget: MoreContentWidget());
   }

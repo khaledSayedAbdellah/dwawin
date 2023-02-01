@@ -1,3 +1,4 @@
+import 'package:dwawin/Models/poem_model.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,8 @@ import '../Widget/poems_show_header_widget.dart';
 
 class PoemsShow extends StatefulWidget {
   static const routeName = "/PoemsShow";
-
-  const PoemsShow({Key? key}) : super(key: key);
+final PoemModel poem;
+  const PoemsShow({Key? key, required this.poem}) : super(key: key);
 
   @override
   State createState() => _PoemsShowState();
@@ -48,7 +49,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                         ),
                         SliverToBoxAdapter(child:
                         Column(
-                          children: con.poemsList.map((e){
+                          children: widget.poem.content.map((e){
                             return Center(
                               child: SizedBox(
                                 width: 1025.w,
@@ -56,7 +57,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                                   mainAxisAlignment: e.id!.isOdd?MainAxisAlignment.end:MainAxisAlignment.start,
                                   children: [
                                     Flexible(
-                                      child: Text(e.firstVerse??'',style: TextStyle(
+                                      child: Text( e.id!.isOdd?e.verse1??'':e.verse2??'',style: TextStyle(
                                         fontSize: provider.fontSize.sp,
                                           color: provider.fontColor,
                                         fontWeight: FontWeight.bold,
@@ -74,7 +75,8 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 50.w,vertical: 40.h),
-                  height: 425.h,width: 400,
+                  height: 425.h,
+                  width: double.infinity,
                   color:const Color(0xff047E63),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,

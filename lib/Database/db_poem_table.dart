@@ -31,7 +31,7 @@ class PoemDbHelper{
   }
 
   Future<PoemModel?> getById({required int id}) async {
-    List<Map<String,dynamic>> maps = await db.query(tableName,where: '${PoemModel.idText} LIKE ?',whereArgs: ['%$id%']);
+    List<Map<String,dynamic>> maps = await db.query(tableName,where: '${PoemModel.idText} = ?',whereArgs: [id]);
     if (maps.isNotEmpty) {
       return PoemModel.fromMap(maps.first);
     }

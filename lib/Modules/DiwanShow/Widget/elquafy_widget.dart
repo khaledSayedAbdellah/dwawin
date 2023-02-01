@@ -2,11 +2,9 @@ import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../Models/eldawawin_model.dart';
 import '../../../Utilities/theme_helper.dart';
 class ElquafyWidget extends StatelessWidget {
-  final List<EldawawinModel>elquafi;
+  final List<String>elquafi;
   const ElquafyWidget({Key? key, required this.elquafi}) : super(key: key);
 
   @override
@@ -45,7 +43,7 @@ class ElquafyWidget extends StatelessWidget {
                         borderRadius:BorderRadius.circular(20.w),
                         color: const Color(0xffE9E9E9)
                     ),
-                    child: Text(e.title??"",style: TextStyle(
+                    child: Text(e,style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: ThemeClass.primaryColor,
                     ),),

@@ -1,18 +1,17 @@
+import 'package:dwawin/Models/poem_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../../Models/eldawawin_model.dart';
 import '../../../../Utilities/theme_helper.dart';
 import '../../PomesShow/Screen/poems_show.dart';
-class DiwanShowDesignList extends StatelessWidget {
-  final EldawawinModel eldawawin;
-  const DiwanShowDesignList({Key? key, required this.eldawawin}) : super(key: key);
+class DiwanPoemWidget extends StatelessWidget {
+  final PoemModel poem;
+  const DiwanPoemWidget({Key? key, required this.poem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>Navigator.of(context).pushNamed(PoemsShow.routeName),
+      onTap: ()=>Navigator.of(context).pushNamed(PoemsShow.routeName,arguments: poem),
       child: Center(
         child: Container(
           margin:EdgeInsets.symmetric(vertical: 19.h),
@@ -32,7 +31,7 @@ class DiwanShowDesignList extends StatelessWidget {
                     height: 80.h,
                     width: 70.w,
                   ),
-                  Text(eldawawin.title??'',style: TextStyle(
+                  Text(poem.name??'',style: TextStyle(
                       fontSize: 32.sp,
                       fontWeight: FontWeight.bold,
                       color: ThemeClass.primaryColor
@@ -48,13 +47,13 @@ class DiwanShowDesignList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Flexible(
-                        child: Text(eldawawin.firstVerse??"",style: TextStyle(
+                        child: Text(poem.content.first.verse1??"",style: TextStyle(
                             fontSize: 29.sp,
                             fontWeight: FontWeight.w500,
                             color: ThemeClass.secondDarkGray
                         ),),
                       ),  Flexible(
-                        child: Text(eldawawin.secondVerse??"",style: TextStyle(
+                        child: Text(poem.content.first.verse1??"",style: TextStyle(
                             fontSize: 29.sp,
                             fontWeight: FontWeight.w500,
                             color: ThemeClass.secondDarkGray

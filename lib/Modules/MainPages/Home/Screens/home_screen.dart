@@ -47,9 +47,9 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      return EldawawinListDesign(eldawawin:con.eldawainList[index] ,);
+                      return EldawawinListDesign(eldawawin:con.eldawainList.take(4).toList()[index] ,);
                     },
-                    childCount: con.eldawainList.length,
+                    childCount: con.eldawainList.take(4).length,
                   ),
                 ),
                 const PoemsShowAllWidget(),
@@ -58,7 +58,7 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                         (BuildContext context, int index) {
                       return PoemsDesignList(eldawawin:con.poemsList[index] ,);
                     },
-                    childCount: con.poemsList.length,
+                    childCount: con.poemsList.take(4).length,
                   ),
                 ),
               ],

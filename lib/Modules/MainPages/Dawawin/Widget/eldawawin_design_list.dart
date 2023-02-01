@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../Models/diwan_model.dart';
-import '../../../../Models/eldawawin_model.dart';
 import '../../../../Utilities/theme_helper.dart';
 import 'package:dwawin/Utilities/helper.dart';
 

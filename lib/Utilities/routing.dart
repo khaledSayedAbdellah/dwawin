@@ -23,10 +23,14 @@ class AppModule extends Module{
     defaultRoute(routeName: Favorites.routeName, screen: const Favorites()),
     defaultRoute(routeName: AboutApp.routeName, screen: const AboutApp()),
     ChildRoute(DiwanShow.routeName,
-        child: (_, args) => DiwanShow(diwanId: args.data,),
+        child: (_, args) => DiwanShow(diwan: args.data,),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
-    defaultRoute(routeName: PoemsShow.routeName, screen: const PoemsShow()),
+    ChildRoute(PoemsShow.routeName,
+        child: (_, args) => PoemsShow(poem: args.data,),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+
   ];
 
   static ChildRoute defaultRoute({required String routeName,required Widget screen}){
@@ -102,3 +106,4 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+

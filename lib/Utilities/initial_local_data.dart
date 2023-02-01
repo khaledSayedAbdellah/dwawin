@@ -5,10 +5,11 @@ import 'package:dwawin/Models/poem_model.dart';
 import 'package:dwawin/Utilities/shared_preferances_helper.dart';
 import 'package:flutter/services.dart';
 import '../Database/db_diwan_table.dart';
+import '../Database/db_verse_table.dart';
 
 class InitialLocalData{
 
-  static int appDataVersion = 3;
+  static int appDataVersion = 8;
 
   static Future<void> init()async{
     bool needToUpdate = _checkDataNeedToUpdate();
@@ -20,6 +21,13 @@ class InitialLocalData{
 
     poems.forEach((item) async=> await PoemDbHelper().insert(poem: item));
     dwawin.forEach((item) async=> await DiwanDbHelper().insertWithoutNofPoems(diwan: item));
+
+    poems.forEach((poem) {
+      poem.content.forEach((verse) async {
+        print(verse.toMap());
+        await VerseDbHelper().insert(verse: verse);
+      });
+    });
     await SharedPref.setDataVersion(version: appDataVersion);
   }
 

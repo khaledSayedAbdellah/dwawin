@@ -37,7 +37,7 @@ class DiwanDbHelper{
   }
 
   Future<DiwanModel?> getById({required int id}) async {
-    List<Map<String,dynamic>> maps = await db.query(tableName,where: '${DiwanModel.idText} LIKE ?',whereArgs: ['%$id%']);
+    List<Map<String,dynamic>> maps = await db.query(tableName,where: '${DiwanModel.idText} = ?',whereArgs: [id]);
     if (maps.isNotEmpty) {
       return DiwanModel.fromMap(maps.first);
     }

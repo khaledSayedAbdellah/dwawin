@@ -3,7 +3,6 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../../../Database/db_diwan_table.dart';
 import '../../../../Models/diwan_model.dart';
-import '../../../../Models/eldawawin_model.dart';
 class DawawinController extends ControllerMVC {
   // singleton
   factory DawawinController(){
