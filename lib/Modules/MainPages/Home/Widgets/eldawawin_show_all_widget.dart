@@ -1,3 +1,4 @@
+import 'package:dwawin/Modules/MainPages/main_screens.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,7 +32,7 @@ class EldawawinShowAll extends StatelessWidget {
             Flexible(child: Divider(color: ThemeClass.secondaryColor,height: 1.h)),
             SizedBox(width: 26.w,),
             InkWell(
-              onTap: ()=>print("show_all"),
+              onTap: ()=>Navigator.of(context).pushNamed(MainScreen.routeName,arguments: 1),
               child: Text("show_all".tr,style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 40.sp,

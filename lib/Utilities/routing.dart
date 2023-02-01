@@ -18,11 +18,14 @@ class AppModule extends Module{
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (context, args) => const SplashScreen()),
-    defaultRoute(routeName: MainScreen.routeName, screen: const MainScreen()),
+
     defaultRoute(routeName: Note.routeName, screen: const Note()),
     defaultRoute(routeName: Favorites.routeName, screen: const Favorites()),
     defaultRoute(routeName: AboutApp.routeName, screen: const AboutApp()),
-    ChildRoute(DiwanShow.routeName,
+    ChildRoute(MainScreen.routeName,
+        child: (_, args) => MainScreen(index: args.data,),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)), ChildRoute(DiwanShow.routeName,
         child: (_, args) => DiwanShow(diwan: args.data,),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),

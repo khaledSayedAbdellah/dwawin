@@ -1,6 +1,8 @@
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../main_screens.dart';
 class AudiblePoemsWidget extends StatelessWidget {
   const AudiblePoemsWidget({Key? key}) : super(key: key);
 
@@ -9,7 +11,8 @@ class AudiblePoemsWidget extends StatelessWidget {
     return SliverToBoxAdapter(
       child: InkWell(
         onTap: (){
-          print("=========");
+          Navigator.of(context).pushNamed(MainScreen.routeName,arguments: 1);
+
         },
         child: Center(
           child: Container(

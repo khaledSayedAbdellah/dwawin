@@ -8,7 +8,8 @@ import 'Home/Screens/home_screen.dart';
 import 'Poems/Screen/poems.dart';
 class MainScreen extends StatefulWidget {
   static const routeName="/MainScreen";
-  const MainScreen({Key? key}) : super(key: key);
+  final int? index;
+  const MainScreen({Key? key, this.index = 0}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -23,6 +24,13 @@ class _MainScreenState extends State<MainScreen> {
      AboutUs(),
     DrawerScreen(),
   ];
+
+  @override
+  void initState() {
+    _selectedIndex = widget.index??0;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
