@@ -6,6 +6,7 @@ import 'package:dwawin/Utilities/shared_preferances_helper.dart';
 import 'package:flutter/services.dart';
 import '../Database/db_diwan_table.dart';
 import '../Database/db_verse_table.dart';
+import '../Models/shikh_data_model.dart';
 
 class InitialLocalData{
 
@@ -38,5 +39,10 @@ class InitialLocalData{
   static bool _checkDataNeedToUpdate(){
     int lastVersion = SharedPref.getDataVersion()??0;
     return lastVersion < appDataVersion;
+  }
+
+  static Future<ShikhDataModel> getShikhData()async{
+    Map<String, dynamic> data = await _parseJsonFromAssets('assets/shikh_data.json');
+    return ShikhDataModel.fromMap(data);
   }
 }
