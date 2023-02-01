@@ -1,3 +1,4 @@
+import 'package:dwawin/Utilities/helper.dart';
 import 'package:dwawin/Utilities/theme_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,7 +58,7 @@ class _DrawerScreenState extends StateMVC<DrawerScreen> {
                           fontWeight: FontWeight.w500,
                           color: ThemeClass.thirdColor
                       ),):const SizedBox(),
-                      title:  Text(e.title??'',style: TextStyle(
+                      title:  Text(e.title?.tr??'',style: TextStyle(
                         fontSize: 41.sp,
                         fontWeight: FontWeight.w500,
                         color: ThemeClass.thirdColor

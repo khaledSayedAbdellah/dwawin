@@ -14,6 +14,7 @@ class ElquafyWidget extends StatelessWidget {
         child: SizedBox(
           width: 1025.w,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -31,24 +32,27 @@ class ElquafyWidget extends StatelessWidget {
                   Expanded(child: Divider(height: 1.h,color: ThemeClass.secondaryColor,thickness: 2.h,))
                 ],
               ),
-              Wrap(
-                spacing: 10.w,
-                runSpacing: 10.h,
-                children: elquafi.map((e){
-                  return Container(
-                    alignment: Alignment.center,
-                    width: 155.w,
-                    height: 80.h,
-                    decoration:  BoxDecoration(
-                        borderRadius:BorderRadius.circular(20.w),
-                        color: const Color(0xffE9E9E9)
-                    ),
-                    child: Text(e,style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: ThemeClass.primaryColor,
-                    ),),
-                  );
-                }).toList(),)
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 70.w),
+                child: Wrap(
+                  spacing: 10.w,
+                  runSpacing: 10.h,
+                  children: elquafi.map((e){
+                    return Container(
+                      alignment: Alignment.center,
+                      width: 155.w,
+                      height: 80.h,
+                      decoration:  BoxDecoration(
+                          borderRadius:BorderRadius.circular(20.w),
+                          color: const Color(0xffE9E9E9)
+                      ),
+                      child: Text(e,style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: ThemeClass.primaryColor,
+                      ),),
+                    );
+                  }).toList(),),
+              )
             ],
           ),
         ),

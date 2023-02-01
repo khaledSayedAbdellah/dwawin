@@ -46,7 +46,7 @@ class AppModule extends Module{
   }
 }
 class SplashScreen extends StatefulWidget {
-  static const routeName="/SplashScreen";
+  static const routeName="/";
   const SplashScreen({Key? key}) : super(key: key);
 
   @override

@@ -1,3 +1,4 @@
+import 'package:dwawin/Utilities/Routing.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:dwawin/Utilities/shared_preferances_helper.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,12 +33,12 @@ static List<String> supportedLanguage = ["ar", "en"];
     super.dispose();
   }
   List<DrawerModel>drawerList=[
-    DrawerModel(title: "fav".tr,image: "ic_go_fav.svg",id: 0,routeName: Favorites.routeName),
-    DrawerModel(title: "hint".tr,image: "ic_go_comments.svg",id: 1,routeName: Note.routeName),
-    DrawerModel(title: "share_app".tr,image: "ic_share_app.svg",id: 2),
-    DrawerModel(title: "lang".tr,image: "ic_lang.svg",id: 3),
-    DrawerModel(title: "connect_with_us".tr,image: "ic_contact.svg",id: 4),
-    DrawerModel(title: "about_app".tr,image: "ic_about.svg",id: 5,routeName: AboutApp.routeName),
+    DrawerModel(title: "fav",image: "ic_go_fav.svg",id: 0,routeName: Favorites.routeName),
+    DrawerModel(title: "hint",image: "ic_go_comments.svg",id: 1,routeName: Note.routeName),
+    DrawerModel(title: "share_app",image: "ic_share_app.svg",id: 2),
+    DrawerModel(title: "lang",image: "ic_lang.svg",id: 3),
+    DrawerModel(title: "connect_with_us",image: "ic_contact.svg",id: 4),
+    DrawerModel(title: "about_app",image: "ic_about.svg",id: 5,routeName: AboutApp.routeName),
   ];
   checkStatusLang(){
     if(SharedPref.getCurrentLang()=="en"){
@@ -50,7 +51,6 @@ static List<String> supportedLanguage = ["ar", "en"];
   }
   onTapFunction({required BuildContext context ,DrawerModel? model}){
     if(model?.id!=3&&model?.id!=2){
-
       Navigator.of(context).pushNamed(model?.routeName??'');
     }else if(model?.id==2){
       share();
@@ -70,8 +70,10 @@ static List<String> supportedLanguage = ["ar", "en"];
   Future selectLang(BuildContext context) async {
     final appLan = Provider.of<AppLanguage>(context, listen: false);
     await appLan.changeLanguage(Locale(supportedLanguage[selectLanguage]));
+    Navigator.of(context).pushNamed(SplashScreen.routeName);
     await Future.delayed(const Duration(milliseconds: 100));
     setState(() {});
+
   }
    share() async {
     await FlutterShare.share(

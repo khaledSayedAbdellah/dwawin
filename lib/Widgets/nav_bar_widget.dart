@@ -16,11 +16,11 @@ class NavBarWidget extends StatefulWidget {
 
 class _NavBarWidgetState extends State<NavBarWidget> {
   List<NavBarModel>itemIMage=[
-    NavBarModel(imageName: "ic_home.svg",id: 0,title: "Home"),
-    NavBarModel(imageName: "ic_dwawen.svg",id: 1,title: "Dawawin"),
-    NavBarModel(imageName: "ic_ksaed.svg",id: 2,title: "Poems"),
-    NavBarModel(imageName: "ic_shaikh.svg",id: 3,title: "about__sheikh"),
-    NavBarModel(imageName: "ic_more.svg",id: 4,title: "More"),
+    NavBarModel(imageName: "ic_home.svg",id: 0,title: "Home".tr),
+    NavBarModel(imageName: "ic_dwawen.svg",id: 1,title: "Dawawin".tr),
+    NavBarModel(imageName: "ic_ksaed.svg",id: 2,title: "Poems".tr),
+    NavBarModel(imageName: "ic_shaikh.svg",id: 3,title: "about__sheikh".tr),
+    NavBarModel(imageName: "ic_more.svg",id: 4,title: "More".tr),
   ];
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
               height: 96.h,
               width: 96.w,
             ),
-            text: e.title.tr,
+            text: e.title,
           );
         }).toList(),
         selectedIndex: widget.selectedIndex??0,
