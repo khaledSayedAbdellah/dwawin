@@ -43,14 +43,9 @@ class _MainScreenState extends State<MainScreen> {
         color: Colors.transparent.withOpacity(.1),
         child: NavBarWidget(
             selectedIndex: _selectedIndex,
-            onChange: (int index) {
-              if (index == 4) {
-                _scaffoldkey.currentState?.openDrawer();
-              } else
-                setState(() {
-                  _selectedIndex = index;
-                });
-            }),
+            openDrawer: ()=> _scaffoldkey.currentState?.openDrawer(),
+            onChange: (int index) => setState(() {_selectedIndex = index;}),
+            ),
       ),
     );
   }
