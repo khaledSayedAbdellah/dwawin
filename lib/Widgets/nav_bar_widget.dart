@@ -71,7 +71,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
             ),
           ),
           SizedBox(width: 30.w,),
-          GestureDetector(onTap: widget.openDrawer,child: Icon(Icons.more_vert_sharp,color: Colors.grey,)),
+          GestureDetector(onTap: widget.openDrawer,child: Icon(Icons.more_vert_sharp,color: Colors.grey.shade700,)),
         ],
       ),
     );
