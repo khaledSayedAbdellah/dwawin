@@ -36,6 +36,7 @@ class _AboutUsState extends StateMVC<AboutUs> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
+          return false;
           if (Platform.isAndroid) SystemNavigator.pop();
           exit(0);
         },

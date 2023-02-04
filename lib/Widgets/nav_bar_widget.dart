@@ -8,7 +8,8 @@ import '../Utilities/theme_helper.dart';
 class NavBarWidget extends StatefulWidget {
   int? selectedIndex;
   final Function(int)? onChange;
-   NavBarWidget({Key? key,this.onChange, this.selectedIndex=0}) : super(key: key);
+  final Function()? openDrawer;
+   NavBarWidget({Key? key,this.onChange, this.selectedIndex=0, this.openDrawer}) : super(key: key);
 
   @override
   State<NavBarWidget> createState() => _NavBarWidgetState();
@@ -20,12 +21,11 @@ class _NavBarWidgetState extends State<NavBarWidget> {
     NavBarModel(imageName: "ic_dwawen.svg",id: 1,title: "Dawawin".tr),
     NavBarModel(imageName: "ic_ksaed.svg",id: 2,title: "Poems".tr),
     NavBarModel(imageName: "ic_shaikh.svg",id: 3,title: "about__sheikh".tr),
-    NavBarModel(imageName: "ic_more.svg",id: 4,title: "More".tr),
   ];
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 50.h,horizontal: 80.w),
+      padding: EdgeInsetsDirectional.only(bottom: 50.h,top: 50.h,end: 60.w,start: 60.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(topLeft:Radius.circular(80.w) ,topRight: Radius.circular(80.w)),
         color: Colors.white,
@@ -36,34 +36,43 @@ class _NavBarWidgetState extends State<NavBarWidget> {
           )
         ],
       ),
-      child: GNav(
-        rippleColor: Colors.grey[300]!,
-        hoverColor: Colors.grey[100]!,
-        gap: 8.w,
-        iconSize: 90.w,
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-        duration: const Duration(milliseconds: 400),
-        tabBackgroundColor: ThemeClass.primaryColor,
-        tabBorderRadius: 20.w,
-        textStyle: TextStyle(
-            fontSize:36.sp ,
-            fontWeight: FontWeight.bold,
-            color: Colors.white
-        ),
-        tabs: itemIMage.map((e) {
-          return GButton(
-            icon: Icons.home,
-            leading: SvgPicture.asset(
-              "assets/images/${e.imageName}",
-              color: widget.selectedIndex==e.id?Colors.white:Colors.grey,
-              height: 96.h,
-              width: 96.w,
+      child: Row(
+        children: [
+          Expanded(
+            child: GNav(
+              rippleColor: Colors.grey[300]!,
+              hoverColor: Colors.grey[100]!,
+              gap: 8.w,
+              iconSize: 90.w,
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              duration: const Duration(milliseconds: 400),
+              tabBackgroundColor: ThemeClass.primaryColor,
+              tabBorderRadius: 20.w,
+              textStyle: TextStyle(
+                  fontSize:36.sp ,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
+              ),
+              tabs: itemIMage.map((e) {
+                return GButton(
+                  icon: Icons.home,
+                  leading: SvgPicture.asset(
+                    "assets/images/${e.imageName}",
+                    color: widget.selectedIndex==e.id?Colors.white:Colors.grey,
+                    height: 96.h,
+                    width: 96.w,
+                  ),
+                  text: e.title,
+                );
+              }).toList(),
+              selectedIndex: widget.selectedIndex??0,
+              onTabChange: widget.onChange,
+              activeColor: ThemeClass.backGround,
             ),
-            text: e.title,
-          );
-        }).toList(),
-        selectedIndex: widget.selectedIndex??0,
-        onTabChange:widget.onChange,
+          ),
+          SizedBox(width: 30.w,),
+          GestureDetector(onTap: widget.openDrawer,child: Icon(Icons.more_vert_sharp,color: Colors.grey.shade700,)),
+        ],
       ),
     );
   }
