@@ -46,5 +46,6 @@
   "backGround_color":"لون الخلفية",
   "content_note":"محتوى الملاحظة",
   "delete": "حذف",
-  "add": "إضافة"
+  "add": "إضافة",
+  "num_of_poem": "عدد القصائد :"
 }

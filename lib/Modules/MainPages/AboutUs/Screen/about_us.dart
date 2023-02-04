@@ -48,7 +48,7 @@ class _AboutUsState extends StateMVC<AboutUs> {
                 // height: double.infinity,
               ),
               CustomScrollView(slivers: [
-                AboutUsHeaderWidget(searchController: con.searchController),
+                AboutUsHeaderWidget(searchController: con.searchController,shikhDataModel:con.shikhDataModel),
                 SliverToBoxAdapter(child: SizedBox(height: 60.h,),),
                 SliverToBoxAdapter(
                   child: Center(

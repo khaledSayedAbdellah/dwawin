@@ -1,11 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:dwawin/Utilities/helper.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Utilities/theme_helper.dart';
 import '../../../../Widgets/custome_text_filed.dart';
-class FavoritesHeaderWidget extends StatelessWidget {
+import '../../../Models/diwan_model.dart';
+class EldiwanHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
-  const FavoritesHeaderWidget({Key? key, required this.searchController}) : super(key: key);
+  final DiwanModel? diwan;
+
+  const EldiwanHeaderWidget({Key? key, required this.searchController, this.diwan}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +41,23 @@ class FavoritesHeaderWidget extends StatelessWidget {
                   Center(
                     child: SizedBox(
                       width: 1025.w,
-                      child: Text("fav".tr,style: TextStyle(
+                      child: Text(diwan?.name??'',style: TextStyle(
                           fontSize: 38.sp,
                           fontWeight:FontWeight.bold ,color: Colors.white
                       ),),
                     ),
                   ),
-                  SizedBox(height: 90.h,),
+                  SizedBox(height: 41.h,),
+                  Center(
+                    child: SizedBox(
+                      width: 1025.w,
+                      child: Text("${"num_of_poem".tr} ${diwan?.nOfPoems.toString()} ${"poems".tr}",style: TextStyle(
+                          fontSize: 38.sp,
+                          fontWeight:FontWeight.bold ,color: Colors.white
+                      ),),
+                    ),
+                  ),
+                  SizedBox(height: 48.h,),
                 ],
               ),
             ),

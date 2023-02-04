@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../Models/shikh_data_model.dart';
 import '../../../../Utilities/theme_helper.dart';
 import '../../../../Widgets/custome_text_filed.dart';
 class AboutUsHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
-  const AboutUsHeaderWidget({Key? key, required this.searchController}) : super(key: key);
+  final ShikhDataModel? shikhDataModel;
+  const AboutUsHeaderWidget({Key? key, required this.searchController, this.shikhDataModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

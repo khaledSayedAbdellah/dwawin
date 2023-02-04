@@ -38,23 +38,13 @@ class FavoritesHeaderWidget extends StatelessWidget {
                   Center(
                     child: SizedBox(
                       width: 1025.w,
-                      child: Text("ديوان سير القلب",style: TextStyle(
+                      child: Text("fav".tr,style: TextStyle(
                           fontSize: 38.sp,
                           fontWeight:FontWeight.bold ,color: Colors.white
                       ),),
                     ),
                   ),
-                  SizedBox(height: 41.h,),
-                  Center(
-                    child: SizedBox(
-                      width: 1025.w,
-                      child: Text("عدد القصائد : 50 قصيدة",style: TextStyle(
-                          fontSize: 38.sp,
-                          fontWeight:FontWeight.bold ,color: Colors.white
-                      ),),
-                    ),
-                  ),
-                  SizedBox(height: 48.h,),
+                  SizedBox(height: 100.h,),
                 ],
               ),
             ),

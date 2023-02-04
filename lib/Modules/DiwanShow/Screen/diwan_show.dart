@@ -9,6 +9,7 @@ import '../../../Widgets/poems_widget.dart';
 import '../../Favorites/Widget/favorites_header_widget.dart';
 import '../Controller/diwan_show_conteoller.dart';
 import '../Widget/about_diwan_widget.dart';
+import '../Widget/dewan_show_header.dart';
 import '../Widget/elquafy_widget.dart';
 
 class DiwanShow extends StatefulWidget {
@@ -41,7 +42,7 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
             fit: BoxFit.cover,
           ),
           CustomScrollView(slivers: [
-            FavoritesHeaderWidget(searchController: con.searchController),
+            EldiwanHeaderWidget(searchController: con.searchController,diwan: widget.diwan,),
              AboutDiwan(aboutDiwan: widget.diwan?.description??''),
              ElquafyWidget(elquafi: con.getRhymeByDiwanId),
             SliverToBoxAdapter(

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../Utilities/theme_helper.dart';
 class AboutDiwan extends StatelessWidget {
   final String aboutDiwan;
+
   const AboutDiwan({Key? key, required this.aboutDiwan}) : super(key: key);
 
   @override

@@ -9,7 +9,7 @@
   "show_all": "Show all",
   "Dawawin": "Divan",
   "num_of_poems": "Number of poems",
-  "poems": "Poems",
+  "poems": "Poem",
   "Poems": "Poems",
   "all_dawawin": "Browse all divan",
   "about_app_des": "The divan of Sheikh Ibrahim Inias",
@@ -45,5 +45,6 @@
   "backGround_color":"BackGround color",
   "content_note":"Content note",
   "delete": "delete",
-  "add": "add"
+  "add": "add",
+  "num_of_poem": "Number of poems: "
 }
