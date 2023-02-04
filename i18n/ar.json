@@ -47,5 +47,12 @@
   "content_note":"محتوى الملاحظة",
   "delete": "حذف",
   "add": "إضافة",
-  "num_of_poem": "عدد القصائد :"
+  "num_of_poem": "عدد القصائد :",
+  "splash_title":"إنتاج",
+  "splash_dec":"شبكة تراث الفيضة التجانية",
+  "search_results":"نتائج البحث",
+  "num_search_results":"عدد نتائج البحث :",
+  "result":"نتيجة",
+  "the_results":"النتائج",
+  "diwan":"ديوان :"
 }

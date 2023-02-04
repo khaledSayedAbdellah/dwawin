@@ -46,5 +46,12 @@
   "content_note":"Content note",
   "delete": "delete",
   "add": "add",
-  "num_of_poem": "Number of poems: "
+  "num_of_poem": "Number of poems: ",
+  "splash_title": "production",
+  "splash_dec":"Tijanian Faida Heritage Network",
+  "search_results":"Search results",
+  "num_search_results":"Number of search results:",
+  "result":"Result",
+  "the_results":"Results",
+  "diwan":"diwan : "
 }

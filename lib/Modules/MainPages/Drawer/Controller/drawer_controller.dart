@@ -1,13 +1,12 @@
-import 'package:dwawin/Utilities/Routing.dart';
-import 'package:dwawin/Utilities/helper.dart';
+import 'package:dwawin/Modules/MainPages/splach_screen.dart';
 import 'package:dwawin/Utilities/shared_preferances_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../Control/app_languages.dart';
 import '../../../../Models/drawer_model.dart';
+import '../../../../Utilities/helper.dart';
 import '../../../AboutApp/Screen/about_app.dart';
 import '../../../ChangeLanguage/Screen/change_language.dart';
 import '../../../Favorites/Screen/favorites.dart';

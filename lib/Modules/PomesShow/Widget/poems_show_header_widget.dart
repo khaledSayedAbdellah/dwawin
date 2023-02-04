@@ -2,12 +2,14 @@ import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../Models/poem_model.dart';
 import '../../../Utilities/theme_helper.dart';
 import '../../../Widgets/custome_text_filed.dart';
 class PoemsShowHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
   final Function() moreOnTap;
-  const PoemsShowHeaderWidget({Key? key, required this.searchController, required this.moreOnTap}) : super(key: key);
+  final PoemModel poem;
+  const PoemsShowHeaderWidget({Key? key, required this.searchController, required this.moreOnTap, required this.poem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +45,20 @@ class PoemsShowHeaderWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("أطيف سرى أم أن ركبي يقفا",style: TextStyle(
+                          Text(poem.name??'',style: TextStyle(
                               fontSize: 38.sp,
                               fontWeight:FontWeight.bold ,color: Colors.white
                           ),),
                           SizedBox(height: 41.h,),
                           Row(
                             children: [
-                              Text("${"number_verses".tr}45 بيت ",style: TextStyle(
+                              Text("${"number_verses".tr} ${poem.nOfVerses}",style: TextStyle(
                                   fontSize: 38.sp,
                                   fontWeight:FontWeight.bold ,color: Colors.white
                               ),),
                               SizedBox(width: 73.w,),
                               Text(
-                                "${"alqafia".tr}حرف الألف",style: TextStyle(
+                                "${"alqafia".tr} ${poem.rhyme}",style: TextStyle(
                                   fontSize: 38.sp,
                                   fontWeight:FontWeight.bold ,color: Colors.white
                               ),),

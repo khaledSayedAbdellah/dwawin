@@ -43,6 +43,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                   child: CustomScrollView(
                       slivers: [
                         PoemsShowHeaderWidget(
+                          poem: widget.poem,
                             searchController: con.searchController,
                           moreOnTap: ()=>con.moreOnTap(context: context),
                         ),
