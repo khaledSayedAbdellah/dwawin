@@ -1,6 +1,6 @@
-import 'package:dwawin/Models/poem_model.dart';
-import 'package:dwawin/Models/diwan_model.dart';
 
+import '../Models/diwan_model.dart';
+import '../Models/poem_model.dart';
 import '../Models/verse_model.dart';
 
 class ConstDb {
@@ -15,7 +15,9 @@ class ConstDb {
   """CREATE TABLE IF NOT EXISTS $diwanTableName (${DiwanModel.idText} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
   ${DiwanModel.nameText} TEXT, 
   ${DiwanModel.descriptionText} TEXT, 
-  ${DiwanModel.nOfPoemsText} INTEGER)""";
+  ${DiwanModel.nOfPoemsText} INTEGER,
+  ${DiwanModel.collectionText} INTEGER)""";
+
 
   static String createPoemTable =
   """CREATE TABLE IF NOT EXISTS $poemTableName (${PoemModel.idText} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 

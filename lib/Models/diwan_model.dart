@@ -13,37 +13,28 @@ class DiwanModel {
   static const String nameText = "name";
   static const String descriptionText = "description";
   static const String nOfPoemsText = "nOfPoems";
+  static const String collectionText = "collection";
 
   DiwanModel({
     this.id,
     this.name,
     this.description,
     this.nOfPoems,
+    this.isCollection = 0
   });
 
   int? id;
   String? name;
   String? description;
   int? nOfPoems;
-
-  DiwanModel copyWith({
-    int? id,
-    String? name,
-    String? description,
-    int? nOfPoems,
-  }) =>
-      DiwanModel(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        description: description ?? this.description,
-        nOfPoems: nOfPoems ?? this.nOfPoems,
-      );
+  int isCollection;
 
   factory DiwanModel.fromMap(Map<String, dynamic> json) => DiwanModel(
     id: json[idText],
     name: json[nameText],
     description: json[descriptionText],
     nOfPoems: json[nOfPoemsText],
+    isCollection: json[collectionText]
   );
 
   Map<String, dynamic> toMap() => {
@@ -51,5 +42,6 @@ class DiwanModel {
     nameText: name,
     descriptionText: description,
     nOfPoemsText: nOfPoems,
+    collectionText: isCollection
   };
 }

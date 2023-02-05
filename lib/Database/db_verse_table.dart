@@ -47,6 +47,28 @@ class VerseDbHelper{
     return [];
   }
 
+  Future<List<VerseModel>> searchByVerseWithDiwanId({required String text,required int diwanId}) async {
+    List<Map<String,dynamic>> maps = await db.rawQuery(
+        'SELECT * FROM $tableName WHERE ${VerseModel.verse1RmText}=? or ${VerseModel.verse2RmText}=? and ${VerseModel.diwanIdText}=?',
+        [text, diwanId]
+    );
+    if (maps.isNotEmpty) {
+      return maps.map((e) => VerseModel.fromMap(e)).toList();
+    }
+    return [];
+  }
+
+  Future<List<VerseModel>> searchByVerseWithPoemId({required String text,required int poemId}) async {
+    List<Map<String,dynamic>> maps = await db.rawQuery(
+        'SELECT * FROM $tableName WHERE ${VerseModel.verse1RmText}=? or ${VerseModel.verse2RmText}=? and ${VerseModel.poemIdText}=?',
+        [text, poemId]
+    );
+    if (maps.isNotEmpty) {
+      return maps.map((e) => VerseModel.fromMap(e)).toList();
+    }
+    return [];
+  }
+
   Future<List<VerseModel>> getAll() async {
     List<Map<String,dynamic>> maps = await db.query(tableName);
     if (maps.isNotEmpty) {
