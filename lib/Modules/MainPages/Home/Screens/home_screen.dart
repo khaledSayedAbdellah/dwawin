@@ -64,7 +64,6 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () { Navigator.of(context).pushNamed(SearchScreen.routeName,arguments: "kfsnfks"); },),
       ),
     );
   }

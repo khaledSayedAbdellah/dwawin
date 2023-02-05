@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../Models/poem_model.dart';
 import '../../../Utilities/theme_helper.dart';
 import '../../../Widgets/custome_text_filed.dart';
+import '../../Search/Screen/search_scree.dart';
 class PoemsShowHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
   final Function() moreOnTap;
@@ -79,6 +80,7 @@ class PoemsShowHeaderWidget extends StatelessWidget {
               right: 0,
               child: Center(
                 child: CustomTextFieldWidget(
+                  onSave: (v)=>Navigator.of(context).pushNamed(SearchScreen.routeName,arguments: [v,poem.id??0,false]),
                   controller: searchController,
                   prefixIcon: Icon(Icons.search_sharp,color: ThemeClass.darkGray,),
                   backGroundColor: Colors.white,

@@ -12,6 +12,7 @@ class CustomTextFieldWidget extends StatelessWidget {
   final Color? backGroundColor;
   final TextStyle? style;
   final TextStyle? hintStyle;
+  final Function(String?)? onSave;
   final int? maxLine, maxLength,minLines, widthSufIcon;
   final String? Function(String?)? validator;
   final TextInputType? textInputType;
@@ -47,7 +48,7 @@ class CustomTextFieldWidget extends StatelessWidget {
         this.activeBorderColor,
         this.maxLength,
         this.widthSufIcon = 30,
-        this.myFocusNode})
+        this.myFocusNode, this.onSave})
       : super(key: key);
 
   @override
@@ -60,6 +61,7 @@ class CustomTextFieldWidget extends StatelessWidget {
       width: width ?? 1025.w,
       height: 150.h,
       child: TextFormField(
+        onFieldSubmitted: onSave,
         textAlign: maxLine! > 2 ? TextAlign.start : TextAlign.start,
         validator: validator,
         focusNode: myFocusNode,

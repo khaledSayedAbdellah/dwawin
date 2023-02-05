@@ -66,6 +66,7 @@ class SearchHeaderWidget extends StatelessWidget {
               right: 0,
               child: Center(
                 child: CustomTextFieldWidget(
+
                   controller: searchController,
                   prefixIcon: Icon(Icons.search_sharp,color: ThemeClass.darkGray,),
                   backGroundColor: Colors.white,

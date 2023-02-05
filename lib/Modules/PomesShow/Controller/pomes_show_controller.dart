@@ -4,6 +4,9 @@ import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
+import '../../../Database/db_poem_table.dart';
+import '../../../Models/poem_model.dart';
+
 class PoemsShowController extends ControllerMVC {
   // singleton
   factory PoemsShowController(){
@@ -16,7 +19,7 @@ class PoemsShowController extends ControllerMVC {
   bool loading = false;
   late TextEditingController searchController;
   AudioPlayer player = AudioPlayer();
-
+  PoemModel? poem;
   @override
   void initState() {
     searchController=TextEditingController();
@@ -25,8 +28,14 @@ class PoemsShowController extends ControllerMVC {
   }
   @override
   void dispose() {
+
     searchController.dispose();
     super.dispose();
+  }
+  getPoem()async{
+      poem=await PoemDbHelper().getById(id:poem?.id??0);
+      setState(() { });
+
   }
   getDuration()async{
     await player.getDuration();

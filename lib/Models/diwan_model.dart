@@ -34,7 +34,7 @@ class DiwanModel {
     name: json[nameText],
     description: json[descriptionText],
     nOfPoems: json[nOfPoemsText],
-    isCollection: json[collectionText]
+    isCollection: json[collectionText]??0
   );
 
   Map<String, dynamic> toMap() => {

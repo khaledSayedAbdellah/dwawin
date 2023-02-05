@@ -1,5 +1,8 @@
-import 'package:dwawin/Models/poem_model.dart';
+import 'dart:developer';
+
+import 'package:dwawin/Models/diwan_model.dart';
 import 'package:sqflite/sqflite.dart';
+import '../Models/poem_model.dart';
 import '../Models/verse_model.dart';
 import 'const.dart';
 import 'database_helper.dart';
@@ -40,31 +43,34 @@ class VerseDbHelper{
   }
 
   Future<List<VerseModel>> searchByVerse({required String text}) async {
-    List<Map<String,dynamic>> maps = await db.query(tableName,where: '${VerseModel.verse1RmText} || ${VerseModel.verse2RmText} LIKE ?',whereArgs: ['%$text%']);
-    if (maps.isNotEmpty) {
-      return maps.map((e) => VerseModel.fromMap(e)).toList();
+    List<Map<String,dynamic>> maps = await db.rawQuery(
+        'SELECT p.*,c.${DiwanModel.nameText} as ${VerseModel.diwanNameText} FROM ${ConstDb.verseTableName} p LEFT JOIN ${ConstDb.diwanTableName} c ON p.${VerseModel.diwanIdText} = c.${DiwanModel.idText} WHERE (${VerseModel.verse1RmText} like ? OR ${VerseModel.verse2RmText} LIKE ? )',
+        ["%$text%", "%$text%"]
+    );    if (maps.isNotEmpty) {
+      return List.from(maps.map((e)=> VerseModel.fromMap(e)));
     }
     return [];
   }
 
   Future<List<VerseModel>> searchByVerseWithDiwanId({required String text,required int diwanId}) async {
     List<Map<String,dynamic>> maps = await db.rawQuery(
-        'SELECT * FROM $tableName WHERE ${VerseModel.verse1RmText}=? or ${VerseModel.verse2RmText}=? and ${VerseModel.diwanIdText}=?',
-        [text, diwanId]
+        'SELECT p.*,c.${DiwanModel.nameText} as ${VerseModel.diwanNameText} FROM ${ConstDb.verseTableName} p LEFT JOIN ${ConstDb.diwanTableName} c ON p.${VerseModel.diwanIdText} = c.${DiwanModel.idText} WHERE (${VerseModel.verse1RmText} like ? OR ${VerseModel.verse2RmText} LIKE ? ) AND p.${VerseModel.diwanIdText} = ? ',
+        ["%$text%", "%$text%",diwanId]
     );
+    log(maps.toString());
     if (maps.isNotEmpty) {
-      return maps.map((e) => VerseModel.fromMap(e)).toList();
+      return List.from(maps.map((e)=> VerseModel.fromMap(e)));
     }
     return [];
   }
 
   Future<List<VerseModel>> searchByVerseWithPoemId({required String text,required int poemId}) async {
     List<Map<String,dynamic>> maps = await db.rawQuery(
-        'SELECT * FROM $tableName WHERE ${VerseModel.verse1RmText}=? or ${VerseModel.verse2RmText}=? and ${VerseModel.poemIdText}=?',
-        [text, poemId]
+        'SELECT p.*,c.${PoemModel.nameText} as ${VerseModel.poemNameText} FROM ${ConstDb.verseTableName} p LEFT JOIN ${ConstDb.poemTableName} c ON p.${VerseModel.poemIdText} = c.${PoemModel.idText} WHERE (${VerseModel.verse1RmText} like ? OR ${VerseModel.verse2RmText} LIKE ? ) AND p.${VerseModel.poemIdText} = ? ',
+        ["%$text%", "%$text%",poemId]
     );
     if (maps.isNotEmpty) {
-      return maps.map((e) => VerseModel.fromMap(e)).toList();
+      return List.from(maps.map((e)=> VerseModel.fromMap(e)));
     }
     return [];
   }

@@ -42,7 +42,7 @@ class _PoemsScreenState extends StateMVC<PoemsScreen> {
               ),
               CustomScrollView(
                   slivers: [
-                    PoemsHeaderWidget(searchController: con.searchController,),
+                    PoemsHeaderWidget(searchController: con.searchController),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {

@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../Utilities/theme_helper.dart';
 import '../../../../Widgets/custome_text_filed.dart';
+import '../../../Search/Screen/search_scree.dart';
 class PoemsHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
   const PoemsHeaderWidget({Key? key, required this.searchController}) : super(key: key);
@@ -75,6 +76,7 @@ class PoemsHeaderWidget extends StatelessWidget {
               right: 0,
               child: Center(
                 child: CustomTextFieldWidget(
+                  onSave: (v)=>Navigator.of(context).pushNamed(SearchScreen.routeName,arguments: [v,null,null]),
                   controller: searchController,
                   prefixIcon: Icon(Icons.search_sharp,color: ThemeClass.darkGray,),
                   backGroundColor: Colors.white,

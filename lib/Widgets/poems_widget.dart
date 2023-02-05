@@ -12,7 +12,7 @@ class PoemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>Navigator.of(context).pushNamed(PoemsShow.routeName,arguments: poem),
+      onTap: ()=>Navigator.of(context).pushNamed(PoemsShow.routeName,arguments:poem),
       child: Center(
         child: Container(
           margin:EdgeInsets.symmetric(vertical: 19.h),

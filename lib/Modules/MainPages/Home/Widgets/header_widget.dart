@@ -1,3 +1,4 @@
+import 'package:dwawin/Modules/Search/Screen/search_scree.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,6 +55,8 @@ class HeaderWidget extends StatelessWidget {
               right: 0,
               child: Center(
                 child: CustomTextFieldWidget(
+                  textInputType: TextInputType.text,
+                  onSave: (v)=>Navigator.of(context).pushNamed(SearchScreen.routeName,arguments: [v,null,null]),
                   controller: searchController,
                   prefixIcon: Icon(Icons.search_sharp,color: ThemeClass.darkGray,),
                   backGroundColor: Colors.white,

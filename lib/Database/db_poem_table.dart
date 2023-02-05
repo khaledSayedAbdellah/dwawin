@@ -30,7 +30,8 @@ class PoemDbHelper{
       where: '${PoemModel.idText} = ?', whereArgs: [id],);
   }
 
-  Future<PoemModel?> getById({required int id}) async {
+  Future<PoemModel?> getById({required int? id}) async {
+    if(id==null) return null;
     List<Map<String,dynamic>> maps = await db.query(tableName,where: '${PoemModel.idText} = ?',whereArgs: [id]);
     if (maps.isNotEmpty) {
       return PoemModel.fromMap(maps.first);

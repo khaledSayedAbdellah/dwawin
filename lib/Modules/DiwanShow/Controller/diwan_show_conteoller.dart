@@ -22,7 +22,6 @@ class DiwanShowController extends ControllerMVC {
   @override
   void initState() {
     searchController=TextEditingController();
-    searchController.addListener(searchOnDiwan);
     init();
     super.initState();
   }
@@ -35,11 +34,6 @@ class DiwanShowController extends ControllerMVC {
     getPoemsByDiwanId=await  DiwanDbHelper().getPoemsByDiwanId(id: diwanId);
     getRhymeByDiwanId=await  DiwanDbHelper().getRhymeByDiwanId(id: diwanId??0);
     setState(() { });
-  }
-
-  searchOnDiwan()async{
-    List<VerseModel> x = await VerseDbHelper().searchByVerse(text: searchController.text);
-
   }
 
 }

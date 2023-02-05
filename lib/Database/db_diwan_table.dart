@@ -37,7 +37,8 @@ class DiwanDbHelper{
       where: '${DiwanModel.idText} = ?', whereArgs: [id],);
   }
 
-  Future<DiwanModel?> getById({required int id}) async {
+  Future<DiwanModel?> getById({required int? id}) async {
+    if(id==null) return null;
     List<Map<String,dynamic>> maps = await db.query(tableName,where: '${DiwanModel.idText} = ?',whereArgs: [id]);
     if (maps.isNotEmpty) {
       return DiwanModel.fromMap(maps.first);

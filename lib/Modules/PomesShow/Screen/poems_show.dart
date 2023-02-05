@@ -12,8 +12,8 @@ import '../Widget/poems_show_header_widget.dart';
 
 class PoemsShow extends StatefulWidget {
   static const routeName = "/PoemsShow";
-final PoemModel poem;
-  const PoemsShow({Key? key, required this.poem}) : super(key: key);
+final PoemModel poemModel;
+  const PoemsShow({Key? key, required this.poemModel}) : super(key: key);
 
   @override
   State createState() => _PoemsShowState();
@@ -27,6 +27,13 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
   late PoemsShowController con;
 
   @override
+  void initState() {
+    con.poem=widget.poemModel;
+    con.getPoem();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer<SharedDataProvider>(
         builder: (_, provider, __) {
@@ -37,19 +44,19 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                 "assets/images/BG.svg",
                 fit: BoxFit.cover,
               ),
-            Column(
+            if(con.poem!=null)Column(
               children: [
                 Expanded(
                   child: CustomScrollView(
                       slivers: [
                         PoemsShowHeaderWidget(
-                          poem: widget.poem,
+                          poem: con.poem!,
                             searchController: con.searchController,
                           moreOnTap: ()=>con.moreOnTap(context: context),
                         ),
                         SliverToBoxAdapter(child:
                         Column(
-                          children: widget.poem.content.map((e){
+                          children: con.poem!.content.map((e){
                             return Center(
                               child: SizedBox(
                                 width: 1025.w,

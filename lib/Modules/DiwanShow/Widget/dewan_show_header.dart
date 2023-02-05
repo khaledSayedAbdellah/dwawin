@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Utilities/theme_helper.dart';
 import '../../../../Widgets/custome_text_filed.dart';
 import '../../../Models/diwan_model.dart';
+import '../../Search/Screen/search_scree.dart';
 class EldiwanHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
   final DiwanModel? diwan;
@@ -67,6 +68,7 @@ class EldiwanHeaderWidget extends StatelessWidget {
               right: 0,
               child: Center(
                 child: CustomTextFieldWidget(
+                  onSave: (v)=>Navigator.of(context).pushNamed(SearchScreen.routeName,arguments: [v,diwan?.id??0,true]),
                   controller: searchController,
                   prefixIcon: Icon(Icons.search_sharp,color: ThemeClass.darkGray,),
                   backGroundColor: Colors.white,
