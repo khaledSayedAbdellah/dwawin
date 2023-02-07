@@ -16,7 +16,7 @@ Future<void> main() async {
   await SharedPref().init();
   await DataBaseHelper().init();
 
-  if(DateTime.now().isBefore(DateTime(2023,2,30))){
+  if(DateTime.now().isBefore(DateTime(2023,2,20))){
     runApp(
         MultiProvider(
           providers: [
@@ -42,6 +42,7 @@ class EntryPoint extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(1125, 2436),
       builder:(_,__)=> MaterialApp.router(
+        theme: ThemeData(fontFamily: 'AktivGrotesk'),
         debugShowCheckedModeBanner: false,
         title: 'dawawin',
         locale: appLan.appLocal,

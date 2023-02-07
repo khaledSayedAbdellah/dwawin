@@ -60,20 +60,34 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                             return Center(
                               child: SizedBox(
                                 width: 1025.w,
-                                child: Row(
-                                  mainAxisAlignment: e.id!.isOdd?MainAxisAlignment.end:MainAxisAlignment.start,
-                                  children: [
-                                    Flexible(
-                                      child: Text( e.id!.isOdd?e.verse1??'':e.verse2??'',style: TextStyle(
-                                        fontSize: provider.fontSize.sp,
-                                          color: provider.fontColor,
-                                        fontWeight: FontWeight.bold,
-                                      ),),
-                                    ),
-                                  ],
-                                ),
+                              child: Column(
+                                crossAxisAlignment:CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(height: 5.h,),
+                                  Align(
+                                    alignment: AlignmentDirectional.centerStart,
+                                    child: Text(e.verse1??'',style: TextStyle(
+                                      fontSize: provider.fontSize.sp,
+                                      color: provider.fontColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),),
+                                  ),
+                                  SizedBox(height: 10.h,),
+
+                                  Align(
+                                    alignment: AlignmentDirectional.centerEnd,
+                                        child: Text(e.verse2??'',style: TextStyle(
+                                            fontSize: provider.fontSize.sp,
+                                            color: provider.fontColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),),
+                                      ),
+
+                                  SizedBox(height: 5.h,),
+                                ],
                               ),
-                            );
+                            ));
+
                           }).toList(),
                         ),)
                       ]
