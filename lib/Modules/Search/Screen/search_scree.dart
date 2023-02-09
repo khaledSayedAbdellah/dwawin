@@ -141,15 +141,17 @@ class ContentWidget extends StatelessWidget {
                     "assets/images/book.svg",
                     height: 90.w),
                 SizedBox(width: 10.w),
+
                 Text(
-                  "diwan".tr,
+                  "${verseModel.poemName!=null?"poems".tr:"diwan".tr}:",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 32.sp,
                       color: ThemeClass.primaryColor),
                 ),
+                SizedBox(width: 10.w,),
                 Text(
-                  verseModel.diwanName??"",
+                  verseModel.poemName??verseModel.diwanName??"",
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: ThemeClass.primaryColor,
