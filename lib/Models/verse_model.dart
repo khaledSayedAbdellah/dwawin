@@ -54,14 +54,12 @@ class VerseModel {
   );
 
   Map<String, dynamic> toMap() => {
-    idText: id,
+    // idText: int.parse("$diwanId$poemId$id"),
     poemIdText: poemId,
     diwanIdText: diwanId,
     verse1Text: verse1,
     verse2Text: verse2,
     verse1RmText: verse1Rm,
     verse2RmText: verse2Rm,
-    diwanNameText: diwanName,
-    poemNameText: poemName
   };
 }

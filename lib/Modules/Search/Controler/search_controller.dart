@@ -37,9 +37,8 @@ class SearchScreenController extends ControllerMVC {
       setState(() {loading=false;});
     }else{
       searchList = await VerseDbHelper().searchByVerse(text: searchController.text,);
+      // searchList = await VerseDbHelper().getAll();
       setState(() { loading=false;});
     }
-
   }
-
 }

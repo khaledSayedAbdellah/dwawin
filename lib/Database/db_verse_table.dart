@@ -41,12 +41,12 @@ class VerseDbHelper{
     }
     return null;
   }
-
   Future<List<VerseModel>> searchByVerse({required String text}) async {
     List<Map<String,dynamic>> maps = await db.rawQuery(
         'SELECT p.*,c.${DiwanModel.nameText} as ${VerseModel.diwanNameText} FROM ${ConstDb.verseTableName} p LEFT JOIN ${ConstDb.diwanTableName} c ON p.${VerseModel.diwanIdText} = c.${DiwanModel.idText} WHERE (${VerseModel.verse1RmText} like ? OR ${VerseModel.verse2RmText} LIKE ? )',
         ["%$text%", "%$text%"]
-    );    if (maps.isNotEmpty) {
+    );
+    if (maps.isNotEmpty) {
       return List.from(maps.map((e)=> VerseModel.fromMap(e)));
     }
     return [];
