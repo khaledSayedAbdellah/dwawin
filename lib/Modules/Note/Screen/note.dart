@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../../Utilities/theme_helper.dart';
+import '../../PomesShow/Screen/poems_show.dart';
 import '../Widget/note_header.dart';
 
 class Note extends StatefulWidget {
@@ -63,36 +64,39 @@ class _NoteState extends StateMVC<Note> {
                                 children:con.poemsNote.map((e) {
                                   return Column(
                                     children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          SvgPicture.asset(
-                                            "assets/images/ic_add_comment.svg",
-                                            fit: BoxFit.cover,
-                                            width: 100.w,
-                                            height: 100.h,
-                                          ),
-                                          SizedBox(width: 20.w,),
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              SizedBox(height: 20.h,),
-                                              Text(e.name??'',style: TextStyle(
-                                                fontSize: 34.sp,
-                                                fontWeight: FontWeight.w500,
-                                                color: ThemeClass.secondDarkGray
-                                              ),),
-                                              SizedBox(height: 20.h,),
-                                              Text(e.notes??'',style: TextStyle(
-                                                fontSize: 30.sp,
-                                                fontWeight: FontWeight.w500,
-                                                color: ThemeClass.secondDarkGray
-                                              ),),
-                                            ],
-                                          )
-                                        ],
+                                      GestureDetector(
+                                        onTap: ()=>Navigator.of(context).pushNamed(PoemsShow.routeName,arguments: e),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            SvgPicture.asset(
+                                              "assets/images/ic_add_comment.svg",
+                                              fit: BoxFit.cover,
+                                              width: 100.w,
+                                              height: 100.h,
+                                            ),
+                                            SizedBox(width: 20.w,),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(height: 20.h,),
+                                                Text(e.name??'',style: TextStyle(
+                                                  fontSize: 34.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: ThemeClass.secondDarkGray
+                                                ),),
+                                                SizedBox(height: 20.h,),
+                                                Text(e.notes??'',style: TextStyle(
+                                                  fontSize: 30.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: ThemeClass.secondDarkGray
+                                                ),),
+                                              ],
+                                            )
+                                          ],
+                                        ),
                                       ),
                                       Divider(height: 32.h,),
                                     ],

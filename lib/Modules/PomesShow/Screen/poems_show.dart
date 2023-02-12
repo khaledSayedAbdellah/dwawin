@@ -63,7 +63,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                               child: Column(
                                 crossAxisAlignment:CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(height: 5.h,),
+                                  SizedBox(height: 30.h,),
                                   Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: Text(e.verse1??'',style: TextStyle(
@@ -72,7 +72,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                                       fontWeight: FontWeight.bold,
                                     ),),
                                   ),
-                                  SizedBox(height: 10.h,),
+                                  SizedBox(height: 30.h,),
 
                                   Align(
                                     alignment: AlignmentDirectional.centerEnd,
@@ -83,13 +83,14 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                                           ),),
                                       ),
 
-                                  SizedBox(height: 5.h,),
+                                  SizedBox(height: 30.h,),
                                 ],
                               ),
                             ));
 
                           }).toList(),
-                        ),)
+                        ),),
+                        SliverToBoxAdapter(child: SizedBox(height: 50.h,),)
                       ]
 
                   ),
