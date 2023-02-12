@@ -6,9 +6,6 @@ import 'dart:convert';
 
 import 'package:dwawin/Models/verse_model.dart';
 
-PoemModel poemModelFromMap(String str) => PoemModel.fromMap(json.decode(str));
-
-String poemModelToMap(PoemModel data) => json.encode(data.toMap());
 
 class PoemModel {
 
@@ -17,6 +14,8 @@ class PoemModel {
   static const String diwanIdText = "diwanId";
   static const String rhymeText = "rhyme";
   static const String contentText = "content";
+  static const String noteText = "note";
+  static const String isFaveText = "is_fave";
 
 
 
@@ -26,35 +25,26 @@ class PoemModel {
     this.name,
     this.rhyme,
     this.content = const [],
+    this.notes,
+    this.isFave = false
   });
 
   int? id;
   int? diwanId;
   String? name;
   String? rhyme;
+  String? notes;
   int get nOfVerses => content.length;
   List<VerseModel> content;
-
-  PoemModel copyWith({
-    int? id,
-    int? diwanId,
-    String? name,
-    String? rhyme,
-    List<VerseModel>? content,
-  }) =>
-      PoemModel(
-        id: id ?? this.id,
-        diwanId: diwanId ?? this.diwanId,
-        name: name ?? this.name,
-        rhyme: rhyme ?? this.rhyme,
-        content: content ?? this.content,
-      );
+  bool isFave;
 
   factory PoemModel.fromMap(Map<String, dynamic> jsonData) => PoemModel(
     id: jsonData[idText],
     diwanId: jsonData[diwanIdText],
     name: jsonData[nameText],
     rhyme: jsonData[rhymeText],
+    notes: jsonData[noteText],
+    isFave: jsonData[isFaveText] == 1?true:false,
     content: jsonData[contentText] == null ? [] :
     jsonData[contentText].runtimeType != String?
     List<VerseModel>.from(jsonData[contentText].map((x) => VerseModel.fromMapAddPOemId(x,poemId: jsonData[idText],diwanId: jsonData[diwanIdText],)))
@@ -66,6 +56,8 @@ class PoemModel {
     diwanIdText: diwanId,
     nameText: name,
     rhymeText: rhyme,
+    noteText: notes,
+    isFaveText: isFave?1:0,
     contentText: json.encode(List<dynamic>.from(content.map((x) => x.toMap()))),
   };
 }

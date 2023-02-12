@@ -23,7 +23,9 @@ class ConstDb {
   """CREATE TABLE IF NOT EXISTS $poemTableName (${PoemModel.idText} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
   ${PoemModel.diwanIdText} INTEGER, 
   ${PoemModel.nameText} TEXT, 
-  ${PoemModel.rhymeText} TEXT, 
+  ${PoemModel.rhymeText} TEXT,
+  ${PoemModel.noteText} TEXT,
+  ${PoemModel.isFaveText} INTEGER,
   ${PoemModel.contentText} TEXT)""";
 
   static String createVerseTable =
