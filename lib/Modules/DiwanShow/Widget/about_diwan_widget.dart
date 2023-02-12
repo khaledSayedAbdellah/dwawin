@@ -21,6 +21,8 @@ class AboutDiwan extends StatelessWidget {
 
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
