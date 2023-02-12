@@ -33,7 +33,7 @@ class ElquafyWidget extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 70.w),
+                padding:  EdgeInsets.symmetric(horizontal: 20.w),
                 child: Wrap(
                   spacing: 10.w,
                   runSpacing: 10.h,
