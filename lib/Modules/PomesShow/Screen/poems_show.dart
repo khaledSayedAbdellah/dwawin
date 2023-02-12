@@ -142,7 +142,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                              Icon(Icons.skip_next,size: 95.w,color: Colors.white,),
                                SizedBox(width: 32.w,),
                              InkWell(
-                               onTap: ()=>con.playMusic(),
+                               onTap: (){},
                                  child: Icon(Icons.play_circle_outline,size: 95.w,color: Colors.white,)),
                                SizedBox(width: 32.w,),
                              Icon(Icons.skip_previous_rounded,size: 95.w,color: Colors.white,),

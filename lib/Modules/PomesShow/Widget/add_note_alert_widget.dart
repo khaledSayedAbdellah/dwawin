@@ -6,12 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: non_constant_identifier_names
 AnimatedAlertAddNote(
     {required BuildContext context,
-    required TextEditingController controller}) async {
+    required TextEditingController controller,
+      required Function addNote
+    }) async {
   showGeneralDialog(
     barrierLabel: "Label",
     barrierDismissible: true,
     barrierColor: Colors.black.withOpacity(0.5),
-    transitionDuration: const Duration(seconds: 1),
+    transitionDuration: const Duration(milliseconds: 400),
     context: context,
     pageBuilder: (context, anim1, anim2) {
       return Align(
@@ -75,17 +77,20 @@ AnimatedAlertAddNote(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                            width: 505.w,
-                            height: 150.h,
-                            alignment: Alignment.center,
-                            decoration:
-                                BoxDecoration(color: ThemeClass.primaryColor),
-                            child: Text("add".tr,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 55.sp,
-                                    color: Colors.white))),
+                        InkWell(
+                          onTap:()=>addNote() ,
+                          child: Container(
+                              width: 505.w,
+                              height: 150.h,
+                              alignment: Alignment.center,
+                              decoration:
+                                  BoxDecoration(color: ThemeClass.primaryColor),
+                              child: Text("add".tr,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 55.sp,
+                                      color: Colors.white))),
+                        ),
                         InkWell(
                             onTap: () => Navigator.of(context).pop(),
                             child: Container(

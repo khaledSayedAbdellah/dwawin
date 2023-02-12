@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../Utilities/theme_helper.dart';
+import '../../PomesShow/Screen/poems_show.dart';
 import '../Controller/favorites_controller.dart';
 import '../Widget/favorites_header_widget.dart';
 
@@ -20,6 +21,11 @@ class _FavoritesState extends StateMVC<Favorites> {
     con=FavoritesController();
   }
   late FavoritesController con;
+  @override
+  void initState() {
+    con.getData();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,30 +59,34 @@ class _FavoritesState extends StateMVC<Favorites> {
                                 border: Border.all(width:e==0? 1.w:e*2.w,color: ThemeClass.primaryColor)
                             ),
                             child: SingleChildScrollView(
-                              // child: Column(
-                              //   children:[1,2,3,4,6,7,8,9,10,11,12,13,14].map((e) {
-                              //     return Column(
-                              //       children: [
-                              //         Row(
-                              //           children: [
-                              //             SvgPicture.asset(
-                              //               "assets/images/ic_add_comment.svg",
-                              //               fit: BoxFit.cover,
-                              //               width: 96.w,
-                              //               height: 96.h,
-                              //             ),
-                              //             Text("مدح النبي صل الله عليه وسلم كلمات مؤثرة",style: TextStyle(
-                              //                 fontSize: 34.sp,
-                              //                 fontWeight: FontWeight.w500,
-                              //                 color: ThemeClass.secondDarkGray
-                              //             ),)
-                              //           ],
-                              //         ),
-                              //         Divider(height: 32.h,),
-                              //       ],
-                              //     );
-                              //   }).toList(),
-                              // ),
+                              child: Column(
+                                children:con.favoritePoems.map((e) {
+                                  return Column(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: ()=>Navigator.of(context).pushNamed(PoemsShow.routeName,arguments: e),
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              "assets/images/book.svg",
+                                              fit: BoxFit.cover,
+                                              width: 96.w,
+                                              height: 96.h,
+                                            ),
+                                            SizedBox(width: 20.w,),
+                                            Text(e.name??'',style: TextStyle(
+                                                fontSize: 34.sp,
+                                                fontWeight: FontWeight.w500,
+                                                color: ThemeClass.secondDarkGray
+                                            ),)
+                                          ],
+                                        ),
+                                      ),
+                                      Divider(height: 32.h,),
+                                    ],
+                                  );
+                                }).toList(),
+                              ),
                             ),
 
                           ),

@@ -10,22 +10,23 @@ import '../../../Control/shared_data_provider.dart';
 import 'add_note_alert_widget.dart';
 
 class MoreContentWidget extends StatefulWidget {
-  const MoreContentWidget({Key? key}) : super(key: key);
+  final Function(BuildContext context) addNote,addFavorite,playWithOutInternet,sharePoem;
+   bool isFavorite;
+   MoreContentWidget({Key? key, required this.addNote, required this.addFavorite, required this.playWithOutInternet, required this.sharePoem, this.isFavorite=false}) : super(key: key);
 
   @override
   State<MoreContentWidget> createState() => _MoreContentWidgetState();
 }
 
 class _MoreContentWidgetState extends State<MoreContentWidget> {
-  TextEditingController note=TextEditingController();
   int selectBackGroundColor=0;
   int selectFontColor=0;
-  List<MoreModel> moreButton = [
-    MoreModel(id: 0, title: "fav", image: "ic_add_fav.svg"),
-    MoreModel(id: 1, title: "add_note", image: "ic_add_comment.svg"),
+  List<MoreModel> get moreButton => [
+    MoreModel(id: 0, title: "fav", image:widget.isFavorite==true? "ic_add_fav.svg":"ic_fav_color.svg",onTap: widget.addFavorite),
+    MoreModel(id: 1, title: "add_note", image: "ic_add_comment.svg",onTap: widget.addNote),
     MoreModel(
-        id: 2, title: "play_with_out_internet", image: "ic_downlod_setting.svg"),
-    MoreModel(id: 3, title: "share_poems", image: "ic_share_set.svg"),
+        id: 2, title: "play_with_out_internet", image: "ic_downlod_setting.svg",onTap: widget.playWithOutInternet),
+    MoreModel(id: 3, title: "share_poems", image: "ic_share_set.svg",onTap:widget.sharePoem),
   ];
   List<MoreModel> fontColor = [
     MoreModel(id: 0, color: const Color(0xff000000)),
@@ -65,7 +66,13 @@ class _MoreContentWidgetState extends State<MoreContentWidget> {
                   child: Column(
                     children: moreButton.map((e) {
                       return GestureDetector(
-                        onTap: ()=>AnimatedAlertAddNote(context: context,controller: note),
+                        onTap:(){
+                          if(e.id==0){
+                            widget.isFavorite=!widget.isFavorite;
+                            setState((){});
+                          }
+                          e.onTap!(context);
+                          },
                         child: Column(
                           children: [
                             Row(

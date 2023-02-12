@@ -22,6 +22,11 @@ class _NoteState extends StateMVC<Note> {
   }
   late NoteController con;
   @override
+  void initState() {
+    con.getData();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
 
@@ -55,22 +60,38 @@ class _NoteState extends StateMVC<Note> {
                             ),
                             child: SingleChildScrollView(
                               child: Column(
-                                children:[1,2,3,4,6,7,8,9,10,11,12,13,14].map((e) {
+                                children:con.poemsNote.map((e) {
                                   return Column(
                                     children: [
                                       Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           SvgPicture.asset(
                                             "assets/images/ic_add_comment.svg",
                                             fit: BoxFit.cover,
-                                            width: 96.w,
-                                            height: 96.h,
+                                            width: 100.w,
+                                            height: 100.h,
                                           ),
-                                          Text("مدح النبي صل الله عليه وسلم كلمات مؤثرة",style: TextStyle(
-                                            fontSize: 34.sp,
-                                            fontWeight: FontWeight.w500,
-                                            color: ThemeClass.secondDarkGray
-                                          ),)
+                                          SizedBox(width: 20.w,),
+                                          Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(height: 20.h,),
+                                              Text(e.name??'',style: TextStyle(
+                                                fontSize: 34.sp,
+                                                fontWeight: FontWeight.w500,
+                                                color: ThemeClass.secondDarkGray
+                                              ),),
+                                              SizedBox(height: 20.h,),
+                                              Text(e.notes??'',style: TextStyle(
+                                                fontSize: 30.sp,
+                                                fontWeight: FontWeight.w500,
+                                                color: ThemeClass.secondDarkGray
+                                              ),),
+                                            ],
+                                          )
                                         ],
                                       ),
                                       Divider(height: 32.h,),
