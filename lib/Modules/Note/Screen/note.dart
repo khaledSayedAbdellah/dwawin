@@ -77,6 +77,7 @@ class _NoteState extends StateMVC<Note> {
                                               height: 100.h,
                                             ),
                                             SizedBox(width: 20.w,),
+                                            Expanded(child:
                                             Column(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +95,7 @@ class _NoteState extends StateMVC<Note> {
                                                   color: ThemeClass.secondDarkGray
                                                 ),),
                                               ],
-                                            )
+                                            ))
                                           ],
                                         ),
                                       ),
