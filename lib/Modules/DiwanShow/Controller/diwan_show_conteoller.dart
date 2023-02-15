@@ -17,7 +17,6 @@ class DiwanShowController extends ControllerMVC {
   bool loading = false;
   late TextEditingController searchController;
   List<PoemModel> getPoemsByDiwanId=[];
-  List<String> getRhymeByDiwanId=[];
   int? diwanId;
   @override
   void initState() {
@@ -32,7 +31,6 @@ class DiwanShowController extends ControllerMVC {
   }
   init()async{
     getPoemsByDiwanId=await  DiwanDbHelper().getPoemsByDiwanId(id: diwanId);
-    getRhymeByDiwanId=await  DiwanDbHelper().getRhymeByDiwanId(id: diwanId??0);
     setState(() { });
   }
 

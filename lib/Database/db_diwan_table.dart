@@ -59,14 +59,6 @@ class DiwanDbHelper{
     return result!=-1;
   }
 
-  Future<List<String>> getRhymeByDiwanId({required int id}) async {
-    List<Map<String,dynamic>> maps = await db.query(ConstDb.poemTableName,where: '${PoemModel.diwanIdText} LIKE ?',whereArgs: ['%$id%']);
-    if (maps.isNotEmpty) {
-      return maps.map((e) => PoemModel.fromMap(e).rhyme).toList().whereType<String>().toList();
-    }
-    return [];
-  }
-
   Future<List<PoemModel>> getPoemsByDiwanId({required int? id}) async {
     if(id == null) return [];
     List<Map<String,dynamic>> maps = await db.query(ConstDb.poemTableName,where: '${PoemModel.diwanIdText} LIKE ?',whereArgs: ['%$id%']);

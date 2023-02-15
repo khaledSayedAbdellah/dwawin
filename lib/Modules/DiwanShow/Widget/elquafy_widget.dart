@@ -1,11 +1,14 @@
+import 'package:dwawin/Models/poem_model.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../Utilities/theme_helper.dart';
+import '../../PomesShow/Screen/poems_show.dart';
 class ElquafyWidget extends StatelessWidget {
-  final List<String>elquafi;
-  const ElquafyWidget({Key? key, required this.elquafi}) : super(key: key);
+  final List<PoemModel> poems;
+  const ElquafyWidget({Key? key, required this.poems}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +40,22 @@ class ElquafyWidget extends StatelessWidget {
                 child: Wrap(
                   spacing: 10.w,
                   runSpacing: 10.h,
-                  children: elquafi.map((e){
-                    return Container(
-                      alignment: Alignment.center,
-                      width: 155.w,
-                      height: 80.h,
-                      decoration:  BoxDecoration(
-                          borderRadius:BorderRadius.circular(20.w),
-                          color: const Color(0xffE9E9E9)
+                  children: poems.map((e){
+                    return GestureDetector(
+                      onTap: ()=> Modular.to.pushNamed(PoemsShow.routeName,arguments: e),
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 155.w,
+                        height: 80.h,
+                        decoration:  BoxDecoration(
+                            borderRadius:BorderRadius.circular(20.w),
+                            color: const Color(0xffE9E9E9)
+                        ),
+                        child: Text(e.rhyme??"",style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: ThemeClass.primaryColor,
+                        ),),
                       ),
-                      child: Text(e,style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: ThemeClass.primaryColor,
-                      ),),
                     );
                   }).toList(),),
               )
