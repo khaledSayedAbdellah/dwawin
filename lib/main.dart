@@ -16,7 +16,7 @@ Future<void> main() async {
   await SharedPref().init();
   await DataBaseHelper().init();
 
-  if(DateTime.now().isBefore(DateTime(2023,2,20))){
+  if(DateTime.now().isBefore(DateTime(2023,2,27))){
     runApp(
         MultiProvider(
           providers: [
