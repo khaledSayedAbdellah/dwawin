@@ -1,9 +1,14 @@
+import 'dart:io';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:path_provider/path_provider.dart';
 import '../locale/locales.dart';
 import 'LayoutHelper/show_images.dart';
+import 'api_helper.dart';
 
 extension OnTapImageExtension on Image {
   Widget showOnTap(){
@@ -73,4 +78,33 @@ class Helper{
       if (onDismiss != null) onDismiss();
     });
   }
+
+  static Future<String> getChatFolderPath()async{
+    String folderName = "chat";
+    Directory appDocumentsDirectory = await getApplicationDocumentsDirectory();
+    String appDocumentsPath = appDocumentsDirectory.path;
+    final Directory newDirectory = Directory('$appDocumentsPath/$folderName/');
+    return (await newDirectory.create(recursive: true)).path;
+  }
+
+  static Future<File?> getAndDownloadEquitableFile({String? filePath,bool canDownload = false})async{
+    if(filePath == null) return null;
+
+    String createdFileName = filePath.split("/").last;
+
+
+    String folderPath = await getChatFolderPath();
+    final allFiles = Directory(folderPath).listSync();
+    for (FileSystemEntity file in allFiles) {
+      if(file.path.contains(createdFileName)) return File(file.path);
+    }
+    if(!canDownload) return null;
+
+    Uint8List? downloadedData = await API.getDataFromUrl(url: filePath);
+    if(downloadedData == null) return null;
+    return File("$folderPath/$createdFileName")..writeAsBytesSync(downloadedData);
+  }
+
+
+
 }

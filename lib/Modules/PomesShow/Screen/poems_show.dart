@@ -1,12 +1,9 @@
 import 'package:dwawin/Models/poem_model.dart';
 import 'package:dwawin/Utilities/helper.dart';
-import 'package:dwawin/Utilities/theme_helper.dart';
-import 'package:dwawin/generated/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:provider/provider.dart';
 import '../../../Control/shared_data_provider.dart';
@@ -36,7 +33,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
   void initState() {
     con.poem = widget.poemModel;
     con.getPoem();
-    con.init();
+    con.getMediaData();
     super.initState();
   }
 
@@ -127,7 +124,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "${"vocalist".tr} أبو عمار المصري",
+                              "${"vocalist".tr} ${con.player.currentIndex == null?"":con.media[con.player.currentIndex!].name}",
                               style: TextStyle(
                                   fontSize: 40.sp,
                                   color: Colors.white,
@@ -162,7 +159,10 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                             );
                           },
                         ),
-                        ControlButtons(con.player)
+                        ControlButtons(
+                          player: con.player,
+                          downloadOnTap: con.download,
+                        )
                       ],
                     ),
                   ),

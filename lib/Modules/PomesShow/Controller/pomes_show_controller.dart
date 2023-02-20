@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:audio_session/audio_session.dart';
 import 'package:dwawin/Modules/PomesShow/Widget/more_content_widget.dart';
 import 'package:dwawin/Utilities/helper.dart';
@@ -11,7 +13,8 @@ import '../../../Database/db_poem_table.dart';
 import '../../../Models/poem_model.dart';
 import '../Widget/add_note_alert_widget.dart';
 import '../Widget/seek_bar_widget.dart';
-
+import '../../../Models/media_model.dart';
+import '../../../Api/poem_sound_api.dart';
 class PoemsShowController extends ControllerMVC {
   // singleton
   factory PoemsShowController() {
@@ -28,53 +31,11 @@ class PoemsShowController extends ControllerMVC {
 
   PoemModel? poem;
   late AudioPlayer player;
+  List<MediaModel> media = [];
   static int nextMediaId = 0;
-  final playlist = ConcatenatingAudioSource(children: [
-    ClippingAudioSource(
-      start: const Duration(seconds: 60),
-      end: const Duration(seconds: 90),
-      child: AudioSource.uri(Uri.parse(
-          "https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3")),
-      tag: MediaItem(
-        id: '${nextMediaId++}',
-        album: "Science Friday",
-        title: "A Salute To Head-Scratching Science (30 seconds)",
-        artUri: Uri.parse(
-            "https://media.wnyc.org/i/1400/1400/l/80/1/ScienceFriday_WNYCStudios_1400.jpg"),
-      ),
-    ),
-    AudioSource.uri(
-      Uri.parse(
-          "https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3"),
-      tag: MediaItem(
-        id: '${nextMediaId++}',
-        album: "Science Friday",
-        title: "A Salute To Head-Scratching Science",
-        artUri: Uri.parse(
-            "https://media.wnyc.org/i/1400/1400/l/80/1/ScienceFriday_WNYCStudios_1400.jpg"),
-      ),
-    ),
-    AudioSource.uri(
-      Uri.parse("https://s3.amazonaws.com/scifri-segments/scifri201711241.mp3"),
-      tag: MediaItem(
-        id: '${nextMediaId++}',
-        album: "Science Friday",
-        title: "From Cat Rheology To Operatic Incompetence",
-        artUri: Uri.parse(
-            "https://media.wnyc.org/i/1400/1400/l/80/1/ScienceFriday_WNYCStudios_1400.jpg"),
-      ),
-    ),
-    AudioSource.uri(
-      Uri.parse("asset:///audio/nature.mp3"),
-      tag: MediaItem(
-        id: '${nextMediaId++}',
-        album: "Public Domain",
-        title: "Nature Sounds",
-        artUri: Uri.parse(
-            "https://media.wnyc.org/i/1400/1400/l/80/1/ScienceFriday_WNYCStudios_1400.jpg"),
-      ),
-    ),
-  ]);
+
+  ConcatenatingAudioSource playlist = ConcatenatingAudioSource(children: []);
+
   @override
   void initState() {
     player=AudioPlayer();
@@ -93,16 +54,11 @@ class PoemsShowController extends ControllerMVC {
   Future<void> init() async {
     final session = await AudioSession.instance;
     await session.configure(const AudioSessionConfiguration.speech());
-    // Listen to errors during playback.
     player.playbackEventStream.listen((event) {},
-        onError: (Object e, StackTrace stackTrace) {
-          print('A stream error occurred: $e');
-        });
+        onError: (Object e, StackTrace stackTrace) {});
     try {
       await player.setAudioSource(playlist);
-    } catch (e, stackTrace) {
-
-    }
+    } catch (e, stackTrace) {}
   }
   Stream<PositionData> get positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
@@ -112,13 +68,36 @@ class PoemsShowController extends ControllerMVC {
               (position, bufferedPosition, duration) => PositionData(
               position, bufferedPosition, duration ?? Duration.zero));
 
-  controlVolume(BuildContext context){
-
-}
 
 
 
-
+  Future getMediaData()async{
+    setState((){loading = true;});
+    media = await PoemApi.getMediaByPoemId(poemId: 1);
+    media.forEach((item) async {
+      item.file = await Helper.getAndDownloadEquitableFile(filePath: item.url);
+    });
+    setState((){loading = false;});
+    playlist = ConcatenatingAudioSource(
+      children: media.map((e) {
+        MediaItem mediaItem = MediaItem(
+          id: "${e.id}",
+          album: poem?.name??"",
+          title: e.name??"",
+        );
+        if(e.file!=null) return AudioSource.file(e.file!.path,tag: mediaItem);
+        else if(e.url!=null) return AudioSource.uri(Uri.parse(e.url!),tag: mediaItem);
+        return null;
+        }).toList().whereType<AudioSource>().toList(),
+    );
+    await init();
+    // when download call this
+  }
+  download(int? index)async{
+    if(index == null) return;
+    media[index].file = await Helper.getAndDownloadEquitableFile(filePath: media[index].url,canDownload: true);
+    setState(() { });
+  }
   getPoem() async {
     poem = await PoemDbHelper().getById(id: poem?.id ?? 0);
     noteController.text=poem?.notes??"";

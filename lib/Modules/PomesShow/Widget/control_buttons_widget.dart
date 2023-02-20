@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,8 +9,8 @@ import '../../../Utilities/theme_helper.dart';
 import '../../../generated/assets.dart';
 class ControlButtons extends StatelessWidget {
   final AudioPlayer player;
-
-  const ControlButtons(this.player, {Key? key}) : super(key: key);
+  final Function(int?) downloadOnTap;
+  const ControlButtons( {Key? key, required this.player,required this.downloadOnTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class ControlButtons extends StatelessWidget {
                   stream: player.playerStateStream,
                   builder: (context, snapshot) {
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: ()=>player.seek(Duration(seconds: 5)),
                       child: SvgPicture.asset(
                         Assets.imagesSeekSupplyIcon,
                         width: 95.w,
@@ -107,10 +109,13 @@ class ControlButtons extends StatelessWidget {
               ),
             ],
           ),
-          SvgPicture.asset(
-            Assets.imagesDownlodIcon,
-            width: 95.w,
-            height: 95.w,
+          GestureDetector(
+            onTap: () => downloadOnTap(player.currentIndex),
+            child: SvgPicture.asset(
+              Assets.imagesDownlodIcon,
+              width: 95.w,
+              height: 95.w,
+            ),
           ),
         ],
       ),
