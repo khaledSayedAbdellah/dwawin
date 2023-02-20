@@ -27,8 +27,8 @@ class FavoritesController extends ControllerMVC {
     searchController.dispose();
     super.dispose();
   }
-getData()async{
-  favoritePoems=await PoemDbHelper().getFavoritePoems();
-  setState(() { });
-}
+  getData()async{
+    favoritePoems=await PoemDbHelper().getFavoritePoems();
+    setState(() { });
+   }
 }

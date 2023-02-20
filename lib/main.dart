@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:provider/provider.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
@@ -15,8 +16,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPref().init();
   await DataBaseHelper().init();
-
-  if(DateTime.now().isBefore(DateTime(2023,2,27))){
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.dawawin.app',
+    androidNotificationChannelName: 'Poems Audio',
+    androidNotificationOngoing: true,
+  );
+  if(DateTime.now().isBefore(DateTime(2023,3,16))){
     runApp(
         MultiProvider(
           providers: [
@@ -34,7 +39,6 @@ Future<void> main() async {
 
 class EntryPoint extends StatelessWidget {
   const EntryPoint({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final appLan = Provider.of<AppLanguage>(context);

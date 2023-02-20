@@ -18,7 +18,6 @@ class AboutDiwan extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.w),
-
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
