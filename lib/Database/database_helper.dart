@@ -24,6 +24,7 @@ class DataBaseHelper {
           await db.execute(ConstDb.createDiwanTable);
           await db.execute(ConstDb.createPoemTable);
           await db.execute(ConstDb.createVerseTable);
+          await db.execute(ConstDb.createMediaTable);
         }
     );
   }

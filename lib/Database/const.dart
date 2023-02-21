@@ -1,4 +1,6 @@
 
+import 'package:dwawin/Models/media_model.dart';
+
 import '../Models/diwan_model.dart';
 import '../Models/poem_model.dart';
 import '../Models/verse_model.dart';
@@ -9,6 +11,7 @@ class ConstDb {
   static const String diwanTableName = "diwan";
   static const String poemTableName = "poem";
   static const String verseTableName = "verse";
+  static const String mediaTableName = "media";
 
 
   static String createDiwanTable =
@@ -36,4 +39,10 @@ class ConstDb {
   ${VerseModel.verse2Text} TEXT, 
   ${VerseModel.verse1RmText} TEXT, 
   ${VerseModel.verse2RmText} TEXT)""";
+
+  static String createMediaTable =
+  """CREATE TABLE IF NOT EXISTS $mediaTableName (${MediaModel.idText} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+  ${MediaModel.poemIdText} INTEGER, 
+  ${MediaModel.nameText} TEXT, 
+  ${MediaModel.urlText} TEXT)""";
 }
