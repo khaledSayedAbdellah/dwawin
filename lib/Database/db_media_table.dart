@@ -38,7 +38,7 @@ class MediaDbHelper{
     return null;
   }
 
-  Future<List<MediaModel>> getByPoemId({required String poemId}) async {
+  Future<List<MediaModel>> getByPoemId({required int? poemId}) async {
     List<Map<String,dynamic>> maps = await db.query(tableName,where: '${MediaModel.poemIdText} = ?',whereArgs: [poemId]);
     if (maps.isNotEmpty) {
       return maps.map((e) => MediaModel.fromMap(e)).toList();

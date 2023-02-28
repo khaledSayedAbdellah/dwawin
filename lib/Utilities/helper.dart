@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -79,8 +80,8 @@ class Helper{
     });
   }
 
-  static Future<String> getChatFolderPath()async{
-    String folderName = "chat";
+  static Future<String> getMediaFolderPath()async{
+    String folderName = "media";
     Directory appDocumentsDirectory = await getApplicationDocumentsDirectory();
     String appDocumentsPath = appDocumentsDirectory.path;
     final Directory newDirectory = Directory('$appDocumentsPath/$folderName/');
@@ -93,8 +94,9 @@ class Helper{
     String createdFileName = filePath.split("/").last;
 
 
-    String folderPath = await getChatFolderPath();
+    String folderPath = await getMediaFolderPath();
     final allFiles = Directory(folderPath).listSync();
+    log("$createdFileName  >>>>>>>>>>>>:${allFiles.map((e) => e.path).toString()}");
     for (FileSystemEntity file in allFiles) {
       if(file.path.contains(createdFileName)) return File(file.path);
     }
@@ -104,7 +106,4 @@ class Helper{
     if(downloadedData == null) return null;
     return File("$folderPath/$createdFileName")..writeAsBytesSync(downloadedData);
   }
-
-
-
 }

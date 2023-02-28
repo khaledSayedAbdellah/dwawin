@@ -12,7 +12,7 @@ class API{
 
 
   //=========================== api User ====================================
-  static String poemMedia(id) => "readers?poem_id=$id";
+  static String poemMedia(int id) => "readers?poem_id=$id";
 
 
 
@@ -70,13 +70,16 @@ class API{
     });
     if (headers != null) request.headers.addAll(headers);
     debugPrint(request.headers.toString());
+    try{
+      http.StreamedResponse response = await request.send().timeout(Duration(seconds: 5));
 
-    http.StreamedResponse response = await request.send();
-
-    String result = await response.stream.bytesToString();
-    log(response.statusCode.toString());
-    log(result.toString());
-    return json.decode(result);
+      String result = await response.stream.bytesToString();
+      log(response.statusCode.toString());
+      log(result.toString());
+      return json.decode(result);
+    }catch(e){
+      return null;
+    }
   }
 
   static Future<Uint8List?> getDataFromUrl({required String? url, Map<String, String>? headers,}) async {
@@ -89,7 +92,7 @@ class API{
       if (headers != null) request.headers.addAll(headers);
       debugPrint(request.headers.toString());
 
-      http.StreamedResponse response = await request.send();
+      http.StreamedResponse response = await request.send().timeout(Duration(seconds: 5));
       return await response.stream.toBytes();
     }catch(e){
       print(">>>>>>>>>>>>>>>::$e");

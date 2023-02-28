@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:audio_session/audio_session.dart';
+import 'package:dwawin/Database/db_media_table.dart';
 import 'package:dwawin/Modules/PomesShow/Widget/more_content_widget.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,13 +34,12 @@ class PoemsShowController extends ControllerMVC {
   PoemModel? poem;
   late AudioPlayer player;
   List<MediaModel> media = [];
-  static int nextMediaId = 0;
 
   ConcatenatingAudioSource playlist = ConcatenatingAudioSource(children: []);
 
   @override
   void initState() {
-    player=AudioPlayer();
+    player = AudioPlayer();
     searchController = TextEditingController();
     noteController = TextEditingController();
     super.initState();
@@ -51,7 +52,7 @@ class PoemsShowController extends ControllerMVC {
     noteController.dispose();
     super.dispose();
   }
-  Future<void> init() async {
+  Future<void> initPlayer() async {
     final session = await AudioSession.instance;
     await session.configure(const AudioSessionConfiguration.speech());
     player.playbackEventStream.listen((event) {},
@@ -73,36 +74,42 @@ class PoemsShowController extends ControllerMVC {
 
   Future getMediaData()async{
     setState((){loading = true;});
+    // media = await PoemApi.getMediaByPoemId(poemId: poem?.id);
     media = await PoemApi.getMediaByPoemId(poemId: 1);
-    media.forEach((item) async {
+    for (MediaModel item in media) {
       item.file = await Helper.getAndDownloadEquitableFile(filePath: item.url);
-    });
+    }
     setState((){loading = false;});
     playlist = ConcatenatingAudioSource(
       children: media.map((e) {
-        MediaItem mediaItem = MediaItem(
-          id: "${e.id}",
-          album: poem?.name??"",
-          title: e.name??"",
+        if(e.file!=null || e.url!=null) return AudioSource.uri(
+          Uri.parse(e.file?.path??e.url??""),
+          tag: MediaItem(
+              id: "${e.id}",
+              album: poem?.name??"",
+              title: e.name??"",
+              artUri: Uri.file("assets/images/home_baner.png")
+          ),
         );
-        if(e.file!=null) return AudioSource.file(e.file!.path,tag: mediaItem);
-        else if(e.url!=null) return AudioSource.uri(Uri.parse(e.url!),tag: mediaItem);
         return null;
         }).toList().whereType<AudioSource>().toList(),
     );
-    await init();
-    // when download call this
+    await initPlayer();
   }
+
   download(int? index)async{
     if(index == null) return;
+    setState(() {loading = true;});
     media[index].file = await Helper.getAndDownloadEquitableFile(filePath: media[index].url,canDownload: true);
-    setState(() { });
+    setState(() {loading = false;});
   }
+
   getPoem() async {
     poem = await PoemDbHelper().getById(id: poem?.id ?? 0);
     noteController.text=poem?.notes??"";
     isFavorite=poem?.isFave??false;
     setState(() {});
+    await getMediaData();
   }
 
   moreOnTap({required BuildContext context}) async {
