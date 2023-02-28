@@ -74,8 +74,9 @@ class PoemsShowController extends ControllerMVC {
 
   Future getMediaData()async{
     setState((){loading = true;});
-    // media = await PoemApi.getMediaByPoemId(poemId: poem?.id);
-    media = await PoemApi.getMediaByPoemId(poemId: 1);
+    String mediaFolder = await Helper.getMediaFolderPath();
+
+    media = await PoemApi.getMediaByPoemId(poemId: poem?.id);
     for (MediaModel item in media) {
       item.file = await Helper.getAndDownloadEquitableFile(filePath: item.url);
     }
@@ -88,7 +89,7 @@ class PoemsShowController extends ControllerMVC {
               id: "${e.id}",
               album: poem?.name??"",
               title: e.name??"",
-              artUri: Uri.file("assets/images/home_baner.png")
+              artUri: Uri.file("$mediaFolder/sound_banner.png")
           ),
         );
         return null;

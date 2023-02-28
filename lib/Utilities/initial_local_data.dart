@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:dwawin/Database/db_poem_table.dart';
 import 'package:dwawin/Models/diwan_model.dart';
 import 'package:dwawin/Models/poem_model.dart';
+import 'package:dwawin/Utilities/helper.dart';
 import 'package:dwawin/Utilities/shared_preferances_helper.dart';
 import 'package:flutter/services.dart';
 import '../Database/db_diwan_table.dart';
@@ -15,7 +17,7 @@ class InitialLocalData{
   static Future<void> init()async{
     bool needToUpdate = _checkDataNeedToUpdate();
     if(!needToUpdate) return;
-
+    await _saveSoundImage();
     Map<String, dynamic> data = await _parseJsonFromAssets('assets/data.json');
     List<PoemModel> poems = List.from(data["poems"].map((e) => PoemModel.fromMap(e)));
     List<DiwanModel> dwawin = List.from(data["dwawin"].map((e) => DiwanModel.fromMap(e)));
@@ -30,6 +32,12 @@ class InitialLocalData{
       });
     });
     await SharedPref.setDataVersion(version: appDataVersion);
+  }
+
+  static Future _saveSoundImage()async{
+    ByteData bytes = await rootBundle.load("assets/images/home_banar.png");
+    String mediaFolder = await Helper.getMediaFolderPath();
+    File("$mediaFolder/sound_banner.png")..writeAsBytesSync( bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes));
   }
 
   static Future<Map<String, dynamic>> _parseJsonFromAssets(String assetsPath) async {
