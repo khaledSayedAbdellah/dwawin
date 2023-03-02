@@ -113,8 +113,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                       ]),
                     ),
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 50.w, vertical: 40.h),
+                      padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 40.h),
                       height: 600.h,
                       width: double.infinity,
                       color: const Color(0xff047E63),

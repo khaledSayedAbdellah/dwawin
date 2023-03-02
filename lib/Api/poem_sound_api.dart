@@ -21,7 +21,7 @@ class PoemApi{
       });
       return data;
     } else {
-      return  await MediaDbHelper().getByPoemId(poemId: 1);
+      return  await MediaDbHelper().getByPoemId(poemId: poemId);
     }
   }
 }

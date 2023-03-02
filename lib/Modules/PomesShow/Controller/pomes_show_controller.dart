@@ -37,6 +37,14 @@ class PoemsShowController extends ControllerMVC {
 
   ConcatenatingAudioSource playlist = ConcatenatingAudioSource(children: []);
 
+  Stream<PositionData> get positionDataStream =>
+      Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
+          player.positionStream,
+          player.bufferedPositionStream,
+          player.durationStream,
+              (position, bufferedPosition, duration) => PositionData(
+              position, bufferedPosition, duration ?? Duration.zero));
+
   @override
   void initState() {
     player = AudioPlayer();
@@ -61,47 +69,45 @@ class PoemsShowController extends ControllerMVC {
       await player.setAudioSource(playlist);
     } catch (e, stackTrace) {}
   }
-  Stream<PositionData> get positionDataStream =>
-      Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
-          player.positionStream,
-          player.bufferedPositionStream,
-          player.durationStream,
-              (position, bufferedPosition, duration) => PositionData(
-              position, bufferedPosition, duration ?? Duration.zero));
 
 
-
-
-  Future getMediaData()async{
-    setState((){loading = true;});
+  Future setPlayList(MediaModel selectedMedia) async{
     String mediaFolder = await Helper.getMediaFolderPath();
 
-    media = await PoemApi.getMediaByPoemId(poemId: poem?.id);
-    for (MediaModel item in media) {
-      item.file = await Helper.getAndDownloadEquitableFile(filePath: item.url);
-    }
-    setState((){loading = false;});
     playlist = ConcatenatingAudioSource(
-      children: media.map((e) {
-        if(e.file!=null || e.url!=null) return AudioSource.uri(
-          Uri.parse(e.file?.path??e.url??""),
+      children: [
+        AudioSource.uri(
+          Uri.parse(selectedMedia.file!.path),
           tag: MediaItem(
-              id: "${e.id}",
+              id: "${selectedMedia.id}",
               album: poem?.name??"",
-              title: e.name??"",
+              title: selectedMedia.name??"",
               artUri: Uri.file("$mediaFolder/sound_banner.png")
           ),
-        );
-        return null;
-        }).toList().whereType<AudioSource>().toList(),
+        )
+      ],
     );
     await initPlayer();
   }
 
-  download(int? index)async{
+  Future getMediaData()async{
+    setState((){loading = true;});
+    media = await PoemApi.getMediaByPoemId(poemId: poem?.id);
+    initPlayer();
+    for (MediaModel item in media) {
+      item.file = await Helper.getAndDownloadEquitableFile(filePath: item.url);
+    }
+    setState((){loading = false;});
+    if(media.where((element) => element.file!=null).toList().isNotEmpty){
+      await setPlayList(media.where((element) => element.file!=null).toList().first);
+    }
+  }
+
+  Future download(int? index)async{
     if(index == null) return;
     setState(() {loading = true;});
     media[index].file = await Helper.getAndDownloadEquitableFile(filePath: media[index].url,canDownload: true);
+    await setPlayList(media[index]);
     setState(() {loading = false;});
   }
 
