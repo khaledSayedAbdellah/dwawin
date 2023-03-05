@@ -1,3 +1,4 @@
+import 'package:dwawin/Models/media_model.dart';
 import 'package:dwawin/Models/poem_model.dart';
 import 'package:dwawin/Utilities/LayoutHelper/loading_screen.dart';
 import 'package:dwawin/Utilities/helper.dart';
@@ -125,22 +126,27 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "${"vocalist".tr} ${con.player.currentIndex == null?"":con.media[con.player.currentIndex!].name}",
+                                "${"vocalist".tr} ${con.selectedMedia?.name??""}",
                                 style: TextStyle(
                                     fontSize: 40.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500),
                               ),
-                              InkWell(
-                                onTap: () {
-                                  print("lsmmdlmsd");
-                                },
+                              PopupMenuButton<MediaModel>(
                                 child: SvgPicture.asset(
                                   "assets/images/ic_mnshed.svg",
                                   fit: BoxFit.cover,
                                   width: 96.w,
                                   height: 96.h,
                                 ),
+                                itemBuilder: (context) => con.media.map((e) => PopupMenuItem(
+                                  value: e,
+                                  child: Text(e.name??""),
+                                )).toList(),
+                                offset: Offset(0, 0),
+                                color: Colors.white,
+                                elevation: 2,
+                                onSelected: con.setPlayList,
                               ),
                             ],
                           ),
@@ -161,6 +167,8 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                           ),
                           ControlButtons(
                             player: con.player,
+                            canPlay: con.selectedMedia!=null,
+                            isDownloaded: (con.selectedMedia?.file!=null || con.selectedMedia==null),
                             downloadOnTap: con.download,
                           )
                         ],

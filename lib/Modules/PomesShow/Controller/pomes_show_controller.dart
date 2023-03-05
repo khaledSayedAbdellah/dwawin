@@ -34,7 +34,7 @@ class PoemsShowController extends ControllerMVC {
   PoemModel? poem;
   late AudioPlayer player;
   List<MediaModel> media = [];
-
+  MediaModel? selectedMedia;
   ConcatenatingAudioSource playlist = ConcatenatingAudioSource(children: []);
 
   Stream<PositionData> get positionDataStream =>
@@ -47,7 +47,6 @@ class PoemsShowController extends ControllerMVC {
 
   @override
   void initState() {
-    player = AudioPlayer();
     searchController = TextEditingController();
     noteController = TextEditingController();
     super.initState();
@@ -72,12 +71,13 @@ class PoemsShowController extends ControllerMVC {
 
 
   Future setPlayList(MediaModel selectedMedia) async{
+    this.selectedMedia = selectedMedia;
     String mediaFolder = await Helper.getMediaFolderPath();
 
     playlist = ConcatenatingAudioSource(
       children: [
         AudioSource.uri(
-          Uri.parse(selectedMedia.file!.path),
+          Uri.parse(selectedMedia.file?.path??selectedMedia.url??""),
           tag: MediaItem(
               id: "${selectedMedia.id}",
               album: poem?.name??"",
@@ -87,6 +87,7 @@ class PoemsShowController extends ControllerMVC {
         )
       ],
     );
+    setState(() { });
     await initPlayer();
   }
 
@@ -112,6 +113,9 @@ class PoemsShowController extends ControllerMVC {
   }
 
   getPoem() async {
+    player = AudioPlayer();
+    playlist = ConcatenatingAudioSource(children: [],);
+    selectedMedia = null;
     poem = await PoemDbHelper().getById(id: poem?.id ?? 0);
     noteController.text=poem?.notes??"";
     isFavorite=poem?.isFave??false;

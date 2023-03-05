@@ -9,8 +9,10 @@ import '../../../Utilities/theme_helper.dart';
 import '../../../generated/assets.dart';
 class ControlButtons extends StatelessWidget {
   final AudioPlayer player;
+  final bool canPlay,isDownloaded;
   final Function(int?) downloadOnTap;
-  const ControlButtons( {Key? key, required this.player,required this.downloadOnTap}) : super(key: key);
+  const ControlButtons( {Key? key, required this.player,required this.downloadOnTap, this.canPlay = false,
+    this.isDownloaded = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,31 +21,35 @@ class ControlButtons extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgPicture.asset(
-            Assets.imagesRepeatIcon,
-            width: 95.w,
-            height: 95.w,
+          if(!canPlay) SizedBox(),
+            if(canPlay) GestureDetector(
+            onTap: ()=> player.setLoopMode(LoopMode.one),
+            child: SvgPicture.asset(
+              Assets.imagesRepeatIcon,
+              width: 95.w,
+              height: 95.w,
+            ),
           ),
-          Row(
+          if(canPlay) Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              StreamBuilder<PlayerState>(
-                  stream: player.playerStateStream,
-                  builder: (context, snapshot) {
-                    return GestureDetector(
-                      onTap: ()=>player.seek(Duration(seconds: 5)),
-                      child: SvgPicture.asset(
-                        Assets.imagesSeekSupplyIcon,
-                        width: 95.w,
-                        height: 95.w,
-                      ),
-                    );
-                  }),
+              // StreamBuilder<PlayerState>(
+              //     stream: player.playerStateStream,
+              //     builder: (context, snapshot) {
+              //       return GestureDetector(
+              //         onTap: ()=>player.seek(Duration(seconds: 5)),
+              //         child: SvgPicture.asset(
+              //           Assets.imagesSeekSupplyIcon,
+              //           width: 95.w,
+              //           height: 95.w,
+              //         ),
+              //       );
+              //     }),
               SizedBox(width: 32.w),
               StreamBuilder<SequenceState?>(
                   stream: player.sequenceStateStream,
                   builder: (context, snapshot) => GestureDetector(
-                    onTap: player.hasNext ? player.seekToNext : null,
+                    onTap: ()=> player.seek(Duration.zero),
                     child: SvgPicture.asset(
                       Assets.imagesNextIcon,
                       width: 95.w,
@@ -90,26 +96,26 @@ class ControlButtons extends StatelessWidget {
                 },
               ),
               SizedBox(width: 32.w),
-              StreamBuilder<SequenceState?>(
-                  stream: player.sequenceStateStream,
-                  builder: (context, snapshot) => GestureDetector(
-                    onTap:
-                    player.hasPrevious ? player.seekToPrevious : null,
-                    child: SvgPicture.asset(
-                      Assets.imagesPreviousIcon,
-                      width: 95.w,
-                      height: 95.w,
-                    ),
-                  )),
-              SizedBox(width: 32.w),
-              SvgPicture.asset(
-                Assets.imagesSeekDelayIcon,
-                width: 95.w,
-                height: 95.w,
-              ),
+              // StreamBuilder<SequenceState?>(
+              //     stream: player.sequenceStateStream,
+              //     builder: (context, snapshot) => GestureDetector(
+              //       onTap:
+              //       player.hasPrevious ? player.seekToPrevious : null,
+              //       child: SvgPicture.asset(
+              //         Assets.imagesPreviousIcon,
+              //         width: 95.w,
+              //         height: 95.w,
+              //       ),
+              //     )),
+              // SizedBox(width: 32.w),
+              // SvgPicture.asset(
+              //   Assets.imagesSeekDelayIcon,
+              //   width: 95.w,
+              //   height: 95.w,
+              // ),
             ],
           ),
-          GestureDetector(
+          if(!isDownloaded) GestureDetector(
             onTap: () => downloadOnTap(player.currentIndex),
             child: SvgPicture.asset(
               Assets.imagesDownlodIcon,
@@ -117,6 +123,7 @@ class ControlButtons extends StatelessWidget {
               height: 95.w,
             ),
           ),
+          if(isDownloaded) SizedBox(),
         ],
       ),
     );
