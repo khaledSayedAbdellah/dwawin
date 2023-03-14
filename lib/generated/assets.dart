@@ -2,13 +2,14 @@
 class Assets {
   Assets._();
 
-  static const String assets1 = 'assets/1.json';
-  static const String assets2 = 'assets/2.json';
-  static const String assets3 = 'assets/3.json';
   static const String assetsData = 'assets/data.json';
   static const String assetsImagesBG = 'assets/images/BG.svg';
   static const String assetsImagesOrnHeaderHome = 'assets/images/orn-header-home.svg';
   static const String assetsShikhData = 'assets/shikh_data.json';
+  static const String dataDataTemp = 'assets/data/data_temp.json';
+  static const String dataDwawin = 'assets/data/dwawin.json';
+  static const String dwawin1 = 'assets/data/dwawin/1.json';
+  static const String dwawin2 = 'assets/data/dwawin/2.json';
   static const String dwawinAssetsData = 'assets/data.json';
   static const String dwawinAssetsShikhData = 'assets/shikh_data.json';
   static const String fontsAktivGroteskTrialLtIt = 'assets/fonts/AktivGrotesk_Trial_LtIt.ttf';
@@ -50,5 +51,7 @@ class Assets {
   static const String imagesRepeatIcon = 'assets/images/repeat_icon.svg';
   static const String imagesSeekDelayIcon = 'assets/images/seek_delay_icon.svg';
   static const String imagesSeekSupplyIcon = 'assets/images/seek_supply_icon.svg';
+  static const String knash18 = 'assets/data/knash/18.json';
+  static const String knash19 = 'assets/data/knash/19.json';
 
 }

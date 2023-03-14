@@ -18,20 +18,37 @@ class InitialLocalData{
     bool needToUpdate = _checkDataNeedToUpdate();
     if(!needToUpdate) return;
     await _saveSoundImage();
-    Map<String, dynamic> data = await _parseJsonFromAssets('assets/data.json');
-    List<PoemModel> poems = List.from(data["poems"].map((e) => PoemModel.fromMap(e)));
-    List<DiwanModel> dwawin = List.from(data["dwawin"].map((e) => DiwanModel.fromMap(e)));
 
-    poems.forEach((item) async=> await PoemDbHelper().insert(poem: item));
-    dwawin.forEach((item) async=> await DiwanDbHelper().insertWithoutNofPoems(diwan: item));
 
-    poems.forEach((poem) {
-      poem.content.forEach((verse) async {
-        print(verse.toMap());
-        await VerseDbHelper().insert(verse: verse);
-      });
-    });
+    await _saveDwawin();
+
+    // Map<String, dynamic> data = await _parseJsonFromAssets('assets/data.json');
+    // List<PoemModel> poems = List.from(data["poems"].map((e) => PoemModel.fromMap(e)));
+    // List<DiwanModel> dwawin = List.from(data["dwawin"].map((e) => DiwanModel.fromMap(e)));
+    //
+    // poems.forEach((item) async=> await PoemDbHelper().insert(poem: item));
+    // dwawin.forEach((item) async=> await DiwanDbHelper().insertWithoutNofPoems(diwan: item));
+    //
+    // poems.forEach((poem) {
+    //   poem.content.forEach((verse) async {
+    //     print(verse.toMap());
+    //     await VerseDbHelper().insert(verse: verse);
+    //   });
+    // });
+
+
+
+
+
     await SharedPref.setDataVersion(version: appDataVersion);
+  }
+
+  static Future _saveDwawin()async{
+    List<Map<String,dynamic>> data = await _parseJsonFromAssets('assets/data.json');
+    List<DiwanModel> allDwawin = data.map((e) => DiwanModel.fromMap(e)).toList();
+    for(DiwanModel diwan in allDwawin){
+     await DiwanDbHelper().insertWithoutNofPoems(diwan: diwan);
+    }
   }
 
   static Future _saveSoundImage()async{
@@ -40,7 +57,7 @@ class InitialLocalData{
     File("$mediaFolder/sound_banner.png")..writeAsBytesSync( bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes));
   }
 
-  static Future<Map<String, dynamic>> _parseJsonFromAssets(String assetsPath) async {
+  static Future _parseJsonFromAssets(String assetsPath) async {
     return rootBundle.loadString(assetsPath).then((jsonStr) => jsonDecode(jsonStr));
   }
 
