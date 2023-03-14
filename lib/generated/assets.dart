@@ -4,6 +4,7 @@ class Assets {
 
   static const String assets1 = 'assets/1.json';
   static const String assets2 = 'assets/2.json';
+  static const String assets3 = 'assets/3.json';
   static const String assetsData = 'assets/data.json';
   static const String assetsImagesBG = 'assets/images/BG.svg';
   static const String assetsImagesOrnHeaderHome = 'assets/images/orn-header-home.svg';
