@@ -1,6 +1,4 @@
-import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -96,7 +94,6 @@ class Helper{
 
     String folderPath = await getMediaFolderPath();
     final allFiles = Directory(folderPath).listSync();
-    log("$createdFileName  >>>>>>>>>>>>:${allFiles.map((e) => e.path).toString()}");
     for (FileSystemEntity file in allFiles) {
       if(file.path.contains(createdFileName)) return File(file.path);
     }

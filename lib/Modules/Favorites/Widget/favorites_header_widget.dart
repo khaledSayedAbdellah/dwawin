@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Utilities/theme_helper.dart';
 import '../../../../Widgets/custome_text_filed.dart';
-import '../../Search/Screen/search_scree.dart';
+import '../../Search/Screen/search_screen.dart';
 class FavoritesHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
   const FavoritesHeaderWidget({Key? key, required this.searchController}) : super(key: key);

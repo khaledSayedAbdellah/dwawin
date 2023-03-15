@@ -6,7 +6,7 @@ import '../Modules/Favorites/Screen/favorites.dart';
 import '../Modules/MainPages/splach_screen.dart';
 import '../Modules/Note/Screen/note.dart';
 import '../Modules/PomesShow/Screen/poems_show.dart';
-import '../Modules/Search/Screen/search_scree.dart';
+import '../Modules/Search/Screen/search_screen.dart';
 import '../Modules/MainPages/main_screens.dart';
 class AppModule extends Module{
   @override

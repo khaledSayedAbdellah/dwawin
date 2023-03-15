@@ -1,9 +1,11 @@
 import 'package:dwawin/Database/db_diwan_table.dart';
+import 'package:dwawin/Database/db_media_table.dart';
 import 'package:dwawin/Database/db_poem_table.dart';
 import 'package:path/path.dart';
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'const.dart';
+import 'db_verse_table.dart';
 
 class DataBaseHelper {
   // singleton
@@ -34,8 +36,10 @@ class DataBaseHelper {
   }
 
   Future clearDataBase() async{
-    await PoemDbHelper().deleteAll();
     await DiwanDbHelper().deleteAll();
+    await PoemDbHelper().deleteAll();
+    await VerseDbHelper().deleteAll();
+    await MediaDbHelper().deleteAll();
   }
 
 }

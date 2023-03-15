@@ -43,7 +43,7 @@ class VerseDbHelper{
   }
   Future<List<VerseModel>> searchByVerse({required String text}) async {
     List<Map<String,dynamic>> maps = await db.rawQuery(
-        'SELECT p.*,c.${DiwanModel.nameText} as ${VerseModel.diwanNameText} FROM ${ConstDb.verseTableName} p LEFT JOIN ${ConstDb.diwanTableName} c ON p.${VerseModel.diwanIdText} = c.${DiwanModel.idText} WHERE (${VerseModel.verse1RmText} like ? OR ${VerseModel.verse2RmText} LIKE ? )',
+        'SELECT p.*,c.${DiwanModel.nameText} as ${VerseModel.diwanNameText},c.${DiwanModel.collectionText} as ${VerseModel.isCollectionText} FROM ${ConstDb.verseTableName} p LEFT JOIN ${ConstDb.diwanTableName} c ON p.${VerseModel.diwanIdText} = c.${DiwanModel.idText} WHERE (${VerseModel.verse1RmText} like ? OR ${VerseModel.verse2RmText} LIKE ? )',
         ["%$text%", "%$text%"]
     );
     if (maps.isNotEmpty) {
@@ -51,13 +51,22 @@ class VerseDbHelper{
     }
     return [];
   }
+  // Future<List<VerseModel>> searchByVerse({required String text}) async {
+  //   List<Map<String,dynamic>> maps = await db.rawQuery(
+  //       'SELECT p.*,c.${DiwanModel.nameText} as ${VerseModel.diwanNameText} FROM ${ConstDb.verseTableName} p LEFT JOIN ${ConstDb.diwanTableName} c ON p.${VerseModel.diwanIdText} = c.${DiwanModel.idText} WHERE (${VerseModel.verse1RmText} like ? OR ${VerseModel.verse2RmText} LIKE ? )',
+  //       ["%$text%", "%$text%"]
+  //   );
+  //   if (maps.isNotEmpty) {
+  //     return List.from(maps.map((e)=> VerseModel.fromMap(e)));
+  //   }
+  //   return [];
+  // }
 
   Future<List<VerseModel>> searchByVerseWithDiwanId({required String text,required int diwanId}) async {
     List<Map<String,dynamic>> maps = await db.rawQuery(
-        'SELECT p.*,c.${DiwanModel.nameText} as ${VerseModel.diwanNameText} FROM ${ConstDb.verseTableName} p LEFT JOIN ${ConstDb.diwanTableName} c ON p.${VerseModel.diwanIdText} = c.${DiwanModel.idText} WHERE (${VerseModel.verse1RmText} like ? OR ${VerseModel.verse2RmText} LIKE ? ) AND p.${VerseModel.diwanIdText} = ? ',
+        'SELECT p.*,c.${DiwanModel.nameText} as ${VerseModel.diwanNameText},c.${DiwanModel.collectionText} FROM ${ConstDb.verseTableName} p LEFT JOIN ${ConstDb.diwanTableName} c ON p.${VerseModel.diwanIdText} = c.${DiwanModel.idText} WHERE (${VerseModel.verse1RmText} like ? OR ${VerseModel.verse2RmText} LIKE ? ) AND p.${VerseModel.diwanIdText} = ? ',
         ["%$text%", "%$text%",diwanId]
     );
-    log(maps.toString());
     if (maps.isNotEmpty) {
       return List.from(maps.map((e)=> VerseModel.fromMap(e)));
     }

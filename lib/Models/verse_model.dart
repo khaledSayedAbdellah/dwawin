@@ -11,6 +11,7 @@ class VerseModel {
   static const String verse2RmText = "verse2Rm";
   static const String diwanNameText = "diwan_name";
   static const String poemNameText = "poem_name";
+  static const String isCollectionText = "collection";
 
   VerseModel({
     this.id,
@@ -21,10 +22,11 @@ class VerseModel {
     this.verse1Rm,
     this.verse2Rm,
     this.diwanName,
-    this.poemName
+    this.poemName,
+    this.isCollection
   });
 
-  int? id,poemId,diwanId;
+  int? id,poemId,diwanId,isCollection;
   String? verse1,verse2;
   String? verse1Rm,verse2Rm;
   String? diwanName,poemName;
@@ -38,7 +40,8 @@ class VerseModel {
     verse1Rm: json[verse1Text]?.toString().rmArFormation(),
     verse2Rm: json[verse2Text]?.toString().rmArFormation(),
     diwanName: json[diwanNameText],
-    poemName: json[poemNameText]
+    poemName: json[poemNameText],
+    isCollection: json[isCollectionText]
   );
 
   factory VerseModel.fromMap(Map<String, dynamic> json) => VerseModel(
@@ -50,16 +53,18 @@ class VerseModel {
     verse1Rm: json[verse1RmText],
     verse2Rm: json[verse2RmText],
     diwanName: json[diwanNameText],
-    poemName: json[poemNameText]
+    poemName: json[poemNameText],
+    isCollection: json[isCollectionText]
   );
 
   Map<String, dynamic> toMap() => {
-    // idText: int.parse("$diwanId$poemId$id"),
+    // idText: id,
     poemIdText: poemId,
     diwanIdText: diwanId,
     verse1Text: verse1,
     verse2Text: verse2,
     verse1RmText: verse1Rm,
     verse2RmText: verse2Rm,
+    isCollectionText: isCollection
   };
 }

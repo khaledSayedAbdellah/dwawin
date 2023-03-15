@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Utilities/theme_helper.dart';
 import '../../../../Widgets/custome_text_filed.dart';
 import '../../../Models/diwan_model.dart';
-import '../../Search/Screen/search_scree.dart';
+import '../../Search/Screen/search_screen.dart';
 class EldiwanHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
   final DiwanModel? diwan;

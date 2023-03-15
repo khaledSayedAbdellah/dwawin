@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../Models/shikh_data_model.dart';
 import '../../../../Utilities/theme_helper.dart';
 import '../../../../Widgets/custome_text_filed.dart';
-import '../../../Search/Screen/search_scree.dart';
+import '../../../Search/Screen/search_screen.dart';
 class AboutUsHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
   final ShikhDataModel? shikhDataModel;

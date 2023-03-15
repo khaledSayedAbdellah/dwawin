@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dwawin/Models/poem_model.dart';
 import 'package:dwawin/Models/verse_model.dart';
 import 'package:dwawin/Utilities/LayoutHelper/loading_screen.dart';
@@ -143,7 +145,7 @@ class ContentWidget extends StatelessWidget {
                 SizedBox(width: 10.w),
 
                 Text(
-                  "${verseModel.poemName!=null?"poems".tr:"diwan".tr}:",
+                  "${verseModel.poemName!=null?"poems".tr:(verseModel.isCollection == 0?"diwan".tr:"knash".tr)}",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 32.sp,

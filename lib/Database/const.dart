@@ -35,6 +35,7 @@ class ConstDb {
   """CREATE TABLE IF NOT EXISTS $verseTableName (${VerseModel.idText} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
   ${VerseModel.poemIdText} INTEGER, 
   ${VerseModel.diwanIdText} INTEGER, 
+  ${VerseModel.isCollectionText} INTEGER, 
   ${VerseModel.verse1Text} TEXT, 
   ${VerseModel.verse2Text} TEXT, 
   ${VerseModel.verse1RmText} TEXT, 

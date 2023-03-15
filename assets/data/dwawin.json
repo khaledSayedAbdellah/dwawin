@@ -2,30 +2,29 @@
   {
     "id": 1,
     "name":"تسيير الوصول في مدح الرسول صلى الله عليه وسلم",
-    "nOfPoems": 10,
+    "nOfPoems": 28,
     "collection": 0,
     "description":""
   },
   {
     "id": 2,
-    "nOfPoems": 20,
+    "nOfPoems": 32,
     "collection": 0,
     "name":"إكسير السعادات في مدح سيد السادات صلى الله عليه وسلم",
     "description":""
   },
-
   {
     "id": 18,
-    "nOfPoems": 20,
+    "nOfPoems": 18,
     "collection": 1,
-    "name":"غير معروف",
+    "name":"دعاء وتوسل",
     "description":""
   },
   {
     "id": 19,
-    "nOfPoems": 20,
+    "nOfPoems": 14,
     "collection": 1,
-    "name":"غير معروف222",
+    "name":"محبة المصطفى",
     "description":""
   }
 ]

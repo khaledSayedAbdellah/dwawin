@@ -1,8 +1,4 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:audio_session/audio_session.dart';
-import 'package:dwawin/Database/db_media_table.dart';
 import 'package:dwawin/Modules/PomesShow/Widget/more_content_widget.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +13,7 @@ import '../Widget/add_note_alert_widget.dart';
 import '../Widget/seek_bar_widget.dart';
 import '../../../Models/media_model.dart';
 import '../../../Api/poem_sound_api.dart';
+
 class PoemsShowController extends ControllerMVC {
   // singleton
   factory PoemsShowController() {
@@ -54,7 +51,6 @@ class PoemsShowController extends ControllerMVC {
 
   @override
   void dispose() {
-    player.dispose();
     searchController.dispose();
     noteController.dispose();
     super.dispose();

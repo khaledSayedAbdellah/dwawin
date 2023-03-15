@@ -1,4 +1,4 @@
-import 'package:dwawin/Modules/Search/Screen/search_scree.dart';
+import 'package:dwawin/Modules/Search/Screen/search_screen.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

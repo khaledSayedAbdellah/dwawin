@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../../Utilities/theme_helper.dart';
-import '../../../Search/Screen/search_scree.dart';
+import '../../../Search/Screen/search_screen.dart';
 import '../../Drawer/Screen/drawer.dart';
 import '../Widgets/audible_poems_widget.dart';
 import '../Widgets/eldawawin_show_all_widget.dart';

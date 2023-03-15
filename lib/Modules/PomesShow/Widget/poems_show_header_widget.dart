@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../Models/poem_model.dart';
 import '../../../Utilities/theme_helper.dart';
 import '../../../Widgets/custome_text_filed.dart';
-import '../../Search/Screen/search_scree.dart';
+import '../../Search/Screen/search_screen.dart';
 class PoemsShowHeaderWidget extends StatelessWidget {
   final TextEditingController searchController;
   final Function() moreOnTap;

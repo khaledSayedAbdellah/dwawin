@@ -7,6 +7,7 @@ import 'package:dwawin/Models/verse_model.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:dwawin/Utilities/shared_preferances_helper.dart';
 import 'package:flutter/services.dart';
+import '../Database/database_helper.dart';
 import '../Database/db_diwan_table.dart';
 import '../Database/db_verse_table.dart';
 import '../Models/shikh_data_model.dart';
@@ -14,14 +15,14 @@ import '../generated/assets.dart';
 
 class InitialLocalData{
 
-  static int appDataVersion = 9;
+  static int appDataVersion = 22;
 
   static Future<void> init()async{
     bool needToUpdate = _checkDataNeedToUpdate();
     if(!needToUpdate) return;
+    await DataBaseHelper().clearDataBase();
+
     await _saveSoundImage();
-
-
     await _saveDwawin();
 
     // save poems dwawin
@@ -63,7 +64,8 @@ class InitialLocalData{
   static Future _saveSoundImage()async{
     ByteData bytes = await rootBundle.load("assets/images/home_banar.png");
     String mediaFolder = await Helper.getMediaFolderPath();
-    File("$mediaFolder/sound_banner.png")..writeAsBytesSync( bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes));
+    File file = File("$mediaFolder/sound_banner.png");
+    if(file.existsSync() && file.lengthSync() <= 0) file.writeAsBytesSync(bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes));
   }
 
   static Future _parseJsonFromAssets(String assetsPath) async {
