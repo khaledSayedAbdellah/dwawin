@@ -113,7 +113,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                         )
                       ]),
                     ),
-                    Container(
+                    if(con.media.isNotEmpty) Container(
                       padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 40.h),
                       height: 600.h,
                       width: double.infinity,

@@ -3,16 +3,18 @@ import 'dart:io';
 import 'package:dwawin/Database/db_poem_table.dart';
 import 'package:dwawin/Models/diwan_model.dart';
 import 'package:dwawin/Models/poem_model.dart';
+import 'package:dwawin/Models/verse_model.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:dwawin/Utilities/shared_preferances_helper.dart';
 import 'package:flutter/services.dart';
 import '../Database/db_diwan_table.dart';
 import '../Database/db_verse_table.dart';
 import '../Models/shikh_data_model.dart';
+import '../generated/assets.dart';
 
 class InitialLocalData{
 
-  static int appDataVersion = 8;
+  static int appDataVersion = 9;
 
   static Future<void> init()async{
     bool needToUpdate = _checkDataNeedToUpdate();
@@ -22,32 +24,39 @@ class InitialLocalData{
 
     await _saveDwawin();
 
-    // Map<String, dynamic> data = await _parseJsonFromAssets('assets/data.json');
-    // List<PoemModel> poems = List.from(data["poems"].map((e) => PoemModel.fromMap(e)));
-    // List<DiwanModel> dwawin = List.from(data["dwawin"].map((e) => DiwanModel.fromMap(e)));
-    //
-    // poems.forEach((item) async=> await PoemDbHelper().insert(poem: item));
-    // dwawin.forEach((item) async=> await DiwanDbHelper().insertWithoutNofPoems(diwan: item));
-    //
-    // poems.forEach((poem) {
-    //   poem.content.forEach((verse) async {
-    //     print(verse.toMap());
-    //     await VerseDbHelper().insert(verse: verse);
-    //   });
-    // });
+    // save poems dwawin
+    for(int i=1; i<= 20; i++){
+      List? data = await _parseJsonFromAssets('assets/data/dwawin/$i.json');
+      if(data != null){
+        await _savePoems(List<PoemModel>.from(data.map((e) => PoemModel.fromMap(e))).toList());
+      }
+    }
 
-
-
-
+    // save poems knash
+    for(int i=15; i<= 35; i++){
+      List? data = await _parseJsonFromAssets('assets/data/knash/$i.json');
+      if(data != null){
+        await _savePoems(List<PoemModel>.from(data.map((e) => PoemModel.fromMap(e))).toList());
+      }
+    }
 
     await SharedPref.setDataVersion(version: appDataVersion);
   }
 
   static Future _saveDwawin()async{
-    List<Map<String,dynamic>> data = await _parseJsonFromAssets('assets/data.json');
+    List data = await _parseJsonFromAssets(Assets.dataDwawin);
     List<DiwanModel> allDwawin = data.map((e) => DiwanModel.fromMap(e)).toList();
     for(DiwanModel diwan in allDwawin){
-     await DiwanDbHelper().insertWithoutNofPoems(diwan: diwan);
+     await DiwanDbHelper().insert(diwan: diwan);
+    }
+  }
+
+  static Future _savePoems(List<PoemModel> poems)async{
+    for(PoemModel poem in poems){
+      await PoemDbHelper().insert(poem: poem);
+      for(VerseModel verse in poem.content){
+        await VerseDbHelper().insert(verse: verse);
+      }
     }
   }
 
@@ -58,7 +67,12 @@ class InitialLocalData{
   }
 
   static Future _parseJsonFromAssets(String assetsPath) async {
-    return rootBundle.loadString(assetsPath).then((jsonStr) => jsonDecode(jsonStr));
+    try{
+      String data = await rootBundle.loadString(assetsPath);
+      return jsonDecode(data);
+    }catch(e){
+      return null;
+    }
   }
 
   static bool _checkDataNeedToUpdate(){

@@ -84,10 +84,13 @@ flutter:
   assets:
     - i18n/en.json
     - i18n/ar.json
-    - assets/data.json
-    - assets/shikh_data.json
+    - assets/
+    - assets/
     - assets/images/
     - assets/fonts/
+    - assets/data/
+    - assets/data/dwawin/
+    - assets/data/knash/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
