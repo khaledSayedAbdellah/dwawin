@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:audio_session/audio_session.dart';
 import 'package:dwawin/Modules/PomesShow/Widget/more_content_widget.dart';
 import 'package:dwawin/Utilities/helper.dart';
@@ -9,6 +11,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../../Database/db_poem_table.dart';
 import '../../../Models/poem_model.dart';
+import '../../../Utilities/share_helper.dart';
 import '../Widget/add_note_alert_widget.dart';
 import '../Widget/seek_bar_widget.dart';
 import '../../../Models/media_model.dart';
@@ -53,6 +56,7 @@ class PoemsShowController extends ControllerMVC {
   void dispose() {
     searchController.dispose();
     noteController.dispose();
+    player.dispose();
     super.dispose();
   }
   Future<void> initPlayer() async {
@@ -131,8 +135,15 @@ class PoemsShowController extends ControllerMVC {
             addFavorite();
           },
           playWithOutInternet: (ctx) {},
-          sharePoem: (ctx) {},
-        ));
+          sharePoem: (ctx) {
+            log(">>>>>>>>>>>:::${poem?.id}");
+            if(poem!=null) ShareHelper(
+              context: ctx,
+              poemModel: poem!
+            ).onShare();
+          },
+        ),
+    );
   }
 
   addNote(){

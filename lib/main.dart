@@ -21,7 +21,7 @@ Future<void> main() async {
     androidNotificationChannelName: 'Poems Audio',
     androidNotificationOngoing: true,
   );
-  if(DateTime.now().isBefore(DateTime(2023,3,16))){
+  if(DateTime.now().isBefore(DateTime(2023,4,16))){
     runApp(
         MultiProvider(
           providers: [
