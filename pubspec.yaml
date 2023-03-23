@@ -58,6 +58,9 @@ dependencies:
   just_audio_background: ^0.0.1-beta.9
   path_provider: ^2.0.11
   share_plus: ^6.3.1
+  auto_size_text: ^3.0.0
+  widgets_to_image: ^0.0.2
+  carousel_slider: ^4.2.1
 
 
 
@@ -85,7 +88,7 @@ flutter:
   assets:
     - i18n/en.json
     - i18n/ar.json
-    - assets/
+    - assets/PoemsImageShare/
     - assets/
     - assets/images/
     - assets/fonts/

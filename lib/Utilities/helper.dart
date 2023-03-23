@@ -78,8 +78,8 @@ class Helper{
     });
   }
 
-  static Future<String> getMediaFolderPath()async{
-    String folderName = "media";
+  static Future<String> getMediaFolderPath({String? folderName})async{
+    folderName ??= "media";
     Directory appDocumentsDirectory = await getApplicationDocumentsDirectory();
     String appDocumentsPath = appDocumentsDirectory.path;
     final Directory newDirectory = Directory('$appDocumentsPath/$folderName/');
