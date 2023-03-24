@@ -42,7 +42,7 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
           ),
           CustomScrollView(slivers: [
             EldiwanHeaderWidget(searchController: con.searchController,diwan: widget.diwan,),
-             AboutDiwan(aboutDiwan: widget.diwan?.description??''),
+             if(widget.diwan?.description!="") AboutDiwan(aboutDiwan: widget.diwan?.description??''),
              ElquafyWidget(poems: con.getPoemsByDiwanId),
             SliverToBoxAdapter(
               child:Center(

@@ -31,14 +31,14 @@ class PoemsShowAllWidget extends StatelessWidget {
               SizedBox(width: 48.w,),
               Flexible(child: Divider(color: ThemeClass.secondaryColor,height: 1.h)),
               SizedBox(width: 26.w,),
-              InkWell(
-                onTap: ()=>Navigator.of(context).pushNamed(MainScreen.routeName,arguments: 2),
-                child: Text("show_all".tr,style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 40.sp,
-                    color: ThemeClass.primaryColor
-                ),),
-              ),
+              // InkWell(
+              //   onTap: ()=>Navigator.of(context).pushNamed(MainScreen.routeName,arguments: 2),
+              //   child: Text("show_all".tr,style: TextStyle(
+              //       fontWeight: FontWeight.bold,
+              //       fontSize: 40.sp,
+              //       color: ThemeClass.primaryColor
+              //   ),),
+              // ),
             ],),
         ),
       ),);

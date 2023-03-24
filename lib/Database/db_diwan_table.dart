@@ -46,8 +46,16 @@ class DiwanDbHelper{
     return null;
   }
 
-  Future<List<DiwanModel>> getAll() async {
-    List<Map<String,dynamic>> maps = await db.query(tableName);
+  Future<List<DiwanModel>> getAllDwawin() async {
+    List<Map<String,dynamic>> maps = await db.query(tableName,where: '${DiwanModel.collectionText} = ?',whereArgs: [0]);
+    if (maps.isNotEmpty) {
+      return maps.map((e) => DiwanModel.fromMap(e)).toList();
+    }
+    return [];
+  }
+
+  Future<List<DiwanModel>> getAllKnash() async {
+    List<Map<String,dynamic>> maps = await db.query(tableName,where: '${DiwanModel.collectionText} = ?',whereArgs: [1]);
     if (maps.isNotEmpty) {
       return maps.map((e) => DiwanModel.fromMap(e)).toList();
     }

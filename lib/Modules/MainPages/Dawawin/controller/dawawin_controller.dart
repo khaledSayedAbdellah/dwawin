@@ -28,7 +28,7 @@ class DawawinController extends ControllerMVC {
     super.dispose();
   }
   init()async{
-    eldawainList = await DiwanDbHelper().getAll();
+    eldawainList = await DiwanDbHelper().getAllDwawin();
     setState(() { });
   }
 

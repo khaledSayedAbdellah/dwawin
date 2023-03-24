@@ -4,7 +4,7 @@ import 'AboutUs/Screen/about_us.dart';
 import 'Dawawin/Screen/dawawin_screen.dart';
 import 'Drawer/Screen/drawer.dart';
 import 'Home/Screens/home_screen.dart';
-import 'Poems/Screen/poems.dart';
+import 'Knash/Screen/knash.dart';
 
 class MainScreen extends StatefulWidget {
   static const routeName = "/MainScreen";
@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> screen = const [
     HomeScreen(),
     DawawinScreen(),
-    PoemsScreen(),
+    KnashScreen(),
     AboutUs(),
   ];
 

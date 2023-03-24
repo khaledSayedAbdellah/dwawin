@@ -19,7 +19,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
   List<NavBarModel>itemIMage=[
     NavBarModel(imageName: "ic_home.svg",id: 0,title: "Home".tr),
     NavBarModel(imageName: "ic_dwawen.svg",id: 1,title: "Dawawin".tr),
-    NavBarModel(imageName: "ic_ksaed.svg",id: 2,title: "Poems".tr),
+    NavBarModel(imageName: "ic_ksaed.svg",id: 2,title: "_knash".tr),
     NavBarModel(imageName: "ic_shaikh.svg",id: 3,title: "about__sheikh".tr),
   ];
   @override

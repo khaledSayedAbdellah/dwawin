@@ -2,7 +2,7 @@
   "Home": "Home",
   "about_us": "About Us",
   "More": "More",
-  "search": "Search in divan...",
+  "search": "Search ...",
   "audible_poems": "Audible poems",
   "madh_alrasul": "Madh alrasul salaa allah ealayh wasalam",
   "Sheikh": "Sheikh Ibrahim Inias",
@@ -54,5 +54,8 @@
   "result":"Result",
   "the_results":"Results",
   "diwan":"diwan : ",
-  "knash": "knash: "
+  "knash": "knash: ",
+  "_knash": "knash",
+  "all_knash": "Browse all knash",
+  "search_knash": "search on knash"
 }

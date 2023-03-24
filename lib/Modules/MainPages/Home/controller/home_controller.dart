@@ -32,11 +32,11 @@ late TextEditingController searchController;
     super.dispose();
   }
 
-init()async{
-eldawainList = await DiwanDbHelper().getAll();
-poemsList=await PoemDbHelper().getAll();
-setState(() { });
-}
+  init()async{
+    eldawainList = await DiwanDbHelper().getAllDwawin();
+    poemsList = await PoemDbHelper().getAll(dwawinIds: eldawainList.map((e) => e.id).whereType<int>().toList());
+    setState(() { });
+  }
 
 
 

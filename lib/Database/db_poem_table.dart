@@ -39,8 +39,9 @@ class PoemDbHelper{
     return null;
   }
 
-  Future<List<PoemModel>> getAll() async {
-    List<Map<String,dynamic>> maps = await db.query(tableName);
+  Future<List<PoemModel>> getAll({List<int> dwawinIds = const []}) async {
+    List<Map<String,dynamic>> maps = await db.query(tableName,where: '${PoemModel.diwanIdText} IN (${dwawinIds.map((e) => "?").join(', ')})',whereArgs: dwawinIds);
+    // List<Map<String,dynamic>> maps = await db.query(tableName);
     if (maps.isNotEmpty) {
       return maps.map((e) => PoemModel.fromMap(e)).toList();
     }
