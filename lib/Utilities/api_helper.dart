@@ -6,21 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 class API{
-  static const String baseServerURL = "https://elnamat.com/poems/poems";
+  static const String baseServerURL = "https://turathtijania.com/poems";
   static const String _baseURL = "$baseServerURL/api/";
-
 
 
   //=========================== api User ====================================
   static String poemMedia(int id) => "readers?poem_id=$id";
 
 
-
-
-
-  //=========================== api Courier ====================================
-
-  static const String courierLogin = "login";
 
 
 
@@ -35,10 +28,7 @@ class API{
     var request = MultipartRequest(
       'POST',
       Uri.parse('$_baseURL$url'),
-      onProgress: (int bytes, int total) async {
-        final progress = bytes / total;
-        // log(">>>>>>>>> progress: $progress");
-      },
+      onProgress: (int bytes, int total) async {},
     );
     request.fields.addAll(body);
     for (int i = 0; i < files.length; i++) {
