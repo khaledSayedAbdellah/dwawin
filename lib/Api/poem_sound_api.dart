@@ -13,8 +13,9 @@ class PoemApi{
     if(poemId == null) return [];
     var response = await API.getRequest(url: API.poemMedia(poemId));
     if (response == null) return await MediaDbHelper().getByPoemId(poemId: poemId);
-    if (response["status"] == true) {
-      List<MediaModel> data = List.from(response["data"].map((e)=> MediaModel.fromMap(e)));
+    if (response.toString().length<10) return await MediaDbHelper().getByPoemId(poemId: poemId);
+    if (response != null) {
+      List<MediaModel> data = List.from(response.map((e)=> MediaModel.fromMap(e)));
       data.forEach((m) async{
         await MediaDbHelper().insert(media: m);
       });

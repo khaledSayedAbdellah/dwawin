@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dwawin/Models/media_model.dart';
 import 'package:dwawin/Models/poem_model.dart';
 import 'package:dwawin/Utilities/LayoutHelper/loading_screen.dart';
@@ -63,46 +65,59 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                         SliverToBoxAdapter(
                           child: Column(
                             children: con.poem!.content.map((e) {
-                              return Center(
-                                  child: SizedBox(
-                                width: 1025.w,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 30.h,
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional.centerStart,
-                                      child: Text(
-                                        e.verse1 ?? '',
-                                        style: TextStyle(
-                                          fontSize: provider.fontSize.sp,
-                                          color: provider.fontColor,
-                                          fontWeight: FontWeight.bold,
+                              return GestureDetector(
+                                onTap: (){
+                                  log(e.id.toString());
+                                  if(con.selectedShareVersesIds.contains(e.id)){
+                                    con.selectedShareVersesIds.remove(e.id);
+                                  } else{
+                                    if(e.id!=null) con.selectedShareVersesIds.add(e.id!);
+                                  }
+                                  setState(() { });
+                                },
+                                child: Center(
+                                    child: Container(
+                                      color: con.selectedShareVersesIds.contains(e.id)?Colors.grey.withOpacity(0.4):null,
+                                      width: 1025.w,
+                                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 30.h,
+                                      ),
+                                      Align(
+                                        alignment: AlignmentDirectional.centerStart,
+                                        child: Text(
+                                          e.verse1 ?? '',
+                                          style: TextStyle(
+                                            fontSize: provider.fontSize.sp,
+                                            color: provider.fontColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 30.h,
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional.centerEnd,
-                                      child: Text(
-                                        e.verse2 ?? '',
-                                        style: TextStyle(
-                                          fontSize: provider.fontSize.sp,
-                                          color: provider.fontColor,
-                                          fontWeight: FontWeight.bold,
+                                      SizedBox(
+                                        height: 30.h,
+                                      ),
+                                      Align(
+                                        alignment: AlignmentDirectional.centerEnd,
+                                        child: Text(
+                                          e.verse2 ?? '',
+                                          style: TextStyle(
+                                            fontSize: provider.fontSize.sp,
+                                            color: provider.fontColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 30.h,
-                                    ),
-                                  ],
-                                ),
-                              ));
+                                      SizedBox(
+                                        height: 30.h,
+                                      ),
+                                    ],
+                                  ),
+                                )),
+                              );
                             }).toList(),
                           ),
                         ),

@@ -58,7 +58,7 @@ class VerseModel {
   );
 
   Map<String, dynamic> toMap() => {
-    // idText: id,
+    idText: id,
     poemIdText: poemId,
     diwanIdText: diwanId,
     verse1Text: verse1,

@@ -113,7 +113,7 @@ class CustomTextFieldWidget extends StatelessWidget {
                 color: const Color(0xff555555),
               ),
         ),
-        onChanged: onchange,
+        onChanged: onSave,
         textCapitalization: TextCapitalization.words,
         maxLines: maxLine ?? 1,
         minLines: minLines??1,

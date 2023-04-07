@@ -15,7 +15,7 @@ import '../generated/assets.dart';
 
 class InitialLocalData{
 
-  static int appDataVersion = 22;
+  static int appDataVersion = 23;
 
   static Future<void> init()async{
     bool needToUpdate = _checkDataNeedToUpdate();

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -102,5 +103,12 @@ class Helper{
     Uint8List? downloadedData = await API.getDataFromUrl(url: filePath);
     if(downloadedData == null) return null;
     return File("$folderPath/$createdFileName")..writeAsBytesSync(downloadedData);
+  }
+
+  static int getSearchStart({required String mainText,required String searchText}){
+    String normalized = mainText.rmArFormation();
+
+    log(">>>>>>>>>>>>> befoure: ${mainText.length}   after:${normalized.length}");
+    return normalized.indexOf(searchText);
   }
 }

@@ -86,7 +86,7 @@ class _SearchScreenState extends StateMVC<SearchScreen> {
                       onTap: (){
                           Navigator.of(context).pushNamed(PoemsShow.routeName,arguments:PoemModel(id: con.searchList[index].poemId));
                       },
-                        child: ContentWidget(verseModel: con.searchList[index],));
+                        child: ContentWidget(verseModel: con.searchList[index],searchText: con.searchController.text,));
                   },
                   childCount: con.searchList.length,
                 ),
@@ -99,7 +99,8 @@ class _SearchScreenState extends StateMVC<SearchScreen> {
 
 class ContentWidget extends StatelessWidget {
   final VerseModel verseModel;
-  const ContentWidget({Key? key, required this.verseModel}) : super(key: key);
+  final String searchText;
+  const ContentWidget({Key? key, required this.verseModel, required this.searchText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -120,19 +121,16 @@ class ContentWidget extends StatelessWidget {
             Row(
                 children: [
                   SizedBox(width: 90.w),
-                  Text(
-                      verseModel.verse1??"",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30.sp,
-                          color: ThemeClass.darkGray)),
+                  VerseSearchTextWidget(
+                    verse: verseModel.verse1Rm??"",
+                    startIndex: (verseModel.verse1Rm??"").indexOf(searchText),
+                    endIndex: (verseModel.verse1Rm??"").indexOf(searchText)+searchText.length,
+                  ),
                   SizedBox(width: 50.w),
-                  Text(
-                      verseModel.verse2??"",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30.sp,
-                          color: ThemeClass.darkGray),
+                  VerseSearchTextWidget(
+                    verse: verseModel.verse2Rm??"",
+                    startIndex: (verseModel.verse2Rm??"").indexOf(searchText),
+                    endIndex: (verseModel.verse2Rm??"").indexOf(searchText)+searchText.length,
                   ),
                 ],
               ),
@@ -167,3 +165,27 @@ class ContentWidget extends StatelessWidget {
     );
   }
 }
+
+class VerseSearchTextWidget extends StatelessWidget {
+  final String verse;
+  final int startIndex,endIndex;
+  const VerseSearchTextWidget({Key? key, required this.verse, required this.startIndex, required this.endIndex}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        style: TextStyle(fontWeight: FontWeight.w500, color: ThemeClass.darkGray, fontSize: 30.sp),
+        children: <TextSpan>[
+          if(startIndex==-1) TextSpan(text: verse),
+          if(startIndex!=-1) ...[
+            TextSpan(text: verse.substring(0,startIndex)),
+            TextSpan(text: verse.substring(startIndex,endIndex), style: TextStyle(fontWeight: FontWeight.w500, color: ThemeClass.primaryColor, fontSize: 32.sp),),
+            TextSpan(text: verse.substring(endIndex)),
+          ]
+        ],
+      ),
+    );
+  }
+}
+

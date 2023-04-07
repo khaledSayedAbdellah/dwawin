@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:audio_session/audio_session.dart';
+import 'package:dwawin/Models/verse_model.dart';
 import 'package:dwawin/Modules/PomesShow/Widget/more_content_widget.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,6 +37,7 @@ class PoemsShowController extends ControllerMVC {
   List<MediaModel> media = [];
   MediaModel? selectedMedia;
   ConcatenatingAudioSource playlist = ConcatenatingAudioSource(children: []);
+  List<int> selectedShareVersesIds = [];
 
   Stream<PositionData> get positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
@@ -136,10 +138,10 @@ class PoemsShowController extends ControllerMVC {
           },
           playWithOutInternet: (ctx) {},
           sharePoem: (ctx) {
-            log(">>>>>>>>>>>:::${poem?.id}");
             if(poem!=null) ShareHelper(
               context: ctx,
-              poemModel: poem!
+              poemModel: selectedShareVersesIds.isEmpty?poem!:PoemModel.fromMap(poem!.toMap())
+                ..content = poem!.content.where((e) => selectedShareVersesIds.contains(e.id)).toList(),
             ).onShare();
           },
         ),
@@ -156,6 +158,7 @@ class PoemsShowController extends ControllerMVC {
     }
     setState(() {});
   }
+
   addFavorite(){
     if (poem?.id != null) {
       isFavorite=!isFavorite;

@@ -16,8 +16,11 @@ class DiwanShowController extends ControllerMVC {
   DiwanShowController._();
   bool loading = false;
   late TextEditingController searchController;
-  List<PoemModel> getPoemsByDiwanId=[];
+  List<PoemModel> _diwanPoems=[];
+  List<PoemModel> get poemsWithRhyme=> _diwanPoems.where((element) => (element.rhyme == selectedRhyme) || selectedRhyme == null).toList();
   int? diwanId;
+  String? selectedRhyme;
+
   @override
   void initState() {
     searchController=TextEditingController();
@@ -30,7 +33,7 @@ class DiwanShowController extends ControllerMVC {
     super.dispose();
   }
   init()async{
-    getPoemsByDiwanId=await  DiwanDbHelper().getPoemsByDiwanId(id: diwanId);
+    _diwanPoems = await  DiwanDbHelper().getPoemsByDiwanId(id: diwanId);
     setState(() { });
   }
 

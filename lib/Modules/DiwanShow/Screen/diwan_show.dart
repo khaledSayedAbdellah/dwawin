@@ -29,6 +29,7 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
 @override
   void initState() {
     con.diwanId=widget.diwan?.id??0;
+    con.selectedRhyme = null;
     super.initState();
   }
   @override
@@ -43,7 +44,18 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
           CustomScrollView(slivers: [
             EldiwanHeaderWidget(searchController: con.searchController,diwan: widget.diwan,),
              if(widget.diwan?.description!="") AboutDiwan(aboutDiwan: widget.diwan?.description??''),
-             ElquafyWidget(poems: con.getPoemsByDiwanId),
+             ElquafyWidget(
+               onSelect: (selected){
+                 if(con.selectedRhyme == selected){
+                   con.selectedRhyme = null;
+                   setState(() { });
+                 }else{
+                   con.selectedRhyme = selected;
+                   setState(() { });
+                 }
+               },
+               poemsRhyme: con.poemsWithRhyme.map((e) => e.rhyme??"").toSet().toList(),
+             ),
             SliverToBoxAdapter(
               child:Center(
                 child: Container(
@@ -71,9 +83,9 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                  return PoemsWidget(poem:con.getPoemsByDiwanId[index] ,);
+                  return PoemsWidget(poem:con.poemsWithRhyme[index] ,);
                 },
-                childCount:con.getPoemsByDiwanId.length,
+                childCount:con.poemsWithRhyme.length,
               ),
             )
 
