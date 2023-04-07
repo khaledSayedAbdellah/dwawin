@@ -1,4 +1,5 @@
 import 'package:dwawin/Modules/Note/Controller/note_conteroller.dart';
+import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -95,7 +96,37 @@ class _NoteState extends StateMVC<Note> {
                                                   color: ThemeClass.secondDarkGray
                                                 ),),
                                               ],
-                                            ))
+                                            ),
+                                            ),
+                                            PopupMenuButton<int>(
+                                              onSelected: (i){
+                                                if(i == 1) con.onDelete(e);
+                                                if(i == 2) con.onShare(e);
+                                              },
+                                              itemBuilder: (context) => [
+                                                PopupMenuItem(
+                                                  value: 1,
+                                                  child: Row(
+                                                    children: [
+                                                      Icon(Icons.delete),
+                                                      SizedBox(width: 10.w,),
+                                                      Text("delete".tr),
+                                                    ],
+                                                  ),
+                                                ),
+                                                PopupMenuItem(
+                                                  value: 2,
+                                                  child: Row(
+                                                    children: [
+                                                      Icon(Icons.share),
+                                                      SizedBox(width: 10.w,),
+                                                      Text("share".tr),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                              offset: Offset(100.w, 60.h),
+                                            ),
                                           ],
                                         ),
                                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../Database/db_poem_table.dart';
 import '../../../Models/poem_model.dart';
@@ -31,4 +32,14 @@ getData()async{
   poemsNote=await PoemDbHelper().getPoemsNote();
   setState(() { });
 }
+
+  Future onDelete(PoemModel poemModel)async{
+    await PoemDbHelper().addNotes(poemId: poemModel.id, note: null);
+    poemsNote.remove(poemModel);
+    setState(() { });
+  }
+
+  Future onShare(PoemModel poemModel)async{
+    await Share.share(poemModel.notes??"", subject: poemModel.name??"");
+  }
 }

@@ -6,6 +6,7 @@ import '../../../Utilities/theme_helper.dart';
 import '../../PomesShow/Screen/poems_show.dart';
 import '../Controller/favorites_controller.dart';
 import '../Widget/favorites_header_widget.dart';
+import '../../../Utilities/helper.dart';
 
 class Favorites extends StatefulWidget {
   static const routeName = "/Favorites";
@@ -74,11 +75,32 @@ class _FavoritesState extends StateMVC<Favorites> {
                                               height: 96.h,
                                             ),
                                             SizedBox(width: 20.w,),
-                                            Text(e.name??'',style: TextStyle(
-                                                fontSize: 34.sp,
-                                                fontWeight: FontWeight.w500,
-                                                color: ThemeClass.secondDarkGray
-                                            ),)
+                                            Expanded(
+                                              child: Text(e.name??'',style: TextStyle(
+                                                  fontSize: 34.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: ThemeClass.secondDarkGray
+                                              ),),
+                                            ),
+
+                                            PopupMenuButton<int>(
+                                              onSelected: (i){
+                                                if(i == 1) con.onDelete(e);
+                                              },
+                                              itemBuilder: (context) => [
+                                                PopupMenuItem(
+                                                  value: 1,
+                                                  child: Row(
+                                                    children: [
+                                                      Icon(Icons.delete),
+                                                      SizedBox(width: 10.w,),
+                                                      Text("delete".tr),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                              offset: Offset(100.w, 60.h),
+                                            ),
                                           ],
                                         ),
                                       ),

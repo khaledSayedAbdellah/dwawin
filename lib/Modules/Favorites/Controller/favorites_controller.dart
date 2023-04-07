@@ -31,4 +31,10 @@ class FavoritesController extends ControllerMVC {
     favoritePoems=await PoemDbHelper().getFavoritePoems();
     setState(() { });
    }
+
+   Future onDelete(PoemModel poemModel)async{
+    await PoemDbHelper().changePoemFavorite(poemId: poemModel.id, status: false);
+    favoritePoems.remove(poemModel);
+    setState(() { });
+   }
 }

@@ -53,7 +53,8 @@ class PoemDbHelper{
     return result!=-1;
   }
 
-  Future<int> addNotes({required int poemId,required String note}) async {
+  Future<int> addNotes({required int? poemId,required String? note}) async {
+    if(poemId == null) return -1;
     PoemModel? poemModel =await getById(id: poemId);
     if(poemModel == null) return -1;
     poemModel..notes = note;
@@ -61,7 +62,6 @@ class PoemDbHelper{
   }
 
   Future<List<PoemModel>> getPoemsNote() async {
-    // List<Map<String,dynamic>> maps = await db.query(tableName,where: '${PoemModel.noteText} IS NOT NULL');
     List<Map<String,dynamic>> maps = await db.rawQuery("SELECT * FROM $tableName WHERE ${PoemModel.noteText} IS NOT NULL");
     if (maps.isNotEmpty) {
       return maps.map((e) => PoemModel.fromMap(e)).toList();
@@ -69,7 +69,8 @@ class PoemDbHelper{
     return [];
   }
 
-  Future<int> changePoemFavorite({required int poemId,required bool status}) async {
+  Future<int> changePoemFavorite({required int? poemId,required bool status}) async {
+    if(poemId == null) return -1;
     PoemModel? poemModel =await getById(id: poemId);
     if(poemModel == null) return -1;
     poemModel..isFave = status;
