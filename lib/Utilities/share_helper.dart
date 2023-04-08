@@ -236,7 +236,6 @@ class _ConfirmSharedImageState extends State<ConfirmSharedImage> {
                       widget.poemContent,
                       minFontSize: 5,
                       textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 26),
                     ),
                   ),
                 ),
