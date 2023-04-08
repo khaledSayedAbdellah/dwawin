@@ -77,7 +77,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
                                 },
                                 child: Center(
                                     child: Container(
-                                      color: con.selectedShareVersesIds.contains(e.id)?Colors.grey.withOpacity(0.4):null,
+                                      color: con.selectedShareVersesIds.contains(e.id)?Colors.grey.withOpacity(0.4):Colors.transparent,
                                       width: 1025.w,
                                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                                   child: Column(

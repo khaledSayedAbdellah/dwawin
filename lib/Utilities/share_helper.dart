@@ -175,9 +175,9 @@ class _ShareDialogWidgetState extends State<_ShareDialogWidget> {
             if(!shareAsText) Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("تطبيق دواوين الشيخ إبراهيم نياس",style: TextStyle(fontSize: 30.sp,color: Colors.grey,),),
+                Text("app_desc".tr,style: TextStyle(fontSize: 30.sp,color: Colors.grey,),),
                 Image.asset("assets/images/logo_2.png",width: 120.w,height: 120.w,color: ThemeClass.primaryColor,),
-                Text("شبكة تراث الفيضة المجانية",style: TextStyle(fontSize: 30.sp,color: Colors.grey,),),
+                Text("app_2desc".tr,style: TextStyle(fontSize: 30.sp,color: Colors.grey,),),
               ],
             ),
             SizedBox(height: 20.h,),
@@ -236,9 +236,18 @@ class _ConfirmSharedImageState extends State<ConfirmSharedImage> {
                       widget.poemContent,
                       minFontSize: 5,
                       textAlign: TextAlign.start,
+                      style: TextStyle(fontSize: 26),
                     ),
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("app_desc".tr,style: TextStyle(fontSize: 30.sp,color: Colors.grey,),),
+                    Image.asset("assets/images/logo_2.png",width: 120.w,height: 120.w,color: ThemeClass.primaryColor,),
+                    Text("app_2desc".tr,style: TextStyle(fontSize: 30.sp,color: Colors.grey,),),
+                  ],
+                )
               ],
             ),
           ),

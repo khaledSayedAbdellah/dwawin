@@ -138,10 +138,13 @@ class PoemsShowController extends ControllerMVC {
           },
           playWithOutInternet: (ctx) {},
           sharePoem: (ctx) {
+            PoemModel poemModel = PoemModel.fromMap(poem!.toMap());
+            if(selectedShareVersesIds.isNotEmpty){
+              poemModel.content =  poemModel.content.where((e) => selectedShareVersesIds.contains(e.id)).toList();
+            }
             if(poem!=null) ShareHelper(
               context: ctx,
-              poemModel: selectedShareVersesIds.isEmpty?poem!:PoemModel.fromMap(poem!.toMap())
-                ..content = poem!.content.where((e) => selectedShareVersesIds.contains(e.id)).toList(),
+              poemModel: poemModel,
             ).onShare();
           },
         ),
