@@ -13,9 +13,11 @@ String shikhDataModelToMap(ShikhDataModel data) => json.encode(data.toMap());
 class ShikhDataModel {
 
 
-  String? get dateOfBirth => SharedPref.getCurrentLang() == "en"? dateOfBirthAndGrowing:dateOfBirthAndGrowingEn;
-  String? get elders => SharedPref.getCurrentLang() == "en"? hisElders:hisEldersEn;
-  String? get ijazaat => SharedPref.getCurrentLang() == "en"? ijazaatScholar:ijazaatScholarEn;
+  String? get dateOfBirth => SharedPref.getCurrentLang() != "en"? dateOfBirthAndGrowing:dateOfBirthAndGrowingEn;
+  String? get elders => SharedPref.getCurrentLang() != "en"? hisElders:hisEldersEn;
+  String? get ijazaat => SharedPref.getCurrentLang() != "en"? ijazaatScholar:ijazaatScholarEn;
+
+
 
 
   ShikhDataModel({
