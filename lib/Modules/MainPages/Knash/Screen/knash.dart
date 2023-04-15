@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'package:dwawin/Utilities/LayoutHelper/background_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../../Utilities/theme_helper.dart';
@@ -31,29 +33,23 @@ class _KnashScreenState extends StateMVC<KnashScreen> {
         if (Platform.isAndroid) SystemNavigator.pop();
         exit(0);
       },
-      child: Scaffold(
-        backgroundColor: ThemeClass.backGround,
-        body: Stack(
-            children: [
-              SvgPicture.asset(
-                "assets/images/BG.svg",
-                fit: BoxFit.cover,
-                // height: double.infinity,
-              ),
-              CustomScrollView(
-                  slivers: [
-                    PoemsHeaderWidget(searchController: con.searchController),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                            (BuildContext context, int index) {
-                          return EldiwanWidget(eldawawin:con.knashDwawin[index],);
-                        },
-                        childCount: con.knashDwawin.length,
-                      ),
-                    ),
-                  ]),
-
-            ]),
+      child: BackGroundWidget(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: CustomScrollView(
+              slivers: [
+                PoemsHeaderWidget(searchController: con.searchController),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                      return EldiwanWidget(eldawawin:con.knashDwawin[index],);
+                    },
+                    childCount: con.knashDwawin.length,
+                  ),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: 250.h,),),
+              ]),
+        ),
       ),
     );
   }

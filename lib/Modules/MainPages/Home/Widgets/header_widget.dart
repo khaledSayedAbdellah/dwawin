@@ -39,8 +39,8 @@ class HeaderWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SvgPicture.asset(
-                    "assets/images/homehedar.svg",
+                  Image.asset(
+                    "assets/images/icon_circle.png",
                     height: 450.h,
                     fit: BoxFit.cover,
                     // height: double.infinity,

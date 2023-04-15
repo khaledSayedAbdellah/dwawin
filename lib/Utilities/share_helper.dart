@@ -9,6 +9,7 @@ import 'package:dwawin/Utilities/theme_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
@@ -115,7 +116,16 @@ class _ShareDialogWidgetState extends State<_ShareDialogWidget> {
                         border: Border.all(color: shareAsText?Colors.white:ThemeClass.primaryColor,)
                     ),
                     alignment: Alignment.center,
-                    child: Text("مشاركه كنص",style: TextStyle(color: shareAsText?Colors.white:ThemeClass.primaryColor,fontSize: 44.sp),),
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset("assets/images/book.svg",color: shareAsText?Colors.white:ThemeClass.primaryColor,
+                        width: 100.w,height: 100.w,),
+                        SizedBox(width: 10.w,),
+                        Text("share_as_text".tr,style: TextStyle(color: shareAsText?Colors.white:ThemeClass.primaryColor,fontSize: 44.sp),),
+                      ],
+                    ),
                   ),
                 ),
                 GestureDetector(
@@ -129,7 +139,16 @@ class _ShareDialogWidgetState extends State<_ShareDialogWidget> {
                       border: Border.all(color: !shareAsText?Colors.white:ThemeClass.primaryColor,)
                     ),
                     alignment: Alignment.center,
-                    child: Text("مشاركه كصوره",style: TextStyle(color: !shareAsText?Colors.white:ThemeClass.primaryColor,fontSize: 44.sp),),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset("assets/images/img_icon.svg",color: !shareAsText?Colors.white:ThemeClass.primaryColor,
+                        width: 85.w,height: 85.w,),
+                        SizedBox(width: 10.w,),
+                        Text("share_as_image".tr,style: TextStyle(
+                            color: !shareAsText?Colors.white:ThemeClass.primaryColor,fontSize: 44.sp),)
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -191,7 +210,7 @@ class _ShareDialogWidgetState extends State<_ShareDialogWidget> {
                   color: ThemeClass.primaryColor,
                 ),
                 alignment: Alignment.center,
-                child: Text("مشاركة",style: TextStyle(color: Colors.white,fontSize: 55.sp),),
+                child: Text("share".tr,style: TextStyle(color: Colors.white,fontSize: 55.sp),),
               ),
             ),
             SizedBox(height: 20.h,),

@@ -9,7 +9,7 @@ class SharedDataProvider with ChangeNotifier, DiagnosticableTreeMixin {
   int _currentNavIndex = 0;
   double _fontSize=40;
   Color _fontColor=const Color(0xff000000);
-  Color _backGroundColor=const Color(0xffFFFFFF);
+  Color _backGroundColor=const Color(0xffffFCEE);
   Color get fontColor=>_fontColor;
   Color get backGroundColor=>_backGroundColor;
 

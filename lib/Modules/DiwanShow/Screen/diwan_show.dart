@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import '../../../Utilities/LayoutHelper/background_widget.dart';
 import '../../../Utilities/theme_helper.dart';
 import '../../../Widgets/poems_widget.dart';
 import '../Controller/diwan_show_conteoller.dart';
@@ -34,14 +35,10 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: ThemeClass.backGround,
-        body: Stack(children: [
-          SvgPicture.asset(
-            "assets/images/BG.svg",
-            fit: BoxFit.cover,
-          ),
-          CustomScrollView(slivers: [
+    return BackGroundWidget(
+      child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: CustomScrollView(slivers: [
             EldiwanHeaderWidget(searchController: con.searchController,diwan: widget.diwan,),
              if(widget.diwan?.description!="") AboutDiwan(aboutDiwan: widget.diwan?.description??''),
              ElquafyWidget(
@@ -89,11 +86,11 @@ class _DiwanShowState extends StateMVC<DiwanShow> {
               ),
             )
 
-          ])
-        ]),
+          ]),
 //       bottomNavigationBar: NavBarWidget(
 // onChange: (i){},
 //         selectedIndex: context.read<SharedDataProvider>().currentNavIndex,),
+      ),
     );
   }
 }

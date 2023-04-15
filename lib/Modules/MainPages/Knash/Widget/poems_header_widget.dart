@@ -44,7 +44,7 @@ class PoemsHeaderWidget extends StatelessWidget {
                     children: [
                       SizedBox(width: 60.w,),
                       SvgPicture.asset(
-                        "assets/images/ic_ksaed2.svg",
+                        "assets/images/ic_ksaed.svg",
                         height: 100.w,
                         width: 100.w,
                         color: Colors.white,

@@ -39,10 +39,10 @@ class _DrawerScreenState extends StateMVC<DrawerScreen> {
                     image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage("assets/images/orn-header-home.png"))),
-                child:  SvgPicture.asset(
-                  "assets/images/homehedar.svg",
-                  width: 100.w,
-                  height:100.h ,
+                child:  Image.asset(
+                  "assets/images/icon_circle.png",
+                  fit: BoxFit.contain,
+                  // height: double.infinity,
                 ),
               ),
               Column(

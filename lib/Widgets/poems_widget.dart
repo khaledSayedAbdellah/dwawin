@@ -19,7 +19,14 @@ class PoemsWidget extends StatelessWidget {
           padding: EdgeInsetsDirectional.only(top: 46.h,bottom: 26.h,start: 22.w,end: 22.w),
           decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(20.w)
+              borderRadius: BorderRadius.circular(20.w),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xF6EDAF99).withOpacity(0.3),
+                  blurRadius: 0,
+                  offset: Offset(0,3.w),
+                )
+              ]
           ),
           width: 1025.w,
           child: Column(

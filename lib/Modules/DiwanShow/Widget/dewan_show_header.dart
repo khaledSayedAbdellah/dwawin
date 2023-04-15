@@ -36,9 +36,10 @@ class EldiwanHeaderWidget extends StatelessWidget {
                     bottomLeft: Radius.circular(80.w), bottomRight: Radius.circular(80.w)),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  BackButton(color: Colors.white),
                   Center(
                     child: SizedBox(
                       width: 1025.w,

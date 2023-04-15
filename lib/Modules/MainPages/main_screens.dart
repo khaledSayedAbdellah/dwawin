@@ -38,14 +38,23 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       key: _scaffoldkey,
       drawer: const DrawerScreen(),
-      body: screen[_selectedIndex],
-      bottomNavigationBar: Container(
-        color: Colors.transparent.withOpacity(.1),
-        child: NavBarWidget(
-            selectedIndex: _selectedIndex,
-            openDrawer: ()=> _scaffoldkey.currentState?.openDrawer(),
-            onChange: (int index) => setState(() {_selectedIndex = index;}),
+      body: Stack(
+        children: [
+          screen[_selectedIndex],
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              color: Colors.transparent,
+              child: NavBarWidget(
+                selectedIndex: _selectedIndex,
+                openDrawer: ()=> _scaffoldkey.currentState?.openDrawer(),
+                onChange: (int index) => setState(() {_selectedIndex = index;}),
+              ),
             ),
+          )
+        ],
       ),
     );
   }

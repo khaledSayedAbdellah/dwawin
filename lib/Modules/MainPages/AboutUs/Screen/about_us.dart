@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dwawin/Utilities/LayoutHelper/background_widget.dart';
 import 'package:dwawin/Utilities/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,15 +41,10 @@ class _AboutUsState extends StateMVC<AboutUs> {
           if (Platform.isAndroid) SystemNavigator.pop();
           exit(0);
         },
-        child: Scaffold(
-            backgroundColor: ThemeClass.backGround,
-            body: Stack(children: [
-              SvgPicture.asset(
-                "assets/images/BG.svg",
-                fit: BoxFit.cover,
-                // height: double.infinity,
-              ),
-              CustomScrollView(slivers: [
+        child: BackGroundWidget(
+          child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: CustomScrollView(slivers: [
                 AboutUsHeaderWidget(searchController: con.searchController,shikhDataModel:con.shikhDataModel),
                 SliverToBoxAdapter(child: SizedBox(height: 60.h,),),
                 SliverToBoxAdapter(
@@ -85,8 +81,8 @@ class _AboutUsState extends StateMVC<AboutUs> {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(child: SizedBox(height: 30.h,),),
-              ])
-            ])));
+                SliverToBoxAdapter(child: SizedBox(height: 250.h,),),
+              ])),
+        ));
   }
 }

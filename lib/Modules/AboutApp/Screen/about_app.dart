@@ -47,7 +47,7 @@ class _AboutAppState extends StateMVC<AboutApp> {
                       child: SizedBox(
                         width: 1025.w,
                           child: Text("about_des_3".tr,style: TextStyle(
-                            fontSize: 32.sp,
+                            fontSize: 50.sp,
                             color:ThemeClass.fourthDarkGray ,
                             fontWeight: FontWeight.w500
                           ),)),
@@ -61,7 +61,7 @@ class _AboutAppState extends StateMVC<AboutApp> {
                       child: SizedBox(
                           width: 1025.w,
                           child: Text("about_des_4".tr,style: TextStyle(
-                              fontSize: 32.sp,
+                              fontSize: 40.sp,
                               color:ThemeClass.fourthDarkGray ,
                               fontWeight: FontWeight.w500
                           ),)),

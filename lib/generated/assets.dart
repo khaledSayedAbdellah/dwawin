@@ -30,13 +30,11 @@ class Assets {
   static const String imagesIcContact = 'assets/images/ic_contact.svg';
   static const String imagesIcDownlodSetting = 'assets/images/ic_downlod_setting.svg';
   static const String imagesIcDwawen = 'assets/images/ic_dwawen.svg';
-  static const String imagesIcDwawen2 = 'assets/images/ic_dwawen2.svg';
   static const String imagesIcFavColor = 'assets/images/ic_fav_color.svg';
   static const String imagesIcGoComments = 'assets/images/ic_go_comments.svg';
   static const String imagesIcGoFav = 'assets/images/ic_go_fav.svg';
   static const String imagesIcHome = 'assets/images/ic_home.svg';
   static const String imagesIcKsaed = 'assets/images/ic_ksaed.svg';
-  static const String imagesIcKsaed2 = 'assets/images/ic_ksaed2.svg';
   static const String imagesIcLang = 'assets/images/ic_lang.svg';
   static const String imagesIcMnshed = 'assets/images/ic_mnshed.svg';
   static const String imagesIcMore = 'assets/images/ic_more.svg';

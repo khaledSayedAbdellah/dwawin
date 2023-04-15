@@ -44,7 +44,7 @@ class EldawawinHeaderWidget extends StatelessWidget {
                     children: [
                       SizedBox(width: 60.w,),
                       SvgPicture.asset(
-                        "assets/images/ic_dwawen2.svg",
+                        "assets/images/ic_dwawen.svg",
                         height: 100.w,
                         width: 100.w,
                         color: Colors.white,

@@ -4,8 +4,11 @@ import 'package:audio_session/audio_session.dart';
 import 'package:dwawin/Models/verse_model.dart';
 import 'package:dwawin/Modules/PomesShow/Widget/more_content_widget.dart';
 import 'package:dwawin/Utilities/helper.dart';
+import 'package:dwawin/Utilities/theme_helper.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -172,5 +175,62 @@ class PoemsShowController extends ControllerMVC {
       setState(() { });
     }
 
+  }
+
+  onPickSound(BuildContext context){
+    showDialog(
+      barrierDismissible: true,
+      context: context,
+      builder: (BuildContext context) {
+        return MediaSoundsWidget(
+          media: media,
+        );
+      },
+    );
+  }
+}
+
+class MediaSoundsWidget extends StatelessWidget {
+  final List<MediaModel> media;
+  const MediaSoundsWidget({Key? key, required this.media}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+          margin: EdgeInsets.only(bottom: 600.h),
+          padding: EdgeInsets.all(50.w),
+          color: Colors.white,
+          child: Material(
+            color: Colors.white,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text("minstrels".tr,style: TextStyle(fontSize: 80.sp,color: ThemeClass.primaryColor),),
+                    SizedBox(width: 20.w,),
+                    Expanded(child: Container(color: ThemeClass.primaryColor,height: 2.h,margin: EdgeInsets.only(bottom: 20.h),)),
+                  ],
+                ),
+                SizedBox(height: 60.h,),
+                ...media.map((e){
+                  return Container(
+                    padding: EdgeInsets.symmetric(vertical: 15.h),
+                    child: Row(
+                      children: [
+                        Text(e.name??"",style: TextStyle(fontSize: 45.sp,color: ThemeClass.primaryColor)),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ],
+            ),
+          )
+      ),
+    );
   }
 }
