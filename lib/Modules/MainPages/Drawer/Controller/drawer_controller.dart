@@ -69,17 +69,15 @@ static List<String> supportedLanguage = ["ar", "en"];
   Future selectLang(BuildContext context) async {
     final appLan = Provider.of<AppLanguage>(context, listen: false);
     await appLan.changeLanguage(Locale(supportedLanguage[selectLanguage]));
+    await Future.delayed(const Duration(milliseconds: 50));
     Navigator.of(context).pushNamed(SplashScreen.routeName);
-    await Future.delayed(const Duration(milliseconds: 100));
-    setState(() {});
-
   }
    share() async {
     await FlutterShare.share(
-        title: 'Example share',
-        text: 'Example share text',
-        linkUrl: 'https://flutter.dev/',
-        chooserTitle: 'Example Chooser Title'
+        title: 'dwawin',
+        text: 'dwawin app',
+        linkUrl: 'https://dwawin.com/',
+        chooserTitle: 'dwawin app',
     );
   }
 }

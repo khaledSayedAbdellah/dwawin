@@ -4,15 +4,18 @@ class Assets {
 
   static const String assetsData = 'assets/data.json';
   static const String assetsImagesBG = 'assets/images/BG.svg';
+  static const String assetsImagesLogo = 'assets/images/logo.jpeg';
   static const String assetsImagesOrnHeaderHome = 'assets/images/orn-header-home.svg';
   static const String assetsShikhData = 'assets/shikh_data.json';
+  static const String assetsTest = 'assets/test.json';
   static const String dataDataTemp = 'assets/data/data_temp.json';
   static const String dataDwawin = 'assets/data/dwawin.json';
   static const String dwawin1 = 'assets/data/dwawin/1.json';
   static const String dwawin2 = 'assets/data/dwawin/2.json';
-  static const String dwawinAssetsData = 'assets/data.json';
-  static const String dwawinAssetsShikhData = 'assets/shikh_data.json';
-  static const String fontsAktivGroteskTrialLtIt = 'assets/fonts/AktivGrotesk_Trial_LtIt.ttf';
+  static const String fontsAmiriBold = 'assets/fonts/Fonts/Amiri-Bold.ttf';
+  static const String fontsAmiriBoldSlanted = 'assets/fonts/Fonts/Amiri-BoldSlanted.ttf';
+  static const String fontsAmiriSlanted = 'assets/fonts/Fonts/Amiri-Slanted.ttf';
+  static const String fontsFonts = 'assets/fonts/Fonts.zip';
   static const String i18nAr = 'i18n/ar.json';
   static const String i18nEn = 'i18n/en.json';
   static const String imagesAboutBackground = 'assets/images/about_background.svg';
@@ -41,7 +44,11 @@ class Assets {
   static const String imagesIcShaikh = 'assets/images/ic_shaikh.svg';
   static const String imagesIcShareApp = 'assets/images/ic_share_app.svg';
   static const String imagesIcShareSet = 'assets/images/ic_share_set.svg';
+  static const String imagesIconCircle = 'assets/images/icon_circle.png';
+  static const String imagesImgIcon = 'assets/images/img_icon.svg';
   static const String imagesImgShikh = 'assets/images/img-shikh.png';
+  static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesLogo2 = 'assets/images/logo_2.png';
   static const String imagesNextIcon = 'assets/images/next_icon.svg';
   static const String imagesOrnHeaderHome = 'assets/images/orn-header-home.png';
   static const String imagesOrnSplash = 'assets/images/orn-splash.svg';
@@ -51,5 +58,9 @@ class Assets {
   static const String imagesSeekSupplyIcon = 'assets/images/seek_supply_icon.svg';
   static const String knash18 = 'assets/data/knash/18.json';
   static const String knash19 = 'assets/data/knash/19.json';
+  static const String poemsImageShare1 = 'assets/PoemsImageShare/1.jpg';
+  static const String poemsImageShare2 = 'assets/PoemsImageShare/2.jpg';
+  static const String poemsImageShare3 = 'assets/PoemsImageShare/3.jpg';
+  static const String poemsImageShare4 = 'assets/PoemsImageShare/4.jpg';
 
 }

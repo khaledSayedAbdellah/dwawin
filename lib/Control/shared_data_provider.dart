@@ -42,12 +42,14 @@ setBackGroundColor({required Color newBackGroundColor}){
     notifyListeners();
   }
   increaseFontSize(){
-    _fontSize++;
-    notifyListeners();
+    if(_fontSize<60){
+      _fontSize++;
+      notifyListeners();
+    }
   }
 
   decreaseFontSize(){
-    if(fontSize>=40){
+    if(fontSize>=30){
       _fontSize--;
       notifyListeners();
     }

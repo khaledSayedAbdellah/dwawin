@@ -72,6 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     SvgPicture.asset(
                       "assets/images/books-splash.svg",
                       height: 725.h,
+                      color: Colors.grey.shade200.withOpacity(0.4),
                     ),
                   ],
                 ),

@@ -37,6 +37,7 @@ class _PoemsShowState extends StateMVC<PoemsShow> {
   @override
   void initState() {
     con.poem = widget.poemModel;
+    con.selectedShareVersesIds = [];
     con.getPoem();
     super.initState();
   }

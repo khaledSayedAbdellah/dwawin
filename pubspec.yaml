@@ -61,12 +61,18 @@ dependencies:
   auto_size_text: ^3.0.0
   widgets_to_image: ^0.0.2
   carousel_slider: ^4.2.1
-
+  flutter_launcher_icons: ^0.12.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+flutter_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/logo.jpeg"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -115,7 +121,7 @@ flutter:
   fonts:
     - family: AktivGrotesk
       fonts:
-        - asset: assets/fonts/AktivGrotesk_Trial_LtIt.ttf
+        - asset: assets/fonts/aktiv_grotesk_regular.otf
 #  fonts:
 #    - family: acre
 #      fonts:

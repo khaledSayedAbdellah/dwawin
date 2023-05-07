@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +22,11 @@ Future<void> main() async {
     androidNotificationChannelName: 'Poems Audio',
     androidNotificationOngoing: true,
   );
-  if(DateTime.now().isBefore(DateTime(2023,4,16))){
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
+  if(DateTime.now().isBefore(DateTime(2023,6,16))){
     runApp(
         MultiProvider(
           providers: [
@@ -41,7 +46,7 @@ class EntryPoint extends StatelessWidget {
   const EntryPoint({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final appLan = Provider.of<AppLanguage>(context);
+    final appLan = Provider.of<AppLanguage>(context,listen: true);
     appLan.fetchLocale();
     return ScreenUtilInit(
       designSize: const Size(1125, 2436),
